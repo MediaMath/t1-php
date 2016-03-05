@@ -148,12 +148,12 @@ By providing your own decoders you can move your response decoding / formatting 
 /*
 *  Initialise the API client
 */
-$json = new ApiClient($transport, new JSONResponseDecoder());
+$json_client = new ApiClient($transport, new JSONResponseDecoder());
 
 /*
 * Fetch all the organisations which are available under the authorised account 
 */
-$data = (new Management\Organization($json))->read();
+$data = (new Management\Organization($json_client))->read();
 // $data will now be a full PHP object instead of a JSON-encoded string  
 ```
 
