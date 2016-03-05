@@ -56,6 +56,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 ## Usage <a name="usage"></a>
 
+* [Overview](#usage-overview)
 * [Basic Read Requests](#usage-basic)
 * [Passing Options](#usage-options)
 * [Creating Objects](#usage-creating)
@@ -64,6 +65,23 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 * [Decoding The Response](#usage-decoding)
 * [Caching The Response](#usage-caching)
 
+### Overview <a name="usage-overview"></a>
+
+#### The SDK structure is as follows:
+
+1. Authenticator - allows you to authenticate against the T1 API either using adama or OAuth.
+2. HTTP Transporter - choose how you want your network traffic to be handled, eg cUrl, Guzzle, even AMQP
+3. API Client - allows you to hook in any custom request / response logic and/or perform response caching
+4. API Object class - holds information about each API endpoint
+5. Decoder - allows you to format the API response in any way you wish
+
+#### The SDK flow is as follows:
+
+1. Choose an authentication method
+2. Set up an HTTP transporter to use your authenticator
+3. Set up an API Client. 
+4. Make your API call by instantiating one of the provided API object classes with your API Client
+5. Do something with the response (decode it, return a string representation, etc)
  
 ### Basic read requests <a name="usage-basic"></a>
 
