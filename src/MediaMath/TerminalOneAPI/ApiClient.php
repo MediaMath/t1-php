@@ -5,8 +5,9 @@ namespace Mediamath\TerminalOneAPI;
 use Mediamath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
 use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
 use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
+use Mediamath\TerminalOneAPI\Infrastructure\Clientable;
 
-class ApiClient
+class ApiClient implements Clientable
 {
 
     private $transport, $formatter;

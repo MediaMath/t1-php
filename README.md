@@ -177,7 +177,34 @@ $data = (new Management\Organization($json_client))->read();
 
 ### Caching the response <a name="usage-caching"></a>
 
-Instructions for this will be provided once the `CachingApiClient` class has been written.        
+Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options, which use the Doctrine Cache drivers. Included are:
+* Filesystem cache
+* APC
+* xCache
+* Memcache
+* Memcached
+
+To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
+
+All cache classes provided with this SDK require an integer TTL to be set in the constructor. Additionally, the `DoctrineFilesystemCache` class provided with this SDK requires a filesystem path to be provided, which is where the cached objects will be stored.
+
+The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
+
+```php
+
+/*
+* Specify a path to the cache directory - in this case a Symfony 3 cache relative to the current controller
+*/
+$path = __DIR__ . '/../../../var/cache';
+
+/*
+*   The TTL given to the filesystem cache is 600 seconds so responses will be cached for 10 minutes
+*/
+$cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(600, $path), new JSONResponseDecoder());
+
+$data = (new Management\Vertical($cached_json))->read();
+
+```
         
 ## Customisation <a name="customisation"></a>
 
@@ -373,4 +400,44 @@ class AcmeJSONResponseDecoder implements Decodable
 
 ### Response Cache <a name="customisation-cache"></a>
 
-You are welcome to use the response cache class provided in this SDK. Instructions on making your own will be provided once the SDK's version has been written.
+You are welcome to use the Doctrine response cache classes provided in this SDK. However, if you wish to write your own, your cache class will need to implement the `Cacheable` interface.
+
+```php
+
+// example using the Laravel Cache singleton class and the Laravel Carbon singleton class
+
+namespace Acme;
+
+use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
+use Cache;
+
+class AcmeCacheClass implements Cacheable;
+
+private $ttl;
+
+public function __construct($ttl) {
+
+    $this->ttl = $ttl;
+
+}
+
+public function store($key, $data)
+{
+    $expiresAt = Carbon::now()->addSeconds($ttl);
+    
+    Cache::put($key, $data, $expiresAt);
+
+}
+
+public function retrieve($key)
+{
+
+    if(Cache::has($key)) {
+        return Cache::get($key);
+    }
+
+    return null;
+
+}
+
+```

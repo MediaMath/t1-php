@@ -2,8 +2,6 @@
 
 namespace Mediamath\TerminalOneAPI\Infrastructure;
 
-use Mediamath\TerminalOneAPI\ApiClient;
-
 abstract class ApiObject
 {
 
@@ -11,7 +9,7 @@ abstract class ApiObject
 
     abstract public function uri();
 
-    public function __construct(ApiClient $apiClient)
+    public function __construct(Clientable $apiClient)
     {
         $this->apiClient = $apiClient;
     }
