@@ -127,6 +127,8 @@ $data = (new Management\Organization($client))->read();
 To pass options to the API, add them as an associative array within the `read()` method on the API object class. Refer to the T1 API docs to find out what options are valid for each endpoint.
 
 ```php
+use Mediamath\TerminalOneAPI\Reporting;
+
 $dimensions = array(
     'advertiser_id',
     'advertiser_name',
@@ -163,6 +165,10 @@ By default the `ApiClient` class returns the API response 'as-is' without decodi
 By providing your own decoders you can move your response decoding / formatting logic away from your controllers or implement a more fine-grained control over the decoding process.
 
 ```php
+use Mediamath\TerminalOneAPI\ApiClient;
+use Mediamath\TerminalOneAPI\Management;
+use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+
 /*
 *  Initialise the API client
 */
@@ -191,6 +197,10 @@ All cache classes provided with this SDK require an integer TTL to be set in the
 The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
 
 ```php
+
+use Mediamath\TerminalOneAPI\CachingApiClient;
+use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
 
 /*
 * Specify a path to the cache directory - in this case a Symfony 3 cache relative to the current controller
@@ -411,33 +421,48 @@ namespace Acme;
 use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
 use Cache;
 
-class AcmeCacheClass implements Cacheable;
-
-private $ttl;
-
-public function __construct($ttl) {
-
-    $this->ttl = $ttl;
-
-}
-
-public function store($key, $data)
-{
-    $expiresAt = Carbon::now()->addSeconds($ttl);
+class AcmeCache implements Cacheable {
     
-    Cache::put($key, $data, $expiresAt);
-
-}
-
-public function retrieve($key)
-{
-
-    if(Cache::has($key)) {
-        return Cache::get($key);
+    private $ttl;
+    
+    public function __construct($ttl) {
+    
+        $this->ttl = $ttl;
+    
+    }
+    
+    public function store($key, $data)
+    {
+        $expiresAt = Carbon::now()->addSeconds($ttl);
+        
+        Cache::put($key, $data, $expiresAt);
+    
+    }
+    
+    public function retrieve($key)
+    {
+    
+        if(Cache::has($key)) {
+            return Cache::get($key);
+        }
+    
+        return null;
+    
     }
 
-    return null;
-
 }
+
+
+```
+
+```php
+
+use Acme\AcmeCache;
+use Mediamath\TerminalOneAPI\CachingApiClient;
+use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+
+$cached_json = new CachingApiClient($transport, new AcmeCache(600), new JSONResponseDecoder());
+
+$data = (new Management\Vertical($cached_json))->read();
 
 ```
