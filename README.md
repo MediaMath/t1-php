@@ -413,7 +413,6 @@ class AcmeJSONResponseDecoder implements Decodable
 You are welcome to use the Doctrine response cache classes provided in this SDK. However, if you wish to write your own, your cache class will need to implement the `Cacheable` interface.
 
 ```php
-
 // example using the Laravel Cache singleton class and the Laravel Carbon singleton class
 
 namespace Acme;
@@ -456,7 +455,6 @@ class AcmeCache implements Cacheable {
 ```
 
 ```php
-
 use Acme\AcmeCache;
 use Mediamath\TerminalOneAPI\CachingApiClient;
 use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
