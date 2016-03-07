@@ -205,7 +205,7 @@ use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
 /*
 * Specify a path to the cache directory - in this case a Symfony 3 cache relative to the current controller
 */
-$path = __DIR__ . '/../../../var/cache';
+$path = __DIR__ . '/../../../var/cache/api_requests/';
 
 /*
 *   The TTL given to the filesystem cache is 600 seconds so responses will be cached for 10 minutes
