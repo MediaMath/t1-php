@@ -35,7 +35,7 @@ class ApiClient
 
     public function update($endpoint, $data)
     {
-        return $this->formatter->decode($this->transport->update($endpoint));
+        return $this->formatter->decode($this->transport->update($endpoint, $data));
     }
 
 }
