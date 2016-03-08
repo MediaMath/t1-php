@@ -80,7 +80,13 @@ class ApiClient implements Clientable
 
             if ($num_fetched < $total_results) {
 
-                return array_merge($tmp, $this->fetchRecursiveXML($endpoint, $options, $num_fetched));
+                $data = $this->fetchRecursiveXML($endpoint, $options, $num_fetched);
+
+                foreach ($data AS $value) {
+                    $tmp[] = $value;
+                }
+
+                return $tmp;
             }
 
         }
@@ -95,7 +101,14 @@ class ApiClient implements Clientable
         $response = $this->decoder->decode($this->transport->read($endpoint, $options));
 
         if (isset($response->meta) && isset($response->meta->next_page)) {
-            return array_merge($response->data, $this->fetchRecursiveJSON($response->meta->next_page, $options));
+
+            $data = $this->fetchRecursiveJSON($response->meta->next_page, $options);
+
+            foreach ($data AS $value) {
+                $response->data[] = $value;
+            }
+
+            return $response->data;
         }
 
         return $response->data;

@@ -21,13 +21,20 @@ abstract class ApiObject
 
     public function read($options = [])
     {
-        return $this->apiClient->read($this->uri(), $options);
+
+        $uri = $this->uri();
+
+        if (array_key_exists('limit', $options)) {
+            $uri .= '/limit/' . $options['limit'];
+            unset($options['limit']);
+        }
+
+        return $this->apiClient->read($uri, $options);
     }
 
     public function update($data)
     {
         $this->apiClient->update($this->uri(), $data);
     }
-
 
 }
