@@ -151,7 +151,7 @@ $data = (new Reporting\AudienceIndex($client))->read([
 
 ### Using the LIMIT parameter <a name="usage-limits"></a>
 
-The T1 API docs state that to limit results to objects belonging to a particular parent you should include `/limit/key=value` in your URI. In this SDK you instead pass the requirement as a parameter in the `read()` method's options array.
+The T1 API docs state that to limit results to objects belonging to a particular parent you should append `/limit/key=value` to your URI. In this SDK you instead pass the requirement as a parameter in the `read()` method's options array.
 
 ```php
 $data = (new Management\Campaign($client))->read([
