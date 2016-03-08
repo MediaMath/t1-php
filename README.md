@@ -100,6 +100,9 @@ use Mediamath\TerminalOneAPI\Auth\AdamaCookieAuth;
 use Mediamath\TerminalOneAPI\ApiClient;
 use Mediamath\TerminalOneAPI\Transport\GuzzleTransporter;
 
+/*
+* See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication
+*/
 $session_id = '911de80bcb86f239eaada55b55bfc548........';
 
 /*
@@ -123,6 +126,35 @@ $client = new ApiClient($transport);
 */
 $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 ```
+
+```php
+use Mediamath\TerminalOneAPI\Auth\OAuthAuth;
+use Mediamath\TerminalOneAPI\ApiClient;
+use Mediamath\TerminalOneAPI\Transport\GuzzleTransporter;
+
+/*
+* See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication
+*/
+$api_key = 'your application key';
+$access_token = 'your access token';
+
+/*
+* Set up the authenticator
+*/
+$auth = new OAuthAuth($api_key, $access_token);
+
+/*
+* Set up the HTTP transport with the authenticator
+*/
+$transport = new GuzzleTransporter($auth);
+
+/*
+*  Initialise the API client
+*/
+$client = new ApiClient($transport);
+```
+
+
 
 ### Basic read requests <a name="usage-basic"></a>
 
