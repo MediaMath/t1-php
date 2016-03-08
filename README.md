@@ -248,7 +248,9 @@ $data = (new Management\Campaign($client))->read([
 
 ### Fetching single objects <a name="usage-fetching"></a>
 
-If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically fetch the associated object for you 
+The feed endpoints `organizations/`, `agencies/`, `campaigns/`, etc do not fully hydrate the returned entities by default. In order to retrieve the complete data set you should fetch an object on its own.
+
+If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically fetch the associated object for you.
 
 ```php
 $data = (new Management\Organization($client))->read([
