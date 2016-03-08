@@ -248,9 +248,9 @@ $data = (new Management\Campaign($client))->read([
 
 ### Fetching single objects <a name="usage-fetching"></a>
 
-The feed endpoints `organizations/`, `agencies/`, `campaigns/`, etc do not fully hydrate the returned entities by default. In order to retrieve the complete data set you should fetch an object on its own.
+The feed endpoints `organizations/`, `agencies/`, `campaigns/`, etc do not fully hydrate the returned entities by default. In order to retrieve the complete data set you should fetch an object on its own. The T1 docs show this is done by making a call to `organizations/[id]`, for example.
 
-If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically fetch the associated object for you.
+If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically modify the URI and fetch the associated object for you.
 
 ```php
 $data = (new Management\Organization($client))->read([
