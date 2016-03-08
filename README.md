@@ -57,6 +57,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 ## Usage <a name="usage"></a>
 
 * [Overview](#usage-overview)
+* [Setting up the SDK](#usage-setting-up)
 * [Basic Read Requests](#usage-basic)
 * [Passing Options](#usage-options)
 * [Querying](#usage-querying)
@@ -86,7 +87,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 4. Make your API call by instantiating one of the provided API object classes with your API Client
 5. Do something with the response (decode it, return a string representation, etc)
  
-### Basic read requests <a name="usage-basic"></a>
+### Setting up the SDK <a name="usage-setting-up"></a>
 
 To set up the SDK for making API calls you need to initialise an HTTP transport with your chosen authentication method. See [Customisation](#customisation) for instructions on creating your own authenticators, HTTP transports, response decoders, or response caching.
 
@@ -95,9 +96,6 @@ Apart from initialising the authenticator, the steps for getting a response from
 Depending on which T1 API you wish to call, either the Management API or the Reporting API, you will need to include the respective namespaces.
 
 ```php
-<?php
-
-use Mediamath\TerminalOneAPI\Management;
 use Mediamath\TerminalOneAPI\Auth\AdamaCookieAuth;
 use Mediamath\TerminalOneAPI\ApiClient;
 use Mediamath\TerminalOneAPI\Transport\GuzzleTransporter;
@@ -118,6 +116,19 @@ $transport = new GuzzleTransporter($auth);
 *  Initialise the API client
 */
 $client = new ApiClient($transport);
+
+
+/*
+* Or use the one-line setup: $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
+*/
+
+```
+
+### Basic read requests <a name="usage-basic"></a>
+
+```php
+
+use Mediamath\TerminalOneAPI\Management;
 
 /*
 * Fetch all the organisations which are available under the authorised account 
