@@ -16,7 +16,7 @@ abstract class ApiObject
 
     public function create($data)
     {
-        $this->apiClient->create($this->uri(), $data);
+        return $this->apiClient->create($this->uri(), $data);
     }
 
     public function read($options = [])

@@ -94,8 +94,6 @@ To set up the SDK for making API calls you need to initialise an HTTP transport 
 
 Apart from initialising the authenticator, the steps for getting a response from the API are the same, whether using OAuth or cookie authentication. In this example we use cookie authentication with a session_id supplied by T1.
 
-Depending on which T1 API you wish to call, either the Management API or the Reporting API, you will need to include the respective namespaces.
-
 ```php
 use Mediamath\TerminalOneAPI\Auth\AdamaCookieAuth;
 use Mediamath\TerminalOneAPI\ApiClient;
@@ -156,8 +154,9 @@ $client = new ApiClient($transport);
 ```
 
 
-
 ### Basic read requests <a name="usage-basic"></a>
+
+Depending on which T1 API you wish to call, either the Management API or the Reporting API, you will need to include the respective namespaces.
 
 ```php
 use Mediamath\TerminalOneAPI\Management;
