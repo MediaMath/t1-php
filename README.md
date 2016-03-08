@@ -189,12 +189,29 @@ $data = (new Management\Campaign($client))->read([
 
 The T1 API docs state that to limit results to objects belonging to a particular parent you should append `/limit/key=value` to your URI. In this SDK you instead pass the requirement as a parameter in the `read()` method's options array.
 
+#### Limiting based upon a member property (eg: advertiser id)
+
 ```php
 $data = (new Management\Campaign($client))->read([
     'limit' => 'advertiser=......'
 ]);
 ```
 
+#### Limiting based upon hierarchical entities (eg advertiser.agency id)
+
+```php
+$data = (new Management\Campaign($client))->read([
+    'limit' => 'advertiser.agency=......'
+]);
+```
+
+#### Limiting based upon a linked relationships (eg: vendor_contracts.vendor id)
+
+```php
+$data = (new Management\Campaign($client))->read([
+    'limit' => 'vendor_contracts.vendor=...'
+]);
+```
 
 ### Creating objects <a name="usage-creating"></a>
 
