@@ -179,6 +179,12 @@ $data = (new Management\Campaign($client))->read([
 ]);
 ```
 
+```php
+$data = (new Management\Campaign($client))->read([
+    'q' => '(123456,234567,345678)'
+]);
+```
+
 ### Using the LIMIT parameter <a name="usage-limits"></a>
 
 The T1 API docs state that to limit results to objects belonging to a particular parent you should append `/limit/key=value` to your URI. In this SDK you instead pass the requirement as a parameter in the `read()` method's options array.
