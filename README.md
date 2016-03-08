@@ -59,6 +59,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 * [Overview](#usage-overview)
 * [Basic Read Requests](#usage-basic)
 * [Passing Options](#usage-options)
+* [Querying](#usage-querying)
 * [Using limits](#usage-limits)
 * [Creating Objects](#usage-creating)
 * [Updating Objects](#usage-updating)
@@ -73,7 +74,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 1. Authenticator - allows you to authenticate against the T1 API either using adama or OAuth
 2. HTTP Transporter - choose how you want your network traffic to be handled, eg cURL, Guzzle, AMQP, or a mixture of options (such as AMQP for updating data, cURL for reading)
-3. API Client - allows you to hook in any custom request / response logic and/or perform response caching
+3. API Client - allows you to hook in any custom request / response logic and / or perform response caching
 4. API Object class - holds information about each API endpoint
 5. Decoder - allows you to format the API response in any way you wish
 
@@ -129,6 +130,15 @@ $data = (new Management\Organization($client))->read();
 To pass options to the API, add them as an associative array within the `read()` method on the API object class. Refer to the T1 API docs to find out what options are valid for each endpoint.
 
 ```php
+use Mediamath\TerminalOneAPI\Management;
+
+$data = (new Management\Advertiser($client))->read([
+    'with' => 'agency',
+    'sort_by' => 'name'
+]);
+```
+
+```php
 use Mediamath\TerminalOneAPI\Reporting;
 
 $dimensions = array(
@@ -146,6 +156,16 @@ $data = (new Reporting\AudienceIndex($client))->read([
     'filter' => 'organization_id=......',
     'dimensions' => implode(',', $dimensions),
     'precision' => 2
+]);
+```
+
+### Querying the API <a name="usage-querying"></a>
+
+Refer to the T1 API docs for specific documentation on how to query the API. You can pass in your query string parameter via the `read()` method's options array. If you use the `GuzzleTransporter` HTTP transport class provided with this SDK there is no need to urlencode your query string.
+
+```php
+$data = (new Management\Campaign($client))->read([
+    'q' => 'name==New Campaign'
 ]);
 ```
 
