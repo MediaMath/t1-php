@@ -41,7 +41,7 @@ class ApiClient implements Clientable
         }
 
         if ($this->decoder instanceof JSONResponseDecoder) {
-            return $this->fetchRecursiveJSON($endpoint, $options);
+            return json_decode(json_encode($this->fetchRecursiveJSON($endpoint, $options)), true);
 
         }
 
