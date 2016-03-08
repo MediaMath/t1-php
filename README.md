@@ -64,6 +64,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 * [Deleting Objects](#usage-deleting)
 * [Decoding The Response](#usage-decoding)
 * [Caching The Response](#usage-caching)
+* [Pagination](#usage-pagination)
 
 ### Overview <a name="usage-overview"></a>
 
@@ -215,6 +216,12 @@ $cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(600,
 $data = (new Management\Vertical($cached_json))->read();
 
 ```
+
+### Pagination <a name="usage-pagination"></a>
+
+Some endpoints of the API contain a lot of data. If you explicitly use the `JSONResponseDecoder` or the `XMLResponseDecoder` decoders the `ApiClient` will automatically fetch all paginated entities. If you use the `DefaultResponseDecoder` decoder, or supply your own decoder, you will be responsible for creating your own pagination logic.
+
+Endpoints which contain a lot of paginated data, for example `Management\Campaigns`, work best when used in conjunction with a `CachingApiClient` instance. 
         
 ## Customisation <a name="customisation"></a>
 

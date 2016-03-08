@@ -3,6 +3,8 @@
 namespace Mediamath\TerminalOneAPI;
 
 use Mediamath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
+use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use Mediamath\TerminalOneAPI\Decoder\XMLResponseDecoder;
 use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
 use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
 use Mediamath\TerminalOneAPI\Infrastructure\Clientable;
@@ -10,33 +12,94 @@ use Mediamath\TerminalOneAPI\Infrastructure\Clientable;
 class ApiClient implements Clientable
 {
 
-    private $transport, $formatter;
+    private $transport, $decoder;
 
-    public function __construct(Transportable $transport, Decodable $formatter = null)
+    private $num = 0;
+
+    public function __construct(Transportable $transport, Decodable $decoder = null)
     {
 
         $this->transport = $transport;
-        $this->formatter = $formatter;
+        $this->decoder = $decoder;
 
-        if (is_null($formatter)) {
-            $this->formatter = new DefaultResponseDecoder();
+        if (is_null($decoder)) {
+            $this->decoder = new DefaultResponseDecoder();
         }
 
     }
 
     public function create($endpoint, $data)
     {
-        return $this->formatter->decode($this->transport->create($endpoint, $data));
+        return $this->decoder->decode($this->transport->create($endpoint, $data));
     }
 
     public function read($endpoint, $options)
     {
-        return $this->formatter->decode($this->transport->read($endpoint, $options));
+
+        if ($this->decoder instanceof XMLResponseDecoder) {
+            return $this->fetchRecursiveXML($endpoint, $options);
+        }
+
+        if ($this->decoder instanceof JSONResponseDecoder) {
+            return $this->fetchRecursiveJSON($endpoint, $options);
+
+        }
+
+        return $this->decoder->decode($this->transport->read($endpoint, $options));
+
     }
 
     public function update($endpoint, $data)
     {
-        return $this->formatter->decode($this->transport->update($endpoint, $data));
+        return $this->decoder->decode($this->transport->update($endpoint, $data));
+    }
+
+    private function fetchRecursiveXML($endpoint, $options, $num_fetched = 0)
+    {
+        $tmp = [];
+        $response = $this->decoder->decode($this->transport->read($endpoint, $options));
+
+        $attributes = (array)$response->entities->attributes();
+
+
+        if (isset($response->entities) && isset($attributes['@attributes'])) {
+            $total_results = $attributes['@attributes']['count'];
+
+            $num_fetched += count($response->entities->entity);
+
+            $options['page_offset'] = $num_fetched;
+
+
+            foreach ($response->entities->entity AS $entity) {
+
+                $attribs = (array)$entity->attributes();
+
+                $tmp[] = json_decode(json_encode($attribs['@attributes']), true);
+            }
+
+
+            if ($num_fetched < $total_results) {
+
+                return array_merge($tmp, $this->fetchRecursiveXML($endpoint, $options, $num_fetched));
+            }
+
+        }
+
+        return $tmp;
+
+    }
+
+    private function fetchRecursiveJSON($endpoint, $options)
+    {
+
+        $response = $this->decoder->decode($this->transport->read($endpoint, $options));
+
+        if (isset($response->meta) && isset($response->meta->next_page)) {
+            return array_merge($response->data, $this->fetchRecursiveJSON($response->meta->next_page, $options));
+        }
+
+        return $response->data;
+
     }
 
 }

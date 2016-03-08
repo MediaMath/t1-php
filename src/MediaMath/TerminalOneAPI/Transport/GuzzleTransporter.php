@@ -24,6 +24,8 @@ class GuzzleTransporter implements Transportable
     public function read($url, $options)
     {
 
+        $options = array_merge($options, $this->getParamsFromUri($url));
+
         $res = $this->guzzle->request('GET', $url, $this->options($options));
 
         return $res->getBody()->getContents();
@@ -65,6 +67,20 @@ class GuzzleTransporter implements Transportable
             ];
 
         }
+
+    }
+
+    private function getParamsFromUri($uri)
+    {
+
+        $parts = explode('?', $uri);
+
+        if (isset($parts[1])) {
+            parse_str($parts[1], $output);
+            return $output;
+        }
+
+        return [];
 
     }
 

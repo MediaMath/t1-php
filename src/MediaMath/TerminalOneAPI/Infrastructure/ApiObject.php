@@ -19,7 +19,7 @@ abstract class ApiObject
         $this->apiClient->create($this->uri(), $data);
     }
 
-    public function read($options = null)
+    public function read($options = [])
     {
         return $this->apiClient->read($this->uri(), $options);
     }

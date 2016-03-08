@@ -9,7 +9,7 @@ abstract class ManagementApiObject extends ApiObject
 
     public function uri()
     {
-        return 'https://t1.mediamath.com/api/v2.0/' . $this->endpoint();
+        return 'https://api.mediamath.com/api/v2.0/' . $this->endpoint();
     }
 
 }
