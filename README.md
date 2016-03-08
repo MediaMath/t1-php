@@ -267,7 +267,9 @@ use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
 
 /*
-* Specify a path to the cache directory - in this case a Symfony 3 cache relative to the current controller
+* Specify a path to the cache directory.
+* In this case it is a Symfony 3 cache relative to the current controller but you could 
+* use any writeable directory, Laravel cache directory, path set in global config, etc.
 */
 $path = __DIR__ . '/../../../var/cache/api_requests/';
 
