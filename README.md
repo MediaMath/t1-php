@@ -59,6 +59,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 * [Overview](#usage-overview)
 * [Basic Read Requests](#usage-basic)
 * [Passing Options](#usage-options)
+* [Using limits](#usage-limits)
 * [Creating Objects](#usage-creating)
 * [Updating Objects](#usage-updating)
 * [Deleting Objects](#usage-deleting)
@@ -142,9 +143,19 @@ $dimensions = array(
 $data = (new Reporting\AudienceIndex($client))->read([
     'time_rollup' => 'all',
     'time_window' => 'last_14_days',
-    'filter' => 'organization_id=100048',
+    'filter' => 'organization_id=......',
     'dimensions' => implode(',', $dimensions),
     'precision' => 2
+]);
+```
+
+### Using the LIMIT parameter <a name="usage-limits"></a>
+
+The T1 API docs state that to limit results to objects belonging to a particular parent you should include `/limit/key=value` in your URI. In this SDK you instead pass the requirement as a parameter in the `read()` method's options array.
+
+```php
+$data = (new Management\Campaign($json))->read([
+    'limit' => 'advertiser=......'
 ]);
 ```
 
