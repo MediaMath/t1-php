@@ -127,7 +127,6 @@ $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)))
 ### Basic read requests <a name="usage-basic"></a>
 
 ```php
-
 use Mediamath\TerminalOneAPI\Management;
 
 /*
@@ -240,7 +239,6 @@ All cache classes provided with this SDK require an integer TTL to be set in the
 The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
 
 ```php
-
 use Mediamath\TerminalOneAPI\CachingApiClient;
 use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
@@ -256,7 +254,6 @@ $path = __DIR__ . '/../../../var/cache/api_requests/';
 $cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(600, $path), new JSONResponseDecoder());
 
 $data = (new Management\Vertical($cached_json))->read();
-
 ```
 
 ### Pagination <a name="usage-pagination"></a>
@@ -281,8 +278,6 @@ If you want to provide your own authenticator class you will need to implement e
 You are welcome to use the `AdamaCookieAuth` class provided in this SDK. However, if you wish to write your own, your cookie authenticator needs to accept a session id in its constructor. If you want to use the provided Guzzle HTTP transport, your `cookieValues()` method needs to return an array with the key 'adama_session'.
 
 ```php
-<?php
-
 namespace Acme;
 
 use Mediamath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
@@ -311,8 +306,6 @@ class AcmeCookieAuth implements CookieAuthenticable
 You are welcome to use the `OAuthAuth` class provided in this SDK. However, if you wish to write your own, your OAuth authenticator needs to accept an API key and a bearer token in its constructor. If you want to use the provided Guzzle HTTP transport, your `headers()` and `queryStringParams()` methods need to return arrays with the keys / values as shown. 
 
 ```php
-<?php
-
 namespace Acme;
 
 use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
@@ -348,8 +341,6 @@ You are welcome to use the `GuzzleTransporter` class provided in this SDK. Howev
 Depending on which authentication method you use (OAuth or session cookie) you will either need to set an HTTP 'Authorization' header and add the API key to the query string, or you will need to set an 'adama_session' cookie in the request, containing your session id.  
 
 ```php
-<?php
-
 namespace Acme;
 
 use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
@@ -432,15 +423,12 @@ class AcmeTransporter implements Transportable
 You are welcome to use the various response decoder classes provided in this SDK. However, if you wish to write your own, your decoder class needs to implement the `decodable` interface and your `__construct()` method must accept the API response provided by the HTTP transport.
 
 ```php
-<?php
-
 namespace Acme;
 
 use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
 
 class AcmeJSONResponseDecoder implements Decodable
 {
-
     public function decode($api_response)
     {
     
@@ -452,7 +440,6 @@ class AcmeJSONResponseDecoder implements Decodable
     
         return array_change_key_case($data, CASE_UPPER);
     }
-
 
 }
 ```
@@ -499,8 +486,6 @@ class AcmeCache implements Cacheable {
     }
 
 }
-
-
 ```
 
 ```php
@@ -511,5 +496,4 @@ use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 $cached_json = new CachingApiClient($transport, new AcmeCache(600), new JSONResponseDecoder());
 
 $data = (new Management\Vertical($cached_json))->read();
-
 ```
