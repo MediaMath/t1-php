@@ -29,6 +29,11 @@ abstract class ApiObject
             unset($options['limit']);
         }
 
+        if (array_key_exists('id', $options)) {
+            $uri .= '/' . $options['id'];
+            unset($options['id']);
+        }
+
         return $this->apiClient->read($uri, $options);
     }
 

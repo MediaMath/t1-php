@@ -62,6 +62,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 * [Passing Options](#usage-options)
 * [Querying](#usage-querying)
 * [Using limits](#usage-limits)
+* [Fetching Single Objects](#usage-fetching)
 * [Creating Objects](#usage-creating)
 * [Updating Objects](#usage-updating)
 * [Deleting Objects](#usage-deleting)
@@ -242,6 +243,16 @@ $data = (new Management\Campaign($client))->read([
 ```php
 $data = (new Management\Campaign($client))->read([
     'limit' => 'vendor_contracts.vendor=...'
+]);
+```
+
+### Fetching single objects <a name="usage-fetching"></a>
+
+If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically fetch the associated object for you 
+
+```php
+$data = (new Management\Organization($client))->read([
+    'id' => ......,
 ]);
 ```
 
