@@ -119,9 +119,9 @@ $client = new ApiClient($transport);
 
 
 /*
-* Or use the one-line setup: $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
+* Or use the one-line setup:
 */
-
+$client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 ```
 
 ### Basic read requests <a name="usage-basic"></a>
