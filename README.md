@@ -205,7 +205,7 @@ $data = (new Management\Campaign($client))->read([
 ]);
 ```
 
-#### Limiting based upon a linked relationships (eg: vendor_contracts.vendor id)
+#### Limiting based upon linked relationships (eg: vendor_contracts.vendor id)
 
 ```php
 $data = (new Management\Campaign($client))->read([
