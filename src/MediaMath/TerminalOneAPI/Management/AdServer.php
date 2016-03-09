@@ -5,15 +5,20 @@ namespace Mediamath\TerminalOneAPI\Management;
 
 use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
 use Mediamath\TerminalOneAPI\Infrastructure\ManagementApiObject;
+use Mediamath\TerminalOneAPI\Infrastructure\NonCreateable;
 use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
+use Mediamath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
-class Advertiser extends ManagementApiObject implements Endpoint
+class AdServer extends ManagementApiObject implements Endpoint
 {
+
     use NonDeletable;
+    use NonUpdateable;
+    use NonCreateable;
 
     public function endpoint()
     {
-        return 'advertisers';
+        return 'ad_servers';
     }
 
 }

@@ -41,7 +41,7 @@ class ApiClient implements Clientable
         }
 
         if ($this->decoder instanceof JSONResponseDecoder) {
-            return json_decode(json_encode($this->fetchRecursiveJSON($endpoint, $options)), true);
+            return $this->fetchRecursiveJSON($endpoint, $options);
 
         }
 
@@ -59,7 +59,7 @@ class ApiClient implements Clientable
         $tmp = [];
         $response = $this->decoder->decode($this->transport->read($endpoint, $options));
 
-        $attributes = (array)$response->entities->attributes();
+        $attributes = (array) $response->entities->attributes();
 
 
         if (isset($response->entities) && isset($attributes['@attributes'])) {
@@ -111,8 +111,11 @@ class ApiClient implements Clientable
             return $response->data;
         }
 
-        return $response->data;
+        if(isset($response->data)) {
+            return $response->data;
+        }
 
+        return $response;
     }
 
 }
