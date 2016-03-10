@@ -20,11 +20,7 @@ class ApiClient implements Clientable
     {
 
         $this->transport = $transport;
-        $this->decoder = $decoder;
-
-        if (is_null($decoder)) {
-            $this->decoder = new DefaultResponseDecoder();
-        }
+        $this->decoder = $decoder ?: new DefaultResponseDecoder();
 
     }
 
@@ -59,7 +55,7 @@ class ApiClient implements Clientable
         $tmp = [];
         $response = $this->decoder->decode($this->transport->read($endpoint, $options));
 
-        $attributes = (array) $response->entities->attributes();
+        $attributes = (array)$response->entities->attributes();
 
 
         if (isset($response->entities) && isset($attributes['@attributes'])) {
@@ -77,16 +73,19 @@ class ApiClient implements Clientable
                 $tmp[] = json_decode(json_encode($attribs['@attributes']), true);
             }
 
+            if (isset($options['fetch']) && $options['fetch'] == 'all') {
 
-            if ($num_fetched < $total_results) {
+                if ($num_fetched < $total_results) {
 
-                $data = $this->fetchRecursiveXML($endpoint, $options, $num_fetched);
+                    $data = $this->fetchRecursiveXML($endpoint, $options, $num_fetched);
 
-                foreach ($data AS $value) {
-                    $tmp[] = $value;
+                    foreach ($data AS $value) {
+                        $tmp[] = $value;
+                    }
+
+                    return $tmp;
                 }
 
-                return $tmp;
             }
 
         }
@@ -100,20 +99,24 @@ class ApiClient implements Clientable
 
         $response = $this->decoder->decode($this->transport->read($endpoint, $options));
 
-        if (isset($response->meta) && isset($response->meta->next_page)) {
+        if (isset($options['fetch']) && $options['fetch'] == 'all') {
 
-            $data = $this->fetchRecursiveJSON($response->meta->next_page, $options);
+            if (isset($response->meta) && isset($response->meta->next_page)) {
 
-            foreach ($data AS $value) {
-                $response->data[] = $value;
+                $data = $this->fetchRecursiveJSON($response->meta->next_page, $options);
+
+                foreach ($data AS $value) {
+                    $response->data[] = $value;
+                }
+
+                return $response->data;
             }
 
-            return $response->data;
+            if (isset($response->data)) {
+                return $response->data;
+            }
         }
 
-        if(isset($response->data)) {
-            return $response->data;
-        }
 
         return $response;
     }

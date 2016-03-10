@@ -5,7 +5,7 @@
 * Supports adama session cookie authentication out of the box
 * Supports OAuth authentication out of the box
 * Authentication is fully customisable
-* Can convert CSV, XML & JSON API responses to PHP arrays out of the box
+* Can convert CSV, XML & JSON API responses to PHP objects & arrays out of the box
 * Response decoding is fully customisable
 * HTTP transport is fully customisable (Guzzle HTTP transport included)
 * Can cache API responses
@@ -39,9 +39,7 @@ Run composer install
 
 	$ php composer.phar install
 
-Now you should be able to dump the autoload files and use the TerminalOneAPI namespace in your application (if you are using a framework this might be done automatically for you)
-
-	$ php composer.phar dump-autoload
+This SDK uses PSR-4 so classes and namespaces should be autoloaded in your application.
 
 ### Extra packages
 
@@ -269,7 +267,9 @@ Items cannot be deleted via the API. Please log in to T1 directly.
 
 The SDK ships with a number of decoders for the API response. Some reporting API endpoints return CSV, some reporting API endpoints return JSON, and the management API can return XML or JSON. If you use the provided `GuzzleTransporter` the management API should always return JSON, but if you use your own custom HTTP transport class you are more likely to receive XML. 
 
-By default the `ApiClient` class returns the API response 'as-is' without decoding into PHP objects or arrays. If you want an associative PHP array representation of the response, add an instance of the decoder you want to use. For API endpoints which return CSV, for example, you should inject a decoder which expects a CSV string, or a decoder which expects a JSON string when the expected API response is JSON.
+By default the `ApiClient` class returns the API response 'as-is' without decoding into PHP objects or arrays. If you want an object or associative PHP array representation of the response, add an instance of the decoder you want to use. For API endpoints which return CSV, for example, you should inject a decoder which expects a CSV string, or a decoder which expects a JSON string when the expected API response is JSON.
+
+Note: Using the `JSONResponseDecoder` will give you an object representation of the response, whereas using the `XMLResponseDecoder` will give you an associative PHP array.
 
 By providing your own decoders you can move your response decoding / formatting logic away from your controllers or implement a more fine-grained control over the decoding process.
 
@@ -287,7 +287,7 @@ $json_client = new ApiClient($transport, new JSONResponseDecoder());
 * Fetch all the organisations which are available under the authorised account 
 */
 $data = (new Management\Organization($json_client))->read();
-// $data will now be an associative array instead of a JSON-encoded string  
+// $data will now be a PHP object instead of a JSON-encoded string  
 ```
 
 ### Caching the response <a name="usage-caching"></a>
@@ -327,7 +327,18 @@ $data = (new Management\Vertical($cached_json))->read();
 
 ### Pagination <a name="usage-pagination"></a>
 
-Some endpoints of the API contain a lot of data. If you explicitly use the `JSONResponseDecoder` or the `XMLResponseDecoder` decoders the `ApiClient` will automatically fetch all paginated entities. If you use the `DefaultResponseDecoder` decoder, or supply your own decoder, you will be responsible for creating your own pagination logic.
+Some endpoints of the API contain a lot of data. If you explicitly use the `JSONResponseDecoder` or the `XMLResponseDecoder` decoders the `ApiClient` will automatically fetch all paginated entities if you pass the option `'fetch' => 'all'` to your `read()` method. If you use the `DefaultResponseDecoder` decoder, or supply your own decoder, you will be responsible for creating your own pagination logic.
+
+```php
+use Mediamath\TerminalOneAPI\Management;
+
+/*
+* Fetch all the campaigns which are available under the authorised account 
+*/
+$data = (new Management\Campaign($client))->read([
+    'fetch' => 'all'
+]);
+``` 
 
 Endpoints which contain a lot of paginated data, for example `Management\Campaigns`, work best when used in conjunction with a `CachingApiClient` instance. 
         

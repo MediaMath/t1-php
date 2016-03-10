@@ -39,7 +39,24 @@ abstract class ApiObject
 
     public function update($data)
     {
-        $this->apiClient->update($this->uri(), $data);
+
+        $uri = $this->uri();
+
+        if (array_key_exists('id', $data)) {
+            $uri .= '/' . $data['id'];
+            unset($data['id']);
+        }
+
+        if (array_key_exists('related', $data)) {
+            $uri .= '/' . $data['related'];
+            unset($data['related']);
+        }
+
+        $this->apiClient->update($uri, $data);
+    }
+
+    protected function apiClient() {
+        return $this->apiClient;
     }
 
 }
