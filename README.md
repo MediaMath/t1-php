@@ -2,14 +2,14 @@
 
 ## Extensible and customisable PHP SDK for interacting with the T1 API
 
-* Supports adama session cookie authentication out of the box
-* Supports OAuth authentication out of the box
-* Authentication is fully customisable
-* Can convert CSV, XML & JSON API responses to PHP objects & arrays out of the box
-* Response decoding is fully customisable
-* HTTP transport is fully customisable (Guzzle HTTP transport included)
-* Can cache API responses
-* API response cache is fully customisable (Doctrine cache included)
+- Supports adama session cookie authentication out of the box
+- Supports OAuth authentication out of the box
+- Authentication is fully customisable
+- Can convert CSV, XML & JSON API responses to PHP objects & arrays out of the box
+- Response decoding is fully customisable
+- HTTP transport is fully customisable (Guzzle HTTP transport included)
+- Can cache API responses
+- API response cache is fully customisable (Doctrine cache included)
 
 ## Installation
 
@@ -54,19 +54,19 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 ## Usage <a name="usage"></a>
 
-* [Overview](#usage-overview)
-* [Setting up the SDK](#usage-setting-up)
-* [Basic Read Requests](#usage-basic)
-* [Passing Options](#usage-options)
-* [Querying](#usage-querying)
-* [Using limits](#usage-limits)
-* [Fetching Single Objects](#usage-fetching)
-* [Creating Objects](#usage-creating)
-* [Updating Objects](#usage-updating)
-* [Deleting Objects](#usage-deleting)
-* [Decoding The Response](#usage-decoding)
-* [Caching The Response](#usage-caching)
-* [Pagination](#usage-pagination)
+- [Overview](#usage-overview)
+- [Setting up the SDK](#usage-setting-up)
+- [Basic Read Requests](#usage-basic)
+- [Passing Options](#usage-options)
+- [Querying](#usage-querying)
+- [Using limits](#usage-limits)
+- [Fetching Single Objects](#usage-fetching)
+- [Creating Objects](#usage-creating)
+- [Updating Objects](#usage-updating)
+- [Deleting Objects](#usage-deleting)
+- [Decoding The Response](#usage-decoding)
+- [Caching The Response](#usage-caching)
+- [Pagination](#usage-pagination)
 
 ### Overview <a name="usage-overview"></a>
 
@@ -293,13 +293,16 @@ $data = (new Management\Organization($json_client))->read();
 ### Caching the response <a name="usage-caching"></a>
 
 Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options, which use the Doctrine Cache drivers. Included are:
-* Filesystem cache
-* APC
-* xCache
-* Memcache
-* Memcached
+
+- Filesystem cache
+- APC*
+- xCache*
+- Memcache*
+- Memcached*
 
 To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
+
+*Note: To use the APC, xCache, Memcache, or Memcached caches you will need the relevant PHP extension installed and enabled in your PHP.ini file.
 
 All cache classes provided with this SDK require a TTL to be set in the constructor using the static TimePeriod named methods:
  
@@ -350,10 +353,10 @@ Endpoints which contain a lot of paginated data, for example `Management\Campaig
         
 ## Customisation <a name="customisation"></a>
 
-* [Authenticators](#customisation-authenticators)
-* [HTTP Transport](#customisation-transport)
-* [Response Decoders](#customisation-decoders)
-* [Response Cache](#customisation-cache)
+- [Authenticators](#customisation-authenticators)
+- [HTTP Transport](#customisation-transport)
+- [Response Decoders](#customisation-decoders)
+- [Response Cache](#customisation-cache)
 
 ### Authenticators <a name="customisation-authenticators"></a>
 
