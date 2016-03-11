@@ -260,7 +260,7 @@ $data = (new Management\Organization($client))->read([
 Each creatable object in the SDK contains a `create()` method to which you can pass the required parameters in an array. If you attempt to call `create()` on an object which does not have a creatable endpoint you will receive a PHP exception. Refer to the T1 API documentation for the required parameters for each object / endpoint.
 
 ```php
-$data = (new Management\Strategy($client))->create([
+$strategy = (new Management\Strategy($client))->create([
     'campaign_id' => ......,
     'budget' => 3,
     'goal_type' => 'spend',
