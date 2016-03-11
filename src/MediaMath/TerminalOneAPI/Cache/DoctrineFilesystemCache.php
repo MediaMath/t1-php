@@ -12,10 +12,10 @@ class DoctrineFilesystemCache implements Cacheable
 
     use DoctrineAPICache;
 
-    public function __construct($ttl, $cache_path)
+    public function __construct(TimePeriod $ttl, $cache_path)
     {
 
-        $this->ttl = $ttl;
+        $this->ttl = $ttl->inSeconds();
         $this->cache = new Cache\FilesystemCache($cache_path);
 
     }

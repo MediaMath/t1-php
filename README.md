@@ -309,6 +309,7 @@ The `CachingApiClient` only caches read requests. It does not cache creation or 
 use Mediamath\TerminalOneAPI\CachingApiClient;
 use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
+use Mediamath\TerminalOneAPI\Cache\TimePeriod;
 
 /*
 * Specify a path to the cache directory.
@@ -317,10 +318,7 @@ use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
 */
 $path = __DIR__ . '/../../../var/cache/api_requests/';
 
-/*
-*   The TTL given to the filesystem cache is 600 seconds so responses will be cached for 10 minutes
-*/
-$cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(600, $path), new JSONResponseDecoder());
+$cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(TimePeriod::hours(1), $path), new JSONResponseDecoder());
 
 $data = (new Management\Vertical($cached_json))->read();
 ```

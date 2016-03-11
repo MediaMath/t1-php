@@ -12,10 +12,10 @@ class DoctrineAPCCache implements Cacheable
 
     use DoctrineAPICache;
 
-    public function __construct($ttl)
+    public function __construct(TimePeriod $ttl)
     {
 
-        $this->ttl = $ttl;
+        $this->ttl = $ttl->inSeconds();
         $this->cache = new Cache\ApcCache();
 
     }

@@ -23,7 +23,7 @@ class CachingApiClient implements Clientable
 
     public function read($endpoint, $options)
     {
-        $key = MD5($endpoint . json_encode($options) . get_class($this->decoder));
+        $key = $endpoint . json_encode($options) . get_class($this->decoder);
 
         if ($this->cache->retrieve($key)) {
             return $this->cache->retrieve($key);
