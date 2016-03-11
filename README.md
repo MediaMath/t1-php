@@ -257,6 +257,21 @@ $data = (new Management\Organization($client))->read([
 
 ### Creating objects <a name="usage-creating"></a>
 
+Each creatable object in the SDK contains a `create()` method to which you can pass the required parameters in an array. If you attempt to call `create()` on an object which does not have a creatable endpoint you will receive a PHP exception. Refer to the T1 API documentation for the required parameters for each object / endpoint.
+
+```php
+$data = (new Management\Strategy($client))->create([
+    'campaign_id' => ......,
+    'budget' => 3,
+    'goal_type' => 'spend',
+    'name' => 'T1 PHP SDK Strategy',
+    'pacing_amount' => 0.5,
+    'type' => 'AUD',
+    'use_campaign_start' => 'on',
+    'use_campaign_end' => 'on'
+]);
+```
+
 ### Updating objects <a name="usage-updating"></a>
 
 ### Deleting objects <a name="usage-deleting"></a>
@@ -292,7 +307,7 @@ $data = (new Management\Organization($json_client))->read();
 
 ### Caching the response <a name="usage-caching"></a>
 
-Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options, which use the Doctrine Cache drivers. Included are:
+Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options which all use the Doctrine Cache drivers. Included are:
 
 - Filesystem cache
 - APC*
@@ -300,7 +315,7 @@ Caching API responses can greatly speed up certain areas of your application. Th
 - Memcache*
 - Memcached*
 
-*Note: To use the APC, xCache, Memcache, or Memcached caches you will need the relevant PHP extension installed and enabled in your PHP.ini file.
+*Note: To use the APC, xCache, Memcache, or Memcached caches you will need the relevant PHP extension installed and enabled in your PHP environment.
 
 To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
 
