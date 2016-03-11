@@ -300,9 +300,9 @@ Caching API responses can greatly speed up certain areas of your application. Th
 - Memcache*
 - Memcached*
 
-To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
-
 *Note: To use the APC, xCache, Memcache, or Memcached caches you will need the relevant PHP extension installed and enabled in your PHP.ini file.
+
+To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
 
 All cache classes provided with this SDK require a TTL to be set in the constructor using the static TimePeriod named methods:
  
