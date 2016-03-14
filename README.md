@@ -309,7 +309,7 @@ Some CSV responses (primarily `Reporting` endpoints) contain a row of headings a
 
 ```php
 
-$client = new ApiClient($transport, new CSVResponseDecoder(CSVResponse::EXTRACT_HEADINGS));
+$client = new ApiClient($transport, new CSVResponseDecoder(CSVDecoder::EXTRACT_HEADINGS));
 
 $data = (new Reporting\AudienceIndex($client))->read([
     ...
