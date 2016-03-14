@@ -13,5 +13,6 @@ interface Transportable
 
     public function update($uri, $data);
 
+    public function authHash();
 
 }

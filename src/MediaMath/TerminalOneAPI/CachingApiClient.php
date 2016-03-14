@@ -10,7 +10,7 @@ use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
 class CachingApiClient implements Clientable
 {
 
-    private $api_client, $cache, $decoder;
+    private $api_client, $cache, $decoder, $unique_id;
 
     public function __construct(Transportable $transport, Cacheable $cache, Decodable $decoder = null)
     {
@@ -18,12 +18,13 @@ class CachingApiClient implements Clientable
         $this->cache = $cache;
         $this->decoder = $decoder;
         $this->api_client = new ApiClient($transport, $this->decoder);
+        $this->unique_id = $transport->authHash();
 
     }
 
     public function read($endpoint, $options)
     {
-        $key = $endpoint . json_encode($options) . get_class($this->decoder);
+        $key = $endpoint . json_encode($options) . get_class($this->decoder) . $this->unique_id;
 
         if ($this->cache->retrieve($key)) {
             return $this->cache->retrieve($key);

@@ -379,7 +379,7 @@ If you want to provide your own authenticator class you will need to implement e
 
 #### Example custom cookie authenticator
 
-You are welcome to use the `AdamaCookieAuth` class provided in this SDK. However, if you wish to write your own, your cookie authenticator needs to accept a session id in its constructor. If you want to use the provided Guzzle HTTP transport, your `cookieValues()` method needs to return an array with the key 'adama_session'.
+You are welcome to use the `AdamaCookieAuth` class provided in this SDK. However, if you wish to write your own, your cookie authenticator needs to accept a session id in its constructor. If you want to use the provided Guzzle HTTP transport, your `cookieValues()` method needs to return an array with the key 'adama_session'. Your `authHash()` method needs to return a unique identifier. In this case just the `session_id` parameter is sufficient.
 
 ```php
 namespace Acme;
@@ -400,6 +400,11 @@ class AcmeCookieAuth implements CookieAuthenticable
     {
         return ['adama_session' => $this->session_id];
     }
+    
+    public function authHash()
+    {
+        return $this->session_id;
+    }
 
 }
 ```
@@ -407,7 +412,7 @@ class AcmeCookieAuth implements CookieAuthenticable
 
 #### Example custom OAuth authenticator
 
-You are welcome to use the `OAuthAuth` class provided in this SDK. However, if you wish to write your own, your OAuth authenticator needs to accept an API key and a bearer token in its constructor. If you want to use the provided Guzzle HTTP transport, your `headers()` and `queryStringParams()` methods need to return arrays with the keys / values as shown. 
+You are welcome to use the `OAuthAuth` class provided in this SDK. However, if you wish to write your own, your OAuth authenticator needs to accept an API key and a bearer token in its constructor. If you want to use the provided Guzzle HTTP transport, your `headers()` and `queryStringParams()` methods need to return arrays with the keys / values as shown. Your `authHash()` method needs to return a unique identifier. In this case a concatenation of the `api_key` and `bearer` parameters is sufficient.
 
 ```php
 namespace Acme;
@@ -433,6 +438,11 @@ class AcmeOAuthAuth implements OAuthAuthenticable
     public function queryStringParams()
     {
         return ['api_key' => $this->api_key];
+    }
+    
+    public function authHash()
+    {
+        return $this->api_key . $this->bearer;
     }
 
 }
@@ -517,6 +527,11 @@ class AcmeTransporter implements Transportable
     public function update($url, $data)
     {
         // TODO: add your own object update logic here
+    }
+    
+    public function authHash()
+    {
+        return $this->authenticator->authHash();
     }
 
 }

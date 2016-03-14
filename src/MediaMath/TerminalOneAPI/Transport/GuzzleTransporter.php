@@ -56,6 +56,11 @@ class GuzzleTransporter implements Transportable
         // TODO: Implement update() method.
     }
 
+    public function authHash()
+    {
+        return $this->authenticator->authHash();
+    }
+
     private function prepareOptionsForRead($options)
     {
         return array_filter([
