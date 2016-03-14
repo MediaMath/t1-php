@@ -7,18 +7,28 @@ use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
 class CSVResponseDecoder implements Decodable
 {
 
+    private $flag;
+
+    public function __construct($flag = CSVDecoder::NO_EXTRACT_HEADINGS)
+    {
+        $this->flag = $flag;
+
+    }
+
     public function decode($api_response)
     {
+
         $array = $this->loadCSVData($api_response);
 
         $tmp = [];
-
-        foreach ($array['data'] AS $values) {
-
-            $tmp[] = array_combine($array['headings'], $values);
+        if ($this->flag == CSVDecoder::EXTRACT_HEADINGS) {
+            foreach ($array['data'] AS $values) {
+                $tmp[] = array_combine($array['headings'], $values);
+            }
+            return $tmp;
         }
 
-        return $tmp;
+        return $array['data'];
     }
 
 
@@ -27,10 +37,16 @@ class CSVResponseDecoder implements Decodable
 
         $csv_data = array_map("str_getcsv", explode("\n", trim($csv)));
 
-        $headings = $this->getHeadings($csv_data);
-        $data = $this->getData($csv_data);
+        if ($this->flag == CSVDecoder::EXTRACT_HEADINGS) {
+            $headings = $this->getHeadings($csv_data);
+            unset($csv_data[0]);
+            $data = $this->getData($csv_data);
+            return ['headings' => $headings, 'data' => $data];
 
-        return ['headings' => $headings, 'data' => $data];
+        }
+
+        return ['data' => $this->getData($csv_data)];
+
     }
 
     private function getHeadings($data)
@@ -47,7 +63,6 @@ class CSVResponseDecoder implements Decodable
 
     private function getData($data)
     {
-        unset ($data[0]);
 
         return array_values($data);
 
