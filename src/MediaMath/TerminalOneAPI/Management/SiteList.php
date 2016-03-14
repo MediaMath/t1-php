@@ -34,4 +34,12 @@ class SiteList extends ManagementApiObject implements Endpoint
 
     }
 
+    public function create($data)
+    {
+        $uri = $this->uri() . '/upload';
+
+        return $this->apiClient()->create($uri, $data);
+
+    }
+
 }
