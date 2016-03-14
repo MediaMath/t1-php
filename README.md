@@ -305,6 +305,17 @@ $data = (new Management\Organization($json_client))->read();
 // $data will now be a PHP object instead of a JSON-encoded string  
 ```
 
+Some CSV responses (primarily `Reporting` endpoints) contain a row of headings as the first line of the response. The supplied `CSVResponseDecoder` can make use of this if you pass the constant `CSVDecoder::EXTRACT_HEADINGS` into its constructor.
+
+```php
+
+$client = new ApiClient($transport, new CSVResponseDecoder(CSVResponse::EXTRACT_HEADINGS));
+
+$data = (new Reporting\AudienceIndex($client))->read([
+    ...
+]);
+```
+
 ### Caching the response <a name="usage-caching"></a>
 
 Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options which all use the Doctrine Cache drivers. Included are:
