@@ -56,9 +56,9 @@ class GuzzleTransporter implements Transportable
         // TODO: Implement update() method.
     }
 
-    public function authHash()
+    public function authUniqueId()
     {
-        return $this->authenticator->authHash();
+        return $this->authenticator->authUniqueId();
     }
 
     private function prepareOptionsForRead($options)

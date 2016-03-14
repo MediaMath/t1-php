@@ -18,7 +18,7 @@ class CachingApiClient implements Clientable
         $this->cache = $cache;
         $this->decoder = $decoder;
         $this->api_client = new ApiClient($transport, $this->decoder);
-        $this->unique_id = $transport->authHash();
+        $this->unique_id = $transport->authUniqueId();
 
     }
 

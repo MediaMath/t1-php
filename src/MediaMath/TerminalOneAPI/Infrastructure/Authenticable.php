@@ -4,5 +4,5 @@ namespace Mediamath\TerminalOneAPI\Infrastructure;
 
 interface Authenticable
 {
-    public function authHash();
+    public function authUniqueId();
 }

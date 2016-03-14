@@ -20,7 +20,7 @@ class AdamaCookieAuth implements CookieAuthenticable
         return ['adama_session' => $this->session_id];
     }
 
-    public function authHash()
+    public function authUniqueId()
     {
         return $this->session_id;
     }

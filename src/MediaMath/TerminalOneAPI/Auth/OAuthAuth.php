@@ -26,7 +26,7 @@ class OAuthAuth implements OAuthAuthenticable
         return ['api_key' => $this->api_key];
     }
 
-    public function authHash()
+    public function authUniqueId()
     {
         return $this->api_key . $this->bearer;
     }
