@@ -117,8 +117,9 @@ $transport = new GuzzleTransporter($auth);
 *  Initialise the API client
 */
 $client = new ApiClient($transport);
+```
 
-
+```php
 /*
 * Or use the one-line setup:
 */
@@ -153,6 +154,12 @@ $transport = new GuzzleTransporter($auth);
 $client = new ApiClient($transport);
 ```
 
+```php
+/*
+* Or use the one-line setup:
+*/
+$client = new ApiClient(new GuzzleTransporter(OAuthAuth($api_key, $access_token)));
+```
 
 ### Basic read requests <a name="usage-basic"></a>
 
