@@ -154,7 +154,7 @@ $client = new ApiClient($transport);
 
 ### Basic read requests <a name="usage-basic"></a>
 
-Depending on which T1 API you wish to call, either the Management API or the Reporting API, you will need to include the respective namespaces.
+Depending on which T1 API you wish to call, either the Management API, the Reporting API, or the Video Api, you will need to include the respective namespaces.
 
 ```php
 use Mediamath\TerminalOneAPI\Management;
