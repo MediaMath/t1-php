@@ -330,7 +330,7 @@ Caching API responses can greatly speed up certain areas of your application. Th
 
 To use the caching API client you need to use the `CachingApiClient` instead of the `ApiClient` class. The `CachingApiClient` takes an extra required parameter, which is the type of cache you wish to use. You can either use one of the Doctrine cache classes provided or write your own.
 
-All cache classes provided with this SDK require a TTL to be set in the constructor using the static TimePeriod named methods:
+All cache classes provided with this SDK require a TTL to be set in the constructor using the static `TimePeriod` named methods:
  
 ```php
 $five_hours = TimePeriod::hours(5); // translates internally to 5 x 60 x 60 seconds.
