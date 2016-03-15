@@ -289,7 +289,15 @@ $strategy = (new Management\Campaign($client))->update([
 
 ### Deleting objects <a name="usage-deleting"></a>
 
-Items cannot be deleted via the API. Please log in to T1 directly.
+Most items cannot be deleted via the API and should be updated where possible to make them inactive. In some rare cases objects can be deleted via the API, and these objects will have a `delete()` method available. If you attempt to call `delete()` on an object which cannot be deleted on the API you will receive a PHP exception.
+
+```php
+$strategy = (new Management\CampaignBudgetFlight($client))->delete([
+    'campaign_id' => ......,
+    'id' => ......
+]);
+```
+
 
 ### Decoding the response <a name="usage-decoding"></a>
 
