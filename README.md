@@ -625,6 +625,7 @@ class AcmeCache implements Cacheable {
 use Acme\AcmeCache;
 use Mediamath\TerminalOneAPI\CachingApiClient;
 use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use Mediamath\TerminalOneAPI\Management;
 
 $cached_json = new CachingApiClient($transport, new AcmeCache(600), new JSONResponseDecoder());
 
