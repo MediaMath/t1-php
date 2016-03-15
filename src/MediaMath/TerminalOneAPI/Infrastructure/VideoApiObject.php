@@ -9,7 +9,7 @@ abstract class VideoApiObject extends ApiObject
 
     public function uri()
     {
-        return 'https://t1.mediamath.com/video/v1/' . $this->endpoint();
+        return 'https://api.mediamath.com/video/v1/' . $this->endpoint();
     }
 
 }
