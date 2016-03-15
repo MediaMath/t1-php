@@ -30,7 +30,12 @@ class StrategyDomainRestriction extends ManagementApiObject implements Endpoint
     public function read($options = [])
     {
 
-        $uri = str_replace($this->endpoint(), 'strategy_domain_restrictions/limit/', $this->uri());
+        $uri = str_replace($this->endpoint(), 'strategy_domain_restrictions', $this->uri());
+
+        if (array_key_exists('limit', $options)) {
+            $uri .= '/limit/' . $options['limit'];
+            unset($options['limit']);
+        }
 
         return $this->apiClient()->read($uri, $options);
 
