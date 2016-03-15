@@ -2,23 +2,22 @@
 
 namespace Mediamath\TerminalOneAPI\Auth;
 
-
 use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 
 class OAuthAuth implements OAuthAuthenticable
 {
 
-    private $api_key, $bearer;
+    private $api_key, $token;
 
-    public function __construct($api_key, $bearer)
+    public function __construct($api_key, $token)
     {
         $this->api_key = $api_key;
-        $this->bearer = $bearer;
+        $this->token = $token;
     }
 
     public function headers()
     {
-        return ['Authorization' => 'Bearer ' . $this->bearer];
+        return ['Authorization' => 'Bearer ' . $this->token];
     }
 
     public function queryStringParams()
@@ -28,7 +27,7 @@ class OAuthAuth implements OAuthAuthenticable
 
     public function authUniqueId()
     {
-        return $this->api_key . $this->bearer;
+        return $this->api_key . $this->token;
     }
 
 }

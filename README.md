@@ -90,8 +90,9 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 To set up the SDK for making API calls you need to initialise an HTTP transport with your chosen authentication method. See [Customisation](#customisation) for instructions on creating your own authenticators, HTTP transports, response decoders, or response caching.
 
-Apart from initialising the authenticator, the steps for getting a response from the API are the same, whether using OAuth or cookie authentication. In this example we use cookie authentication with a session_id supplied by T1.
+Apart from initialising the authenticator, the steps for getting a response from the API are the same, whether using OAuth or cookie authentication. You will need to obtain your OAuth or Adama credentials from T1 before initialising the SDK. See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication for more information on how to do this.
 
+#### Using Adama session cookie
 ```php
 use Mediamath\TerminalOneAPI\Auth\AdamaCookieAuth;
 use Mediamath\TerminalOneAPI\ApiClient;
@@ -124,6 +125,7 @@ $client = new ApiClient($transport);
 $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 ```
 
+#### Using OAuth
 ```php
 use Mediamath\TerminalOneAPI\Auth\OAuthAuth;
 use Mediamath\TerminalOneAPI\ApiClient;
@@ -423,7 +425,7 @@ class AcmeCookieAuth implements CookieAuthenticable
 
 #### Example custom OAuth authenticator
 
-You are welcome to use the `OAuthAuth` class provided in this SDK. However, if you wish to write your own, your OAuth authenticator needs to accept an API key and a bearer token in its constructor. If you want to use the provided Guzzle HTTP transport, your `headers()` and `queryStringParams()` methods need to return arrays with the keys / values as shown. Your `authUniqueId()` method needs to return a unique identifier. In this case a concatenation of the `api_key` and `bearer` parameters is sufficient.
+You are welcome to use the `OAuthAuth` class provided in this SDK. However, if you wish to write your own, your OAuth authenticator needs to accept an API key and a token in its constructor. If you want to use the provided Guzzle HTTP transport, your `headers()` and `queryStringParams()` methods need to return arrays with the keys / values as shown. Your `authUniqueId()` method needs to return a unique identifier. In this case a concatenation of the `api_key` and `token` parameters is sufficient.
 
 ```php
 namespace Acme;
@@ -433,17 +435,17 @@ use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 class AcmeOAuthAuth implements OAuthAuthenticable
 {
 
-    private $api_key, $bearer;
+    private $api_key, $token;
 
-    public function __construct($api_key, $bearer)
+    public function __construct($api_key, $token)
     {
         $this->api_key = $api_key;
-        $this->bearer = $bearer;
+        $this->token = $token;
     }
 
     public function headers()
     {
-        return ['Authorization' => 'Bearer ' . $this->bearer];
+        return ['Authorization' => 'Bearer ' . $this->token];
     }
 
     public function queryStringParams()
@@ -453,7 +455,7 @@ class AcmeOAuthAuth implements OAuthAuthenticable
     
     public function authUniqueId()
     {
-        return $this->api_key . $this->bearer;
+        return $this->api_key . $this->token;
     }
 
 }
