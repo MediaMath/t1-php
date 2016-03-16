@@ -50,5 +50,4 @@ class IndexController extends AbstractActionController
 <div>
     <pre><?php echo $organisations; ?></pre>
 </div>
-
 ```
