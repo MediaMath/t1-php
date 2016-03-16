@@ -1,8 +1,8 @@
 {
     "name": "MediaMath/open_t1_php_sdk",
     "autoload": {
-        "psr-0" : {
-            "MediaMath\\TerminalOneAPI\\" : "src/"
+        "psr-4" : {
+            "MediaMath\\TerminalOneAPI\\": "src/MediaMath/TerminalOneAPI"
         }
     },
     "suggest": {
