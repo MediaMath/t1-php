@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Infrastructure;
+namespace MediaMath\TerminalOneAPI\Infrastructure;
 
 trait NonReadable {
 

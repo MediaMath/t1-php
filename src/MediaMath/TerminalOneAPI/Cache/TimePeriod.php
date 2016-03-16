@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Cache;
+namespace MediaMath\TerminalOneAPI\Cache;
 
 final class TimePeriod
 {

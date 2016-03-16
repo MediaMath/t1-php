@@ -1,13 +1,13 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI;
+namespace MediaMath\TerminalOneAPI;
 
-use Mediamath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
-use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use Mediamath\TerminalOneAPI\Decoder\XMLResponseDecoder;
-use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
-use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
-use Mediamath\TerminalOneAPI\Infrastructure\Clientable;
+use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Decoder\XMLResponseDecoder;
+use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
+use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
 
 class ApiClient implements Clientable
 {

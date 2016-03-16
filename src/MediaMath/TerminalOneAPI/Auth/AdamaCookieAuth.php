@@ -1,9 +1,9 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Auth;
+namespace MediaMath\TerminalOneAPI\Auth;
 
 
-use Mediamath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
 
 class AdamaCookieAuth implements CookieAuthenticable
 {

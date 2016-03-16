@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Mediamath\TerminalOneAPI\Management\Targeting;
+namespace MediaMath\TerminalOneAPI\Management\Targeting;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
-use Mediamath\TerminalOneAPI\Infrastructure\ManagementApiObject;
-use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
+use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
+use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
 class StrategyTargetingSegment extends ManagementApiObject implements Endpoint
 {

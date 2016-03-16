@@ -1,11 +1,11 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI;
+namespace MediaMath\TerminalOneAPI;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
-use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
-use Mediamath\TerminalOneAPI\Infrastructure\Clientable;
-use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
+use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
+use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
+use MediaMath\TerminalOneAPI\Infrastructure\Cacheable;
 
 class CachingApiClient implements Clientable
 {

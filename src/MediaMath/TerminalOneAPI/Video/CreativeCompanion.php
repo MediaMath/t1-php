@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Mediamath\TerminalOneAPI\Video;
+namespace MediaMath\TerminalOneAPI\Video;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
-use Mediamath\TerminalOneAPI\Infrastructure\ManagementApiObject;
-use Mediamath\TerminalOneAPI\Infrastructure\NonCreateable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonUpdateable;
+use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
+use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
 class CreativeCompanion extends ManagementApiObject implements Endpoint
 {

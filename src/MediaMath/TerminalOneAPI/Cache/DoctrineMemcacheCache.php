@@ -1,9 +1,9 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Cache;
+namespace MediaMath\TerminalOneAPI\Cache;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
-use Mediamath\TerminalOneAPI\Infrastructure\DoctrineAPICache;
+use MediaMath\TerminalOneAPI\Infrastructure\Cacheable;
+use MediaMath\TerminalOneAPI\Infrastructure\DoctrineAPICache;
 
 use Doctrine\Common\Cache;
 

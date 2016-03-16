@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Decoder;
+namespace MediaMath\TerminalOneAPI\Decoder;
 
 final class CSVDecoder
 {

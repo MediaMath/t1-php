@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Mediamath\TerminalOneAPI\Reporting;
+namespace MediaMath\TerminalOneAPI\Reporting;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
-use Mediamath\TerminalOneAPI\Infrastructure\ReportingApiObject;
-use Mediamath\TerminalOneAPI\Infrastructure\NonCreateable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonUpdateable;
+use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
+use MediaMath\TerminalOneAPI\Infrastructure\ReportingApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
 class Performance extends ReportingApiObject implements Endpoint
 {

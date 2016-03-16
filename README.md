@@ -84,9 +84,9 @@ Apart from initialising the authenticator, the steps for getting a response from
 
 #### Using Adama session cookie
 ```php
-use Mediamath\TerminalOneAPI\Auth\AdamaCookieAuth;
-use Mediamath\TerminalOneAPI\ApiClient;
-use Mediamath\TerminalOneAPI\Transport\GuzzleTransporter;
+use MediaMath\TerminalOneAPI\Auth\AdamaCookieAuth;
+use MediaMath\TerminalOneAPI\ApiClient;
+use MediaMath\TerminalOneAPI\Transport\GuzzleTransporter;
 
 /*
 * See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication
@@ -118,9 +118,9 @@ $client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)))
 
 #### Using OAuth
 ```php
-use Mediamath\TerminalOneAPI\Auth\OAuthAuth;
-use Mediamath\TerminalOneAPI\ApiClient;
-use Mediamath\TerminalOneAPI\Transport\GuzzleTransporter;
+use MediaMath\TerminalOneAPI\Auth\OAuthAuth;
+use MediaMath\TerminalOneAPI\ApiClient;
+use MediaMath\TerminalOneAPI\Transport\GuzzleTransporter;
 
 /*
 * See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication
@@ -156,7 +156,7 @@ $client = new ApiClient(new GuzzleTransporter(OAuthAuth($api_key, $access_token)
 Depending on which T1 API you wish to call, either the Management API, the Reporting API, or the Video Api, you will need to include the respective namespaces.
 
 ```php
-use Mediamath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\Management;
 
 /*
 * Fetch all the organisations which are available under the authorised account 
@@ -169,7 +169,7 @@ $data = (new Management\Organization($client))->read();
 To pass options to the API, add them as an associative array within the `read()` method on the API object class. Refer to the T1 API docs to find out what options are valid for each endpoint.
 
 ```php
-use Mediamath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\Management;
 
 $data = (new Management\Advertiser($client))->read([
     'with' => 'agency',
@@ -178,7 +178,7 @@ $data = (new Management\Advertiser($client))->read([
 ```
 
 ```php
-use Mediamath\TerminalOneAPI\Reporting;
+use MediaMath\TerminalOneAPI\Reporting;
 
 $dimensions = array(
     'advertiser_id',
@@ -307,9 +307,9 @@ Note: Using the `JSONResponseDecoder` will give you an object representation of 
 By providing your own decoders you can move your response decoding / formatting logic away from your controllers or implement a more fine-grained control over the decoding process.
 
 ```php
-use Mediamath\TerminalOneAPI\ApiClient;
-use Mediamath\TerminalOneAPI\Management;
-use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\ApiClient;
+use MediaMath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 
 /*
 *  Initialise the API client
@@ -361,10 +361,10 @@ Additionally, the `DoctrineFilesystemCache` class provided with this SDK require
 The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
 
 ```php
-use Mediamath\TerminalOneAPI\CachingApiClient;
-use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use Mediamath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
-use Mediamath\TerminalOneAPI\Cache\TimePeriod;
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineFilesystemCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
 
 /*
 * Specify a path to the cache directory.
@@ -383,7 +383,7 @@ $data = (new Management\Vertical($cached_json))->read();
 Some endpoints of the API contain a lot of data. If you explicitly use the `JSONResponseDecoder` or the `XMLResponseDecoder` decoders the `ApiClient` will automatically fetch all paginated entities if you pass the option `'fetch' => 'all'` to your `read()` method. If you use the `DefaultResponseDecoder` decoder, or supply your own decoder, you will be responsible for creating your own pagination logic.
 
 ```php
-use Mediamath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\Management;
 
 /*
 * Fetch all the campaigns which are available under the authorised account 
@@ -413,7 +413,7 @@ You are welcome to use the `AdamaCookieAuth` class provided in this SDK. However
 ```php
 namespace Acme;
 
-use Mediamath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
 
 class AcmeCookieAuth implements CookieAuthenticable
 {
@@ -446,7 +446,7 @@ You are welcome to use the `OAuthAuth` class provided in this SDK. However, if y
 ```php
 namespace Acme;
 
-use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 
 class AcmeOAuthAuth implements OAuthAuthenticable
 {
@@ -486,8 +486,8 @@ Depending on which authentication method you use (OAuth or session cookie) you w
 ```php
 namespace Acme;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
-use Mediamath\TerminalOneAPI\Infrastructure\Authenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
+use MediaMath\TerminalOneAPI\Infrastructure\Authenticable;
 
 class AcmeTransporter implements Transportable
 {
@@ -573,7 +573,7 @@ You are welcome to use the various response decoder classes provided in this SDK
 ```php
 namespace Acme;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 
 class AcmeJSONResponseDecoder implements Decodable
 {
@@ -601,7 +601,7 @@ You are welcome to use the Doctrine response cache classes provided in this SDK.
 
 namespace Acme;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Cacheable;
+use MediaMath\TerminalOneAPI\Infrastructure\Cacheable;
 use \Cache;
 use \Carbon;
 
@@ -639,9 +639,9 @@ class AcmeCache implements Cacheable {
 
 ```php
 use Acme\AcmeCache;
-use Mediamath\TerminalOneAPI\CachingApiClient;
-use Mediamath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use Mediamath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Management;
 
 $cached_json = new CachingApiClient($transport, new AcmeCache(600), new JSONResponseDecoder());
 

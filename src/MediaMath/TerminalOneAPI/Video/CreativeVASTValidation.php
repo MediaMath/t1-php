@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Mediamath\TerminalOneAPI\Video;
+namespace MediaMath\TerminalOneAPI\Video;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
-use Mediamath\TerminalOneAPI\Infrastructure\NonUpdateable;
-use Mediamath\TerminalOneAPI\Infrastructure\VideoApiObject;
-use Mediamath\TerminalOneAPI\Infrastructure\NonCreateable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
+use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
+use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
+use MediaMath\TerminalOneAPI\Infrastructure\VideoApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
 class CreativeVASTValidation extends VideoApiObject implements Endpoint
 {

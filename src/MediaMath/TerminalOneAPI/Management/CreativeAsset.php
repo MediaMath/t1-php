@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Mediamath\TerminalOneAPI\Management;
+namespace MediaMath\TerminalOneAPI\Management;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Endpoint;
-use Mediamath\TerminalOneAPI\Infrastructure\ManagementApiObject;
-use Mediamath\TerminalOneAPI\Infrastructure\NonCreateable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonDeletable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonReadable;
-use Mediamath\TerminalOneAPI\Infrastructure\NonUpdateable;
+use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
+use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonReadable;
+use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
 class CreativeAsset extends ManagementApiObject implements Endpoint
 {

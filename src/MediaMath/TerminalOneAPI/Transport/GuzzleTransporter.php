@@ -1,13 +1,13 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Transport;
+namespace MediaMath\TerminalOneAPI\Transport;
 
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\RequestException;
-use Mediamath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
-use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
-use Mediamath\TerminalOneAPI\Infrastructure\Transportable;
-use Mediamath\TerminalOneAPI\Infrastructure\Authenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
+use MediaMath\TerminalOneAPI\Infrastructure\Authenticable;
 
 use GuzzleHttp\Client;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Auth;
+namespace MediaMath\TerminalOneAPI\Auth;
 
-use Mediamath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
+use MediaMath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 
 class OAuthAuth implements OAuthAuthenticable
 {

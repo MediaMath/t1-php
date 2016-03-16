@@ -1,8 +1,8 @@
 <?php
 
-namespace Mediamath\TerminalOneAPI\Decoder;
+namespace MediaMath\TerminalOneAPI\Decoder;
 
-use Mediamath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 
 class CSVResponseDecoder implements Decodable
 {
