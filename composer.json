@@ -2,7 +2,7 @@
     "name": "MediaMath/open_t1_php_sdk",
     "autoload": {
         "psr-0" : {
-            "TerminalOneAPI" : "src/MediaMath"
+            "MediaMath\\TerminalOneAPI\\" : "src/"
         }
     },
     "suggest": {
@@ -10,5 +10,3 @@
         "doctrine/cache": "Allows you to use the Doctrine Api Response Cache class provided with this SDK"
     }
 }
-
-

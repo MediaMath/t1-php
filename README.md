@@ -27,17 +27,7 @@ This is a private repository not listed on packagist, so you will need to config
 
 And add MediaMath/open_t1_php_sdk to your requirements
 
-	{
-		...,
-		"require": {
-			...,
-			"MediaMath/open_t1_php_sdk": "*"
-		}
-	}
-
-Run composer install
-
-	$ php composer.phar install
+	$ php composer.phar require "MediaMath/open_t1_php_sdk"
 
 This SDK uses PSR-4 so classes and namespaces should be autoloaded in your application.
 
