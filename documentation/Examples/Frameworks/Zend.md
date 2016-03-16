@@ -31,7 +31,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
 
-        $session_id = '2f29a888315e4b5b3e42bc3de03a0972c3d2ef05';
+        $session_id = '...';
 
         $api_client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 
