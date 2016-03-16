@@ -49,11 +49,20 @@ class GuzzleTransporter implements Transportable
         } catch (RequestException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
+
     }
 
     public function update($url, $data)
     {
-        // TODO: Implement update() method.
+
+        try {
+            $res = $this->guzzle->request('POST', $url, $this->prepareOptionsForPost($data));
+
+            return $res->getBody()->getContents();
+        } catch (RequestException $e) {
+            return $e->getResponse()->getBody()->getContents();
+        }
+
     }
 
     public function authUniqueId()
