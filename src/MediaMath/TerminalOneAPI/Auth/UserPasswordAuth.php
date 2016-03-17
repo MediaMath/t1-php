@@ -2,6 +2,7 @@
 
 namespace MediaMath\TerminalOneAPI\Auth;
 
+use MediaMath\TerminalOneAPI\Infrastructure\ApiHost;
 use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
 
 class UserPasswordAuth implements CookieAuthenticable
@@ -34,7 +35,7 @@ class UserPasswordAuth implements CookieAuthenticable
 
             $ch = curl_init();
             $data_array=array('user' => $this->username, 'password' => $this->password, 'api_key' => $this->api_key);
-            curl_setopt($ch, CURLOPT_URL, 'https://api.mediamath.com/api/login');
+            curl_setopt($ch, CURLOPT_URL, ApiHost::T1_AUTHENTICATION .'login');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST,TRUE);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data_array);

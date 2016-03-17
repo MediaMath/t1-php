@@ -9,7 +9,7 @@ abstract class ReportingApiObject extends ApiObject
 
     public function uri()
     {
-        return 'https://api.mediamath.com/reporting/v1/std/' . $this->endpoint();
+        return ApiHost::T1_REPORTING . $this->endpoint();
     }
 
 }
