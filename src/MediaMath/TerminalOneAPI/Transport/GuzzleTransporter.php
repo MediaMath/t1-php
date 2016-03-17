@@ -82,12 +82,14 @@ class GuzzleTransporter implements Transportable
 
     private function prepareOptionsForPost($options)
     {
-        return array_filter([
+        $arr = [
             'cookies' => $this->cookies(),
             'headers' => $this->headers(),
             'query' => $this->queryString($options),
             'form_params' => $this->formParams($options)
-        ]);
+        ];
+
+        return array_filter($arr);
 
     }
 

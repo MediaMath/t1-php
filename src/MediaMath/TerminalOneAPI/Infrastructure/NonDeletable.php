@@ -2,10 +2,12 @@
 
 namespace MediaMath\TerminalOneAPI\Infrastructure;
 
+use MediaMath\TerminalOneAPI\Exception\CannotDeleteException;
+
 trait NonDeletable {
 
     public function delete() {
-        throw new \Exception("Cannot delete objects on this endpoint");
+        throw new CannotDeleteException("Cannot delete objects on this endpoint");
     }
 
 }
