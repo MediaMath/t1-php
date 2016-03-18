@@ -178,7 +178,7 @@ $client = new ApiClient($transport);
 /*
 * Or use the one-line setup:
 */
-$client = new ApiClient(new GuzzleTransporter(OAuthAuth($api_key, $access_token)));
+$client = new ApiClient(new GuzzleTransporter(new OAuthAuth($api_key, $access_token)));
 ```
 
 ### Basic read requests <a name="usage-basic"></a>
