@@ -5,58 +5,56 @@ namespace MediaMath\TerminalOneAPI\Infrastructure;
 abstract class ApiObject
 {
 
-    private $apiClient;
-
     abstract public function uri();
 
-    public function __construct(Clientable $apiClient)
+    public function __construct($options = [])
     {
-        $this->apiClient = $apiClient;
+        $this->options = $options;
     }
 
-    public function create($data)
-    {
-        return $this->apiClient->create($this->uri(), $data);
+    public function options() {
+        return $this->options;
     }
 
-    public function read($options = [])
+    public function create()
     {
-
-        $uri = $this->uri();
-
-        if (array_key_exists('limit', $options)) {
-            $uri .= '/limit/' . $options['limit'];
-            unset($options['limit']);
-        }
-
-        if (array_key_exists('id', $options)) {
-            $uri .= '/' . $options['id'];
-            unset($options['id']);
-        }
-
-        return $this->apiClient->read($uri, $options);
+        return $this->uri();
     }
 
-    public function update($data)
+    public function read()
     {
 
         $uri = $this->uri();
 
-        if (array_key_exists('id', $data)) {
-            $uri .= '/' . $data['id'];
-            unset($data['id']);
+        if (array_key_exists('limit', $this->options)) {
+            $uri .= '/limit/' . $this->options['limit'];
+            unset($this->options['limit']);
         }
 
-        if (array_key_exists('related', $data)) {
-            $uri .= '/' . $data['related'];
-            unset($data['related']);
+        if (array_key_exists('id', $this->options)) {
+            $uri .= '/' . $this->options['id'];
+            unset($this->options['id']);
         }
 
-        $this->apiClient->update($uri, $data);
+        return $uri;
     }
 
-    protected function apiClient() {
-        return $this->apiClient;
+    public function update()
+    {
+
+        $uri = $this->uri();
+
+        if (array_key_exists('id', $this->options)) {
+            $uri .= '/' . $this->options['id'];
+            unset($this->options['id']);
+        }
+
+        if (array_key_exists('related', $this->options)) {
+            $uri .= '/' . $this->options['related'];
+            unset($this->options['related']);
+        }
+
+        return $uri;
     }
 
 }

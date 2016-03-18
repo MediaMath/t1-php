@@ -6,15 +6,17 @@
 Refer to the T1 API docs for specific documentation on how to query the API. You can pass in your query string parameter via the `read()` method's options array. If you use the `GuzzleTransporter` HTTP transport class provided with this SDK there is no need to urlencode your query string.
 
 ```php
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'q' => 'name==New Campaign'
-]);
+    ])
+);
 ```
 
 ```php
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'q' => '(123456,234567,345678)'
-]);
+    ])
+);
 ```
 
 ### Using the LIMIT parameter <a name="limits"></a>
@@ -24,23 +26,26 @@ The T1 API docs state that to limit results to objects belonging to a particular
 #### Limiting based upon a member property (eg: advertiser id)
 
 ```php
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'limit' => 'advertiser=......'
-]);
+    ])
+);
 ```
 
 #### Limiting based upon hierarchical entities (eg advertiser.agency id)
 
 ```php
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'limit' => 'advertiser.agency=......'
-]);
+    ])
+);
 ```
 
 #### Limiting based upon linked relationships (eg: vendor_contracts.vendor id)
 
 ```php
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'limit' => 'vendor_contracts.vendor=...'
-]);
+    ])
+);
 ```

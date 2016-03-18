@@ -20,13 +20,13 @@ class SiteListAssignment extends ManagementApiObject implements Endpoint
         return 'site_lists/{{id}}/assignments';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{id}}', $options['id'], $this->uri());
-        unset($options['id']);
+        $uri = str_replace('{{id}}', $this->options['id'], $this->uri());
+        unset($this->options['id']);
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

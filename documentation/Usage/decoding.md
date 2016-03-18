@@ -4,6 +4,8 @@ The SDK ships with a number of decoders for the API response. Some reporting API
 
 By default the `ApiClient` class returns the API response 'as-is' without decoding into PHP objects or arrays. If you want an object or associative PHP array representation of the response, add an instance of the decoder you want to use. For API endpoints which return CSV, for example, you should inject a decoder which expects a CSV string, or a decoder which expects a JSON string when the expected API response is JSON.
 
+You can override the default decoder when you create an instance of the `ApiClient` if you wish, or you can add the decoder on a per-call basis
+
 Note: Using the `JSONResponseDecoder` will give you an object representation of the response, whereas using the `XMLResponseDecoder` will give you an associative PHP array.
 
 By providing your own decoders you can move your response decoding / formatting logic away from your controllers or implement a more fine-grained control over the decoding process.
@@ -11,27 +13,34 @@ By providing your own decoders you can move your response decoding / formatting 
 ```php
 use MediaMath\TerminalOneAPI\ApiClient;
 use MediaMath\TerminalOneAPI\Management;
+use MediaMath\TerminalOneAPI\Reporting;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
 
 /*
-*  Initialise the API client
+*  Initialise the API client with the JSON response decoder as default
 */
-$json_client = new ApiClient($transport, new JSONResponseDecoder());
+$client = new ApiClient($transport, new JSONResponseDecoder());
 
 /*
 * Fetch all the organisations which are available under the authorised account 
 */
-$data = (new Management\Organization($json_client))->read();
-// $data will now be a PHP object instead of a JSON-encoded string  
+$orgs = $client->read(new Management\Organization());
+// $orgs will now be a PHP object instead of a JSON-encoded string
+  
+/*
+* Now make another call but expect CSV instead
+*/
+$perfs = $client->read(new Reporting\Performance(), new CSVResponseDecoder());
+// $perfs will now be a PHP array instead of a CSV string
 ```
 
 Some CSV responses (primarily `Reporting` endpoints) contain a row of headings as the first line of the response. The supplied `CSVResponseDecoder` can make use of this if you pass the constant `CSVDecoder::EXTRACT_HEADINGS` into its constructor.
 
 ```php
+$client = new ApiClient($transport);
 
-$client = new ApiClient($transport, new CSVResponseDecoder(CSVDecoder::EXTRACT_HEADINGS));
-
-$data = (new Reporting\AudienceIndex($client))->read([
+$data = Reporting\AudienceIndex $client->read(Reporting\AudienceIndex([
     ...
-]);
+    ]), new CSVResponseDecoder(CSVDecoder::EXTRACT_HEADINGS)
+);
 ```

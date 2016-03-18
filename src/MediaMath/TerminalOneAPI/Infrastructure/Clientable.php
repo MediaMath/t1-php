@@ -5,10 +5,10 @@ namespace MediaMath\TerminalOneAPI\Infrastructure;
 interface Clientable
 {
 
-    public function create($endpoint, $data);
+    public function create(ApiObject $endpoint, Decodable $decoder);
 
-    public function read($endpoint, $options);
+    public function read(ApiObject $endpoint, Decodable $decoder);
 
-    public function update($endpoint, $data);
+    public function update(ApiObject $endpoint, Decodable $decoder);
 
 }

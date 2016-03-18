@@ -3,26 +3,13 @@
 class AudienceIndexTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->create();
 
     }
 
@@ -32,7 +19,7 @@ class AudienceIndexTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class AudienceIndexTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->read();
 
     }
 

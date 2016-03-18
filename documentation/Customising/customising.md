@@ -248,5 +248,5 @@ use MediaMath\TerminalOneAPI\Management;
 
 $cached_json = new CachingApiClient($transport, new AcmeCache(600), new JSONResponseDecoder());
 
-$data = (new Management\Vertical($cached_json))->read();
+$data = $cached_json->read(new Management\Vertical());
 ```

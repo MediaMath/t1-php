@@ -22,19 +22,15 @@ class CreativeAsset extends ManagementApiObject implements Endpoint
         return 'creative_assets';
     }
 
-    public function upload($data)
+    public function upload()
     {
-        $uri = $this->uri() . '/upload';
-
-        return $this->apiClient()->create($uri, $data);
+        return $this->uri() . '/upload';
 
     }
 
-    public function approve($data)
+    public function approve()
     {
-        $uri = $this->uri() . '/approve';
-
-        return $this->apiClient()->create($uri, $data);
+        return $this->uri() . '/approve';
 
     }
 

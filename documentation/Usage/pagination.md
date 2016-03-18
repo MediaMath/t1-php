@@ -8,9 +8,10 @@ use MediaMath\TerminalOneAPI\Management;
 /*
 * Fetch all the campaigns which are available under the authorised account 
 */
-$data = (new Management\Campaign($client))->read([
+$data = $client->read(new Management\Campaign([
     'fetch' => 'all'
-]);
+    ])
+);
 ``` 
 
 Endpoints which contain a lot of paginated data, for example `Management\Campaigns`, work best when used in conjunction with a `CachingApiClient` instance.

@@ -17,18 +17,18 @@ class StrategySiteList extends ManagementApiObject implements Endpoint
         return 'strategies/{{strategy_id}}/site_lists';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
-        if (array_key_exists('id', $options)) {
-            $uri .= '/' . $options['id'];
-            unset($options['id']);
+        if (array_key_exists('id', $this->options)) {
+            $uri .= '/' . $this->options['id'];
+            unset($this->options['id']);
         }
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

@@ -3,26 +3,13 @@
 class PostalCodeTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->create();
 
     }
 
@@ -32,7 +19,7 @@ class PostalCodeTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class PostalCodeTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->read();
 
     }
 

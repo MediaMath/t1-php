@@ -21,11 +21,11 @@ class StrategyRetiredTargetingSegment extends ManagementApiObject implements End
         return 'strategies/{{strategy_id}}/retired_targeting_segments';
     }
 
-    public function read($options = [])
+    public function read()
     {
-        $uri = str_replace('{{strategy_id}}', $options['id'], $this->uri());
+        $uri = str_replace('{{strategy_id}}', $this->options['id'], $this->uri());
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

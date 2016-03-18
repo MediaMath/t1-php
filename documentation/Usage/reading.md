@@ -11,7 +11,7 @@ use MediaMath\TerminalOneAPI\Management;
 /*
 * Fetch all the organisations which are available under the authorised account 
 */
-$data = (new Management\Organization($client))->read();
+$data = $client->read(new Management\Organization());
 ```        
         
 ### Passing options to the API <a name="options"></a>
@@ -21,10 +21,11 @@ To pass options to the API, add them as an associative array within the `read()`
 ```php
 use MediaMath\TerminalOneAPI\Management;
 
-$data = (new Management\Advertiser($client))->read([
+$data = $client->read(new Management\Advertiser([
     'with' => 'agency',
     'sort_by' => 'name'
-]);
+    ])
+);
 ```
 
 ```php
@@ -39,11 +40,12 @@ $dimensions = array(
     'organization_name'
 );
 
-$data = (new Reporting\AudienceIndex($client))->read([
+$data = $client->read(new Reporting\AudienceIndex([
     'time_rollup' => 'all',
     'time_window' => 'last_14_days',
     'filter' => 'organization_id=......',
     'dimensions' => implode(',', $dimensions),
     'precision' => 2
-]);
+    ])
+);
 ```

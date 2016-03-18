@@ -3,26 +3,13 @@
 class PerformanceTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->create();
 
     }
 
@@ -32,7 +19,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->read();
 
     }
 

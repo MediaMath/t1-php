@@ -20,13 +20,13 @@ class CreativeStatus extends ManagementApiObject implements Endpoint
         return 'creatives/{{creative_id}}/status';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{creative_id}}', $options['creative_id'], $this->uri());
-        unset($options['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

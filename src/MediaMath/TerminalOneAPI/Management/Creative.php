@@ -19,16 +19,16 @@ class Creative extends ManagementApiObject implements Endpoint
         return 'creatives';
     }
 
-    public function upload($data)
+    public function upload()
     {
         $uri = $this->uri() . '/upload';
 
-        if(isset($data['batch_id'])) {
-            $uri .= '/' . $data['batch_id'];
-            unset($data['batch_id']);
+        if (isset($this->options['batch_id'])) {
+            $uri .= '/' . $this->options['batch_id'];
+            unset($this->options['batch_id']);
         }
 
-        return $this->apiClient()->create($uri, $data);
+        return $uri;
 
     }
 

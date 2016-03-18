@@ -3,26 +3,13 @@
 class AppTransparencyTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->create();
 
     }
 
@@ -32,7 +19,7 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->read();
 
     }
 

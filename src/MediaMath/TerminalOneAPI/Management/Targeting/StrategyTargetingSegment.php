@@ -17,28 +17,28 @@ class StrategyTargetingSegment extends ManagementApiObject implements Endpoint
         return 'strategies/{{strategy_id}}/targeting_segments';
     }
 
-    public function read($options = [])
+    public function read()
     {
-        $uri = str_replace('{{strategy_id}}', $options['id'], $this->uri());
+        $uri = str_replace('{{strategy_id}}', $this->options['id'], $this->uri());
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 
-    public function create($data)
+    public function create()
     {
-        $uri = str_replace('{{strategy_id}}', $data['id'], $this->uri());
+        $uri = str_replace('{{strategy_id}}', $this->options['id'], $this->uri());
 
-        return $this->apiClient()->create($uri, $data);
+        return $uri;
 
     }
 
-    public function update($data)
+    public function update()
     {
 
-        $uri = str_replace('{{strategy_id}}', $data['id'], $this->uri());
+        $uri = str_replace('{{strategy_id}}', $this->options['id'], $this->uri());
 
-        return $this->apiClient()->create($uri, $data);
+        return $uri;
 
     }
 

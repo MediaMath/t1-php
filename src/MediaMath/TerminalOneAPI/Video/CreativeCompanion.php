@@ -18,52 +18,53 @@ class CreativeCompanion extends ManagementApiObject implements Endpoint
         return 'creatives/{{creative_id}}/companions';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{creative_id}}', $options['creative_id'], $this->uri());
-        unset($options['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        if(isset($options['id'])) {
-            $uri .= '/' . $options['id'];
-            unset($options['id']);
+        if(isset($this->options['id'])) {
+            $uri .= '/' . $this->options['id'];
+            unset($this->options['id']);
         }
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 
-    public function create($options = [])
+    public function create()
     {
 
-        $uri = str_replace('{{creative_id}}', $options['creative_id'], $this->uri());
-        unset($options['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        return $this->apiClient()->create($uri, $options);
+        return $uri;
 
     }
 
-    public function delete($data = [])
+    public function delete()
     {
-        $uri = str_replace('{{creative_id}}', $data['creative_id'], $this->uri());
-        unset($data['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        $uri .= '/' . $data['id'];
-        unset($data['id']);
+        $uri .= '/' . $this->options['id'];
+        unset($this->options['id']);
 
         $uri .= '/delete';
-        return $this->apiClient()->update($uri, $data);
+
+        return $uri;
     }
 
-    public function update($data = [])
+    public function update()
     {
-        $uri = str_replace('{{creative_id}}', $data['creative_id'], $this->uri());
-        unset($data['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        $uri .= '/' . $data['id'];
-        unset($data['id']);
+        $uri .= '/' . $this->options['id'];
+        unset($this->options['id']);
 
-        return $this->apiClient()->update($uri, $data);
+        return $uri;
     }
 
 }

@@ -19,25 +19,25 @@ class StrategyDomainRestriction extends ManagementApiObject implements Endpoint
         return 'strategies/{{strategy_id}}/domain_restrictions';
     }
 
-    public function create($data)
+    public function create()
     {
-        $uri = str_replace('{{strategy_id}}', $data['strategy_id'], $this->uri());
-        unset($data['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
-        return $this->apiClient()->create($uri, $data);
+        return $uri;
     }
 
-    public function read($options = [])
+    public function read()
     {
 
         $uri = str_replace($this->endpoint(), 'strategy_domain_restrictions', $this->uri());
 
-        if (array_key_exists('limit', $options)) {
-            $uri .= '/limit/' . $options['limit'];
-            unset($options['limit']);
+        if (array_key_exists('limit', $this->options)) {
+            $uri .= '/limit/' . $this->options['limit'];
+            unset($this->options['limit']);
         }
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

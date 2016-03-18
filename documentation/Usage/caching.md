@@ -37,7 +37,7 @@ use MediaMath\TerminalOneAPI\Cache\TimePeriod;
 */
 $path = __DIR__ . '/../../../var/cache/api_requests/';
 
-$cached_json = new CachingApiClient($transport, new DoctrineFilesystemCache(TimePeriod::hours(1), $path), new JSONResponseDecoder());
+$cached_client = new CachingApiClient($transport, new DoctrineFilesystemCache(TimePeriod::hours(1), $path));
 
-$data = (new Management\Vertical($cached_json))->read();
+$data = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
 ```

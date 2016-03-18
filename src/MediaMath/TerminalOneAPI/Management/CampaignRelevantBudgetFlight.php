@@ -21,13 +21,13 @@ class CampaignRelevantBudgetFlight extends ManagementApiObject implements Endpoi
         return 'campaigns/{{campaign_id}}/budget_flights/relevant';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{campaign_id}}', $options['campaign_id'], $this->uri());
-        unset($options['campaign_id']);
+        $uri = str_replace('{{campaign_id}}', $this->options['campaign_id'], $this->uri());
+        unset($this->options['campaign_id']);
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

@@ -17,24 +17,24 @@ class StrategyDayPart extends ManagementApiObject implements Endpoint
         return 'strategy_day_parts';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $endpoint = 'strategies/' . $options['strategy_id'] . '/day_parts';
+        $endpoint = 'strategies/' . $this->options['strategy_id'] . '/day_parts';
 
-        unset($options['strategy_id']);
+        unset($this->options['strategy_id']);
 
         $uri = str_replace($this->endpoint(), $endpoint, $this->uri());
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 
-    public function delete($options) {
+    public function delete() {
 
-        $endpoint = $this->uri() . '/' . $options['id'] . '/delete';
+        $uri = $this->uri() . '/' . $this->options['id'] . '/delete';
 
-        return $this->apiClient()->update($endpoint, $options);
+        return $uri;
     }
 
 }

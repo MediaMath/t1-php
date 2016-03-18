@@ -17,18 +17,18 @@ class CampaignSiteList extends ManagementApiObject implements Endpoint
         return 'campaigns/{{campaign_id}}/site_lists';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{campaign_id}}', $options['campaign_id'], $this->uri());
-        unset($options['campaign_id']);
+        $uri = str_replace('{{campaign_id}}', $this->options['campaign_id'], $this->uri());
+        unset($this->options['campaign_id']);
 
-        if (array_key_exists('id', $options)) {
-            $uri .= '/' . $options['id'];
-            unset($options['id']);
+        if (array_key_exists('id', $this->options)) {
+            $uri .= '/' . $this->options['id'];
+            unset($this->options['id']);
         }
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 

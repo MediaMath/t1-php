@@ -3,26 +3,13 @@
 class GeoTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->create();
 
     }
 
@@ -32,7 +19,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class GeoTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->read();
 
     }
 

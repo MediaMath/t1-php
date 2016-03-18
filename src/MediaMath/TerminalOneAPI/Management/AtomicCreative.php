@@ -17,13 +17,13 @@ class AtomicCreative extends ManagementApiObject implements Endpoint
         return 'atomic_creatives';
     }
 
-    public function resetEditedTag($options)
+    public function resetEditedTag()
     {
 
-        $uri = $this->uri() . '/' . $options['id'] . '/reset_edited_tag';
-        unset($options['id']);
+        $uri = $this->uri() . '/' . $this->options['id'] . '/reset_edited_tag';
+        unset($this->options['id']);
 
-        return $this->apiClient()->create($uri, $options);
+        return $uri;
 
 
     }

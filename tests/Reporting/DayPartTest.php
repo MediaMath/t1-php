@@ -3,26 +3,13 @@
 class DayPartTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->create();
 
     }
 
@@ -32,7 +19,7 @@ class DayPartTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class DayPartTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->read();
 
     }
 

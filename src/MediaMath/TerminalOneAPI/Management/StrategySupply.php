@@ -17,33 +17,33 @@ class UserPermission extends ManagementApiObject implements Endpoint
         return 'strategies/{{strategy_id}}/supplies';
     }
 
-    public function read($options = [])
+    public function read()
     {
 
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 
-    public function create($options = [])
+    public function create()
     {
 
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
-        return $this->apiClient()->create($uri, $options);
+        return $uri;
 
     }
 
-    public function update($options = [])
+    public function update()
     {
 
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
-        return $this->apiClient()->update($uri, $options);
+        return $uri;
 
     }
 

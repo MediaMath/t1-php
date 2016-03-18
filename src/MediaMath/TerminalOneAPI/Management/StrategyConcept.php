@@ -17,32 +17,30 @@ class StrategyConcept extends ManagementApiObject implements Endpoint
         return 'strategies/{{strategy_id}}/strategy_concepts';
     }
 
-    public function create($data)
+    public function create()
     {
-        $uri = str_replace($this->endpoint(), 'strategy_concepts', $this->uri());
-
-        return $this->apiClient()->create($uri, $data);
-    }
-
-    public function read($options = [])
-    {
-
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
-
-        return $this->apiClient()->read($uri, $options);
+        return str_replace($this->endpoint(), 'strategy_concepts', $this->uri());
 
     }
 
-    public function delete($options)
+    public function read()
+    {
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
+
+        return str_replace('strategy_', '', $uri);
+
+    }
+
+    public function delete()
     {
 
-        $uri = str_replace('{{strategy_id}}', $options['strategy_id'], $this->uri());
-        unset($options['strategy_id']);
+        $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
+        unset($this->options['strategy_id']);
 
         $uri .= '/delete';
 
-        return $this->apiClient()->update($uri, $options);
+        return $uri;
     }
 
 }

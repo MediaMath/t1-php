@@ -20,13 +20,13 @@ class CreativeUpload extends ManagementApiObject implements Endpoint
         return 'creatives/{{creative_id}}/upload';
     }
 
-    public function create($options = [])
+    public function create()
     {
 
-        $uri = str_replace('{{creative_id}}', $options['creative_id'], $this->uri());
-        unset($options['creative_id']);
+        $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
+        unset($this->options['creative_id']);
 
-        return $this->apiClient()->create($uri, $options);
+        return $uri;
 
     }
 

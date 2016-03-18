@@ -19,35 +19,33 @@ class SiteList extends ManagementApiObject implements Endpoint
         return 'site_lists';
     }
 
-    public function download($options = [])
+    public function download()
     {
 
         $uri = $this->uri();
 
-        $uri .= '/' . $options['id'] . '/download.csv';
-        unset($options['id']);
+        $uri .= '/' . $this->options['id'] . '/download.csv';
+        unset($this->options['id']);
 
-        return $this->apiClient()->read($uri, $options);
+        return $uri;
 
     }
 
-    public function upload($data)
+    public function upload()
     {
-        $uri = $this->uri() . '/upload';
-
-        return $this->apiClient()->create($uri, $data);
+        return $this->uri() . '/upload';
 
     }
 
-    public function update($data)
+    public function update()
     {
 
         $uri = $this->uri();
 
-        $uri .= '/' . $data['id'] . '/domains';
-        unset($data['id']);
+        $uri .= '/' . $this->options['id'] . '/domains';
+        unset($this->options['id']);
 
-        return $this->apiClient()->read($uri, $data);
+        return $uri;
 
     }
 

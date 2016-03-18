@@ -34,7 +34,7 @@ class Welcome extends CI_Controller {
 
 		$api_client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 
-		$orgs = (new Organization($api_client))->read();
+		$orgs = $api_client->read(new Organization());
 
 		$this->load->view('welcome_message', [
 			'organisations' => $orgs

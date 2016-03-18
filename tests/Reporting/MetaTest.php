@@ -3,26 +3,13 @@
 class MetaTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->create();
 
     }
 
@@ -32,7 +19,7 @@ class MetaTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class MetaTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->read();
 
     }
 

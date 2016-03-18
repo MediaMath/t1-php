@@ -35,7 +35,7 @@ class FrontController extends Controller {
 
         $api_client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
 
-        $orgs = (new Organization($api_client))->read();
+        $orgs = $api_client->read(new Organization());
 
         return view('welcome', ['organisations' => $orgs]);
 

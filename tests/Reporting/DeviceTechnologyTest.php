@@ -3,26 +3,13 @@
 class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $client;
-
-    protected function setUp()
-    {
-        $this->client = $this->getMockBuilder(\MediaMath\TerminalOneAPI\ApiClient::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->client->method('read')
-            ->willReturn('{}');
-
-    }
-
     /**
      * @expectedException \MediaMath\TerminalOneAPI\Exception\CannotCreateException
      */
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology($this->client))->create([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->create();
 
     }
 
@@ -32,7 +19,7 @@ class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology($this->client))->delete([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->delete();
 
     }
 
@@ -42,14 +29,14 @@ class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology($this->client))->update([]);
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology($this->client))->read();
+        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->read();
 
     }
 
