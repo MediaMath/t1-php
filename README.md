@@ -143,7 +143,7 @@ $client = new ApiClient($transport);
 /*
 * Or use the one-line setup:
 */
-$client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
+$client = new ApiClient(new GuzzleTransporter(new UserPasswordAuth($username, $password, $api_key)));
 ```
 
 #### Using OAuth
