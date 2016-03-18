@@ -4,6 +4,7 @@
 
 - Supports adama session cookie authentication out of the box
 - Supports OAuth authentication out of the box
+- Supports user/password authentication out of the box
 - Authentication is fully customisable
 - Can convert CSV, XML & JSON API responses to PHP objects & arrays out of the box
 - Response decoding is fully customisable
@@ -62,7 +63,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 #### The SDK structure is as follows:
 
-1. Authenticator - allows you to authenticate against the T1 API either using adama or OAuth
+1. Authenticator - allows you to authenticate against the T1 API either using adama, username / password, or OAuth
 2. HTTP Transporter - choose how you want your network traffic to be handled, eg cURL, Guzzle, AMQP, or a mixture of options (such as AMQP for updating data, cURL for reading)
 3. API Client - allows you to hook in any custom request / response logic and / or perform response caching
 4. API Object class - holds information about each API endpoint
@@ -80,7 +81,7 @@ If you want to use the Doctrine Api Response Cache class provided in this SDK in
 
 To set up the SDK for making API calls you need to initialise an HTTP transport with your chosen authentication method. See [Customisation](#customisation) for instructions on creating your own authenticators, HTTP transports, response decoders, or response caching.
 
-Apart from initialising the authenticator, the steps for getting a response from the API are the same, whether using OAuth or cookie authentication. You will need to obtain your OAuth or Adama credentials from T1 before initialising the SDK. See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication for more information on how to do this.
+Apart from initialising the authenticator, the steps for getting a response from the API are the same, whether using OAuth or cookie authentication. If using OAuth or Adama, you will need to obtain your OAuth or Adama credentials from T1 before initialising the SDK. See https://developer.mediamath.com/docs/read/terminalone_api_overview/Authentication for more information on how to do this.
 
 #### Using Adama session cookie
 ```php
@@ -97,6 +98,35 @@ $session_id = '911de80bcb86f239eaada55b55bfc548........';
 * Set up the authenticator
 */
 $auth = new AdamaCookieAuth($session_id);
+
+/*
+* Set up the HTTP transport with the authenticator
+*/
+$transport = new GuzzleTransporter($auth);
+
+/*
+*  Initialise the API client
+*/
+$client = new ApiClient($transport);
+```
+
+```php
+/*
+* Or use the one-line setup:
+*/
+$client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_id)));
+```
+
+#### Using Username / Password
+```php
+use MediaMath\TerminalOneAPI\Auth\UserPasswordAuth;
+use MediaMath\TerminalOneAPI\ApiClient;
+use MediaMath\TerminalOneAPI\Transport\GuzzleTransporter;
+
+/*
+* Set up the authenticator
+*/
+$auth = new UserPasswordAuth($username, $password, $api_key);
 
 /*
 * Set up the HTTP transport with the authenticator
