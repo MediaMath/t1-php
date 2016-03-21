@@ -26,19 +26,20 @@ class CachingApiClient implements Clientable
 
     public function read(ApiObject $endpoint, Decodable $decoder = null)
     {
-        $key = $endpoint->uri() . json_encode($endpoint->options()) . $this->unique_id;
 
         $decoder = $decoder ?: $this->decoder;
 
+        $key = $endpoint->uri() . json_encode($endpoint->options()) . $this->unique_id . get_class($decoder);
+
         if ($this->cache->retrieve($key)) {
-            return $decoder->decode($this->cache->retrieve($key));
+            return $this->cache->retrieve($key);
         }
 
         $data = $this->api_client->read($endpoint, $decoder);
 
         $this->cache->store($key, $data);
 
-        return $decoder->decode($data);
+        return $data;
 
     }
 

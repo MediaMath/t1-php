@@ -171,14 +171,14 @@ class AcmeTransporter implements Transportable
 
 ### Response Decoders <a name="decoders"></a>
 
-You are welcome to use the various response decoder classes provided in this SDK. However, if you wish to write your own, your decoder class needs to implement the `decodable` interface and your `__construct()` method must accept the API response provided by the HTTP transport.
+You are welcome to use the various response decoder classes provided in this SDK. However, if you wish to write your own, your decoder class needs to implement one of the `JSONDecodable`, `XMLDecodable`, or `DefaultDecodable` interfaces and your `decode()` method must accept the API response provided by the HTTP transport.
 
 ```php
 namespace Acme;
 
-use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\JSONDecodable;
 
-class AcmeJSONResponseDecoder implements Decodable
+class AcmeJSONResponseDecoder implements JSONDecodable
 {
     public function decode($api_response)
     {

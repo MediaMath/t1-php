@@ -2,9 +2,9 @@
 
 namespace MediaMath\TerminalOneAPI\Decoder;
 
-use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\XMLDecodable;
 
-class XMLResponseDecoder implements Decodable
+class XMLResponseDecoder implements XMLDecodable
 {
 
     public function decode($api_response)
