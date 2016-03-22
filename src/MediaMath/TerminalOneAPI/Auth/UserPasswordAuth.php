@@ -15,12 +15,11 @@ class UserPasswordAuth implements CookieAuthenticable
     {
         $this->username = $username;
         $this->password = $password;
+        $this->api_key = $api_key;
     }
 
     public function cookieValues()
     {
-        $this->keepAliveSession();
-
         return ['adama_session' => $this->keepAliveSession()];
     }
 

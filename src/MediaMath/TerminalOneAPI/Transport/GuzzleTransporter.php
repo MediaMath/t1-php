@@ -2,10 +2,7 @@
 
 namespace MediaMath\TerminalOneAPI\Transport;
 
-use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\RequestException;
-use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
-use MediaMath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
 use MediaMath\TerminalOneAPI\Infrastructure\Authenticable;
 
@@ -14,21 +11,20 @@ use GuzzleHttp\Client;
 class GuzzleTransporter implements Transportable
 {
 
-    private $guzzle, $authenticator;
+    private $guzzle, $authenticator, $parameter_handler;
 
     public function __construct(Authenticable $authenticator)
     {
         $this->guzzle = new Client();
         $this->authenticator = $authenticator;
+        $this->parameter_handler = new GuzzleParameterHandler($authenticator);
     }
 
     public function read($url, $options)
     {
 
-        $options = array_merge($options, $this->getParamsFromUri($url));
-
         try {
-            $res = $this->guzzle->request('GET', $url, $this->prepareOptionsForRead($options));
+            $res = $this->guzzle->request('GET', $url, $this->parameter_handler->read($options, $url));
 
             return $res->getBody()->getContents();
 
@@ -43,7 +39,7 @@ class GuzzleTransporter implements Transportable
     {
 
         try {
-            $res = $this->guzzle->request('POST', $url, $this->prepareOptionsForPost($data));
+            $res = $this->guzzle->request('POST', $url, $this->parameter_handler->post($data));
 
             return $res->getBody()->getContents();
         } catch (RequestException $e) {
@@ -56,7 +52,7 @@ class GuzzleTransporter implements Transportable
     {
 
         try {
-            $res = $this->guzzle->request('POST', $url, $this->prepareOptionsForPost($data));
+            $res = $this->guzzle->request('POST', $url, $this->parameter_handler->post($data));
 
             return $res->getBody()->getContents();
         } catch (RequestException $e) {
@@ -70,82 +66,5 @@ class GuzzleTransporter implements Transportable
         return $this->authenticator->authUniqueId();
     }
 
-    private function prepareOptionsForRead($options)
-    {
-        return array_filter([
-            'cookies' => $this->cookies(),
-            'headers' => $this->headers(),
-            'query' => $this->queryString($options)
-        ]);
-
-    }
-
-    private function prepareOptionsForPost($options)
-    {
-        $arr = [
-            'cookies' => $this->cookies(),
-            'headers' => $this->headers(),
-            'query' => $this->queryString($options),
-            'form_params' => $this->formParams($options)
-        ];
-
-        return array_filter($arr);
-
-    }
-
-    private function cookies()
-    {
-
-        if ($this->authenticator instanceof CookieAuthenticable) {
-
-            $cookieJar = CookieJar::fromArray(
-                $this->authenticator->cookieValues(),
-                'mediamath.com'
-            );
-
-            return $cookieJar;
-        }
-        return null;
-    }
-
-    private function headers()
-    {
-
-        if ($this->authenticator instanceof OAuthAuthenticable) {
-            return array_merge(['Accept' => 'application/vnd.mediamath.v1+json'], $this->authenticator->headers());
-        }
-
-        return ['Accept' => 'application/vnd.mediamath.v1+json'];
-    }
-
-    private function queryString($options)
-    {
-
-        if ($this->authenticator instanceof OAuthAuthenticable) {
-            return array_merge($options, $this->authenticator->queryStringParams());
-        }
-
-        return $options;
-    }
-
-    private function formParams($options)
-    {
-        return $options;
-    }
-
-
-    private function getParamsFromUri($uri)
-    {
-
-        $parts = explode('?', $uri);
-
-        if (isset($parts[1])) {
-            parse_str($parts[1], $output);
-            return $output;
-        }
-
-        return [];
-
-    }
 
 }
