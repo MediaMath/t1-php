@@ -7,7 +7,7 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
-class UserPermission extends ManagementApiObject implements Endpoint
+class StrategySupply extends ManagementApiObject implements Endpoint
 {
 
     use NonDeletable;
