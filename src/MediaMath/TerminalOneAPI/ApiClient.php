@@ -3,8 +3,6 @@
 namespace MediaMath\TerminalOneAPI;
 
 use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
-use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use MediaMath\TerminalOneAPI\Decoder\XMLResponseDecoder;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;

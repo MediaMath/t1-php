@@ -28,24 +28,34 @@ class RecursiveJSONResponseFetcher implements RecursiveFetchable
 
         if (isset($options['fetch']) && $options['fetch'] == 'all') {
 
-            if (isset($response->meta) && isset($response->meta->next_page)) {
-
-                $data = $this->fetchRecursiveJSON($transport, $response->meta->next_page, $options);
-
-                foreach ($data AS $value) {
-                    $response->data[] = $value;
-                }
-
-                return $response->data;
-            }
-
-            if (isset($response->data)) {
-                return $response->data;
-            }
+            return $this->fetchEverything($transport, $options, $response);
         }
 
-
         return $response;
+    }
+
+    private function fetchEverything(Transportable $transport, $options, $response)
+    {
+        if (isset($response->meta) && isset($response->meta->next_page)) {
+            return $this->collateData($transport, $options, $response);
+        }
+
+        if (isset($response->data)) {
+            return $response->data;
+        }
+
+        return null;
+    }
+
+    private function collateData(Transportable $transport, $options, $response)
+    {
+        $data = $this->fetchRecursiveJSON($transport, $response->meta->next_page, $options);
+
+        foreach ($data AS $value) {
+            $response->data[] = $value;
+        }
+
+        return $response->data;
     }
 
 }
