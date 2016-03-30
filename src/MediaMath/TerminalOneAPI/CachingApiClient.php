@@ -2,17 +2,20 @@
 
 namespace MediaMath\TerminalOneAPI;
 
+use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
+use MediaMath\TerminalOneAPI\Infrastructure\ApiObject;
+use MediaMath\TerminalOneAPI\Infrastructure\Cacheable;
+use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
-use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
-use MediaMath\TerminalOneAPI\Infrastructure\Cacheable;
-use MediaMath\TerminalOneAPI\Infrastructure\ApiObject;
-use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
+use MediaMath\TerminalOneAPI\Pagination\Paginator;
 
 class CachingApiClient implements Clientable
 {
 
     private $api_client, $cache, $decoder, $unique_id;
+
+    use Paginator;
 
     public function __construct(Transportable $transport, Cacheable $cache, Decodable $decoder = null)
     {
