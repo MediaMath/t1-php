@@ -3,6 +3,8 @@
 namespace MediaMath\TerminalOneAPI\Decoder;
 
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 
 class XMLResponseDecoder implements Decodable
 {
@@ -15,7 +17,16 @@ class XMLResponseDecoder implements Decodable
         $this->fetchObjectFromXml($dom);
         $sxml = simplexml_load_string($dom->saveXML());
 
-        return $sxml;
+        $attrs = (array) $sxml->attributes();
+        $entities = (array) $sxml->entities;
+
+        $meta = new ApiResponseMeta([
+            'called_on' => $attrs['@attributes']['called_on'],
+            'total_count' => $entities['@attributes']['count']
+        ]);
+
+        return new ApiResponse($meta, $sxml->entities);
+
     }
 
     function fetchObjectFromXml($domNode)

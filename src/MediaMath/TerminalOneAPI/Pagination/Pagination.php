@@ -45,8 +45,7 @@ class Pagination implements Paginatable
 
         $result = $this->fetchData();
 
-        $this->num_results = $result->meta->total_count;
-
+        $this->num_results = $result->meta()->totalCount();
         return $result;
 
     }
@@ -96,7 +95,7 @@ class Pagination implements Paginatable
 
             $result = $this->fetchData($options);
 
-            $this->num_results = $result->meta->total_count;
+            $this->num_results = $result->meta()->totalCount();
 
         }
 

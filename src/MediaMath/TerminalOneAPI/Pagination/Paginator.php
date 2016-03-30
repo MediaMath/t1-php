@@ -11,6 +11,8 @@ trait Paginator
     public function paginate(ApiObject $endpoint, Decodable $decoder = null)
     {
 
+        $decoder = $decoder ?: $this->decoder;
+
         return new Pagination($endpoint, $decoder, $this);
 
     }
