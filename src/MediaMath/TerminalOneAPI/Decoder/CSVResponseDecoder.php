@@ -2,6 +2,8 @@
 
 namespace MediaMath\TerminalOneAPI\Decoder;
 
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 
 class CSVResponseDecoder implements Decodable
@@ -25,12 +27,12 @@ class CSVResponseDecoder implements Decodable
             foreach ($array['data'] AS $values) {
                 $tmp[] = array_combine($array['headings'], $values);
             }
-            return $tmp;
+            return new ApiResponse(new ApiResponseMeta(), $tmp);
         }
 
-        return $array['data'];
-    }
+        return new ApiResponse(new ApiResponseMeta(), $array['data']);
 
+    }
 
     private function loadCSVData($csv)
     {
