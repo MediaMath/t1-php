@@ -12,8 +12,8 @@ use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
  * Example of finding out about a particular creative and which strategies it is running on
  */
 
-$strategies = new CreativeStrategies($username, $password, $api_key);
-$strategies->fetchInfoForAtomicCreativeOnExchange($creative_id, $exchange_id);
+$strategies = new CreativeStrategies('nbrooks', 'Unrip3n3d!', 'f7zfnd4sb8frvwtnv4hzpa8v');
+$strategies->fetchInfoForAtomicCreativeOnExchange(2448555, 36);
 
 class CreativeStrategies
 {
@@ -77,18 +77,20 @@ class CreativeStrategies
             $strategy_ids[] = $strategy->id;
         }
 
+        $atomic_data = $atomic_creative->data();
+
         return [
             "Creative ID" => $atomic_creative_id,
-            "Creative Name" => $atomic_creative->data->name,
-            "Concept ID" => $atomic_creative->data->concept_id,
-            "Concept Name" => $atomic_creative->data->concept->name,
-            "Advertiser ID" => $atomic_creative->data->concept->advertiser_id,
-            "Advertiser Name" => $atomic_creative->data->concept->advertiser->name,
-            "Agency ID" => $atomic_creative->data->concept->advertiser->agency_id,
-            "Agency Name" => $atomic_creative->data->concept->advertiser->agency->name,
-            "Organization ID" => $atomic_creative->data->concept->advertiser->agency->organization_id,
-            "Organization Name" => $atomic_creative->data->concept->advertiser->agency->organization->name,
-            "Organization Contact" => $atomic_creative->data->concept->advertiser->agency->organization->contact_name,
+            "Creative Name" => $atomic_data->name,
+            "Concept ID" => $atomic_data->concept_id,
+            "Concept Name" => $atomic_data->concept->name,
+            "Advertiser ID" => $atomic_data->concept->advertiser_id,
+            "Advertiser Name" => $atomic_data->concept->advertiser->name,
+            "Agency ID" => $atomic_data->concept->advertiser->agency_id,
+            "Agency Name" => $atomic_data->concept->advertiser->agency->name,
+            "Organization ID" => $atomic_data->concept->advertiser->agency->organization_id,
+            "Organization Name" => $atomic_data->concept->advertiser->agency->organization->name,
+            "Organization Contact" => $atomic_data->concept->advertiser->agency->organization->contact_name,
             "Strategy IDs using this creative" => implode(',', $strategy_ids)
         ];
 
@@ -102,13 +104,15 @@ class CreativeStrategies
             return $this->concepts;
         }
 
-        $this->concepts = $this->api_client->read(
+        $concepts = $this->api_client->read(
             new Management\Concept([
                 'with' => 'strategies',
                 'q' => 'atomic_creatives.id==' . $atomic_creative_id,
                 'full' => '*'
             ])
         );
+
+        $this->concepts = $concepts->data();
 
         return $this->concepts;
 
@@ -120,7 +124,7 @@ class CreativeStrategies
             return print_r($this->concepts->errors, true);
         }
 
-        if (count($this->concepts->data[0]->strategies) == 0) {
+        if (count($this->concepts[0]->strategies) == 0) {
             return ("No strategies to run");
         }
     }
@@ -130,7 +134,7 @@ class CreativeStrategies
 
         $concepts = $this->fetchConcepts($atomic_creative_id);
 
-        return $concepts->data[0]->strategies;
+        return $concepts[0]->strategies;
     }
 
     private function getSupplyTargeting($exchange_id)
@@ -164,7 +168,7 @@ class CreativeStrategies
             ])
         );
 
-        $this->exchanges = $exchanges->data;
+        $this->exchanges = $exchanges->data();
 
         return $this->exchanges;
 
@@ -178,10 +182,10 @@ class CreativeStrategies
         ]));
 
         $error = "";
-        if (isset($strategy_supplies->data->deals)) {
+        if (isset($strategy_supplies->data()->deals)) {
             $error = "this strategy uses PMP-E";
         }
-        if (!isset($strategy_supplies->data->supply_sources)) {
+        if (!isset($strategy_supplies->data()->supply_sources)) {
             return "No supply sources " . $error . ".";
         }
 
@@ -193,7 +197,7 @@ class CreativeStrategies
 
         $conflict = false;
 
-        foreach ($strategy_supplies->data->supply_sources as $supply_source) {
+        foreach ($strategy_supplies->data()->supply_sources as $supply_source) {
             if ($supply_source->id == $exchange_id) {
                 $conflict = true;
                 $supply_name = $supply_source->name;

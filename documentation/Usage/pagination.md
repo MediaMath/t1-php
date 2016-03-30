@@ -1,6 +1,6 @@
 ### Pagination <a name="pagination"></a>
 
-Some endpoints of the API contain a lot of data. If you explicitly use the `JSONResponseDecoder` or the `XMLResponseDecoder` decoders the `ApiClient` will automatically fetch all paginated entities if you pass the option `'fetch' => 'all'` to your `read()` method. If you use the `DefaultResponseDecoder` decoder, or supply your own decoder, you will be responsible for creating your own pagination logic.
+Some endpoints of the API contain a lot of data. The `ApiClient` and `CachingApiClient` classes include methods for paginating data. By calling the `paginate()` method you will receive an instance of `Pagination`, which has several methods available to expose the data to you. Each of these methods will return an instance of `ApiResponse` (with the exception of `numResults()` and `numPages()`)  
 
 ```php
 use MediaMath\TerminalOneAPI\Management;
@@ -8,10 +8,18 @@ use MediaMath\TerminalOneAPI\Management;
 /*
 * Fetch all the campaigns which are available under the authorised account 
 */
-$data = $client->read(new Management\Campaign([
-    'fetch' => 'all'
-    ])
-);
+$pages = $client->paginate(new Management\Campaign());
+
+var_dump($pages->first()->data()); // internal pointer is set to page 1
+
+var_dump($pages->last()->data()); // internal pointer is set to the last page
+
+var_dump($pages->previous()->data()); // internal pointer is set to the penultimate page
+
+var_dump($pages->page(8)->data()); // internal pointer is set to page 8
+
+var_dump($pages->next()->data()); // internal pointer is set to page 9
+
 ``` 
 
-Endpoints which contain a lot of paginated data, for example `Management\Campaigns`, work best when used in conjunction with a `CachingApiClient` instance.
+If you are using the `CachingApiClient` your pages will be cached as normal

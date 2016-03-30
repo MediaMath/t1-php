@@ -28,29 +28,31 @@ $deal_identifiers = array(
 
 foreach ($deal_identifiers as $deal_identifier) {
 
-    $deal = $api_client->read(new Management\Deal([
+    $response = $api_client->read(new Management\Deal([
         'q' => 'deal_identifier=:' . $deal_identifier . '&advertiser_id:null',
         'full' => '*'
     ]));
 
-    if (count($deal->data) != 1) {
+    $deal = $response->data();
+
+    if (count($deal) != 1) {
         echo "Could not find deal identifier: " . $deal_identifier . "\n";
         continue;
     }
 
-    if ($deal->data[0]->status == false) {
-        echo "Already off: " . $deal->data[0]->id . " (" . $deal_identifier . ")\n";
+    if ($deal[0]->status == false) {
+        echo "Already off: " . $deal[0]->id . " (" . $deal_identifier . ")\n";
         continue;
     }
 
-    echo "Updating " . $deal->data[0]->id . " (" . $deal_identifier . ") ...";
+    echo "Updating " . $deal[0]->id . " (" . $deal_identifier . ") ...";
 
     $update = $api_client->update(new Management\Deal([
-        'id' => $deal->data[0]->id,
-        'version' => $deal->data[0]->version,
+        'id' => $deal[0]->id,
+        'version' => $deal[0]->version,
         'status' => 0
     ]));
 
-    echo $update->meta->status . "\n";
+    echo $update->meta()->status() . "\n";
 
 }

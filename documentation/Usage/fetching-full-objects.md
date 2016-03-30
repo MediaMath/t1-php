@@ -9,10 +9,12 @@ T1 API feed endpoints support a 'full' parameter for which you can pass the `*` 
 Normal `read()` operation
 
 ```php
-$data = $client->read(new Management\Organization());
+$orgs = $client->read(new Management\Organization());
+
+var_dump($orgs->data());
 ```
 
-Will return something like this:
+Will display something like this:
 
 ```json
 {
@@ -37,10 +39,12 @@ Will return something like this:
 Extended `read()` operation
 
 ```php
-$data = $client->read(new Management\Organization([
+$orgs = $client->read(new Management\Organization([
     'full' => '*'
     ])
 );
+
+var_dump($orgs->data());
 ```
 
 Will return fully hydrated objects:
@@ -135,10 +139,12 @@ The T1 docs show this is done by making a call to `organizations/[id]`.
 If you pass an `'id'` parameter into the `read()` method's options array the SDK will automatically modify the URI and fetch the associated object for you.
 
 ```php
-$data = $client->read(new Management\Organization([
+$orgs = $client->read(new Management\Organization([
     'id' => ......,
     ])
 );
+
+var_dump($orgs->data());
 ```
 
 Will return a fully hydrated single object:

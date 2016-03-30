@@ -171,25 +171,36 @@ class AcmeTransporter implements Transportable
 
 ### Response Decoders <a name="decoders"></a>
 
-You are welcome to use the various response decoder classes provided in this SDK. However, if you wish to write your own, your decoder class needs to implement the `Decodable` interface and your `decode()` method must accept the API response provided by the HTTP transport.
+You are welcome to use the various response decoder classes provided in this SDK. However, if you wish to write your own, your decoder class needs to implement the `Decodable` interface, and your `decode()` method must accept the API response provided by the HTTP transport and should return an instance of `ApiResponse`.
 
 ```php
 namespace Acme;
 
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
+use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 
 class AcmeJSONResponseDecoder implements Decodable
 {
     public function decode($api_response)
     {
-    
+
         /**
-        * Make all array keys of the response uppercase
+         * After json_decode(), $response will be an array of:
+         * $response = [
+         *      'data' => [ entities... ]
+         *      'meta' => [ information about the response... ]
+         * ];
+         */
+        $response = json_decode($api_response, true); 
+        
+        /**
+        * Make all array keys of the data uppercase
         */
-    
-        $data = json_decode($api_response, true); 
-    
-        return array_change_key_case($data, CASE_UPPER);
+        return new ApiResponse(
+            ApiResponseMeta($response['meta']),
+            array_change_key_case($response['data'], CASE_UPPER)
+        );
     }
 
 }

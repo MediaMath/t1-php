@@ -35,7 +35,7 @@ class DefaultController extends Controller
         $orgs = $api_client->read(new Organization());
 
         return $this->render('default/index.html.twig', [
-            'organisations' => $orgs
+            'organisations' => $orgs->data()
         ]);
     }
 }

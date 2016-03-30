@@ -26,7 +26,7 @@ $app->get('/', function (Silex\Application $app) {
 
     $orgs = $api_client->read(new Organization());
 
-    return $orgs;
+    return $orgs->data();
 
 });
 

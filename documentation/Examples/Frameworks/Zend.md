@@ -38,7 +38,7 @@ class IndexController extends AbstractActionController
         $orgs = $api_client->read(new Organization());
 
         return new ViewModel([
-            'organisations' => $orgs
+            'organisations' => $orgs->data()
         ]);
     }
 }

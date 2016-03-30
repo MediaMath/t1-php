@@ -68,6 +68,8 @@ $client = new ApiClient($transport);
 $client = new ApiClient(new GuzzleTransporter(new UserPasswordAuth($username, $password, $api_key)));
 ```
 
+Note: The Username / Password authentication method generates a new session id with each request and so the `CachingApiClient` will be useless when using this authentication method.
+
 #### Using OAuth
 
 ```php

@@ -36,7 +36,7 @@ class ExampleController extends Controller
 
         $orgs = $api_client->read(new Organization());
 
-        return response($orgs);
+        return response($orgs->data());
 
     }
 }

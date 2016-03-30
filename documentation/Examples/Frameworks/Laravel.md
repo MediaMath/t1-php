@@ -37,7 +37,7 @@ class FrontController extends Controller {
 
         $orgs = $api_client->read(new Organization());
 
-        return view('welcome', ['organisations' => $orgs]);
+        return view('welcome', ['organisations' => $orgs->data()]);
 
     }
 

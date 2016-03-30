@@ -37,7 +37,7 @@ class Welcome extends CI_Controller {
 		$orgs = $api_client->read(new Organization());
 
 		$this->load->view('welcome_message', [
-			'organisations' => $orgs
+			'organisations' => $orgs->data()
 		]);
 	}
 }

@@ -39,5 +39,7 @@ $path = __DIR__ . '/../../../var/cache/api_requests/';
 
 $cached_client = new CachingApiClient($transport, new DoctrineFilesystemCache(TimePeriod::hours(1), $path));
 
-$data = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
 ```

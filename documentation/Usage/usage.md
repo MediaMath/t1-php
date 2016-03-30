@@ -27,3 +27,7 @@
 3. Set up an API Client
 4. Make your API call by instantiating one of the provided API object classes with your API Client
 5. Do something with the response (decode it, return a string representation, etc)
+
+### Using the API response
+
+The `ApiClient` and `CachingApiClient` classes will return an instance of `ApiResponse`, which in turn gives you access to the response's meta information and the actual data, by use of the `meta()` and `data()` methods.

@@ -23,5 +23,5 @@ $api_client = new ApiClient(new GuzzleTransporter(new AdamaCookieAuth($session_i
 
 $orgs = $api_client->read(new Organization());
 
-var_dump($orgs);
+var_dump($orgs->data());
 ```

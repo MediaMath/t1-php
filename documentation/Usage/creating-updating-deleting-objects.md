@@ -18,6 +18,8 @@ $strategy = $client->create(new Management\Campaign([
     'use_campaign_end' => 'on'
     ])
 );
+
+var_dump($strategy->data());
 ```
 
 ### Updating objects <a name="updating"></a>
@@ -32,6 +34,8 @@ $strategy = $client->update(new Management\Campaign([
     // ...    
     ])
 );
+
+var_dump($strategy->data());
 ```
 
 ### Deleting objects <a name="deleting"></a>
@@ -44,4 +48,6 @@ $strategy = $client->delete(new Management\Campaign(
     'id' => ......
     ])
 );
+
+var_dump($strategy->data());
 ```
