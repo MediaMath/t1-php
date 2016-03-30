@@ -6,7 +6,7 @@ By default the `ApiResponse::data()` method returns the API response 'as-is' wit
 
 You can override the default decoder when you create an instance of the `ApiClient` if you wish, or you can add the decoder on a per-call basis
 
-Note: Using the `JSONResponseDecoder` will give you an object representation of the response when you call `$response->data();`, whereas using the `XMLResponseDecoder` will give you an associative PHP array.
+Note: Using the `JSONResponseDecoder` will give you an object representation of the response when you call `$response->data()`, whereas using the `XMLResponseDecoder` will give you an associative PHP array.
 
 By providing your own decoders you can move your response decoding / formatting logic away from your controllers or implement a more fine-grained control over the decoding process.
 
