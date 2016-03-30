@@ -1,6 +1,6 @@
 ### Pagination <a name="pagination"></a>
 
-Some endpoints of the API contain a lot of data. The `ApiClient` and `CachingApiClient` classes include methods for paginating data. By calling the `paginate()` method you will receive an instance of `Pagination`, which has several methods available to expose the data to you. Each of these methods will return an instance of `ApiResponse` (with the exception of `numResults()` and `numPages()`)  
+Some endpoints of the API contain a lot of data. The `ApiClient` and `CachingApiClient` classes include methods for paginating data. By calling the `paginate()` method you will receive an instance of `Pagination`, which has several methods available to expose the data to you. Each of these methods will return an instance of `ApiResponse` (with the exception of `numResults()` and `numPages()`, which each return an integer)
 
 ```php
 use MediaMath\TerminalOneAPI\Management;
@@ -20,6 +20,9 @@ var_dump($pages->page(8)->data()); // internal pointer is set to page 8
 
 var_dump($pages->next()->data()); // internal pointer is set to page 9
 
+var_dump($pages->numResults()); // will return something like '1257'
+
+var_dump($pages->numPages()); // will return something like '13'
 ``` 
 
-If you are using the `CachingApiClient` your pages will be cached as normal
+If you are using the `CachingApiClient` your pages will be cached as normal and the pages will be served from the cache wherever possible.
