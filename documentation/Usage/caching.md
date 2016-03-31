@@ -1,4 +1,4 @@
-### Caching the response <a name="caching"></a>
+## Caching the response <a name="caching"></a>
 
 Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options which all use the Doctrine Cache drivers. Included are:
 
@@ -24,6 +24,8 @@ Additionally, the `DoctrineFilesystemCache` class provided with this SDK require
 
 The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
 
+### Using `DoctrineFilesystemCache`
+
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
@@ -44,6 +46,9 @@ $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDeco
 var_dump($vertical->data());
 ```
 
+
+### Using `DoctrineMemcachedCache`
+
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
@@ -62,6 +67,9 @@ $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDeco
 
 var_dump($vertical->data());
 ```
+
+
+### Using `DoctrineMemcacheCache`
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
@@ -86,6 +94,9 @@ $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDeco
 var_dump($vertical->data());
 ```
 
+
+### Using `DoctrineXCacheCache`
+
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
@@ -98,6 +109,11 @@ $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDeco
 
 var_dump($vertical->data());
 ```
+
+
+### Using `DoctrineAPCCache`
+
+Note that on Debian / Ubuntu systems the `php5-apc` extension may have been renamed to `php5-apcu`. The `DoctrineAPCCache` will work regardless of which is installed. 
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
