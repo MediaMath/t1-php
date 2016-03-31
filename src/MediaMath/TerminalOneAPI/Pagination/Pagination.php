@@ -13,8 +13,8 @@ class Pagination implements Paginatable
     private $endpoint;
     private $decoder;
     private $api_client;
-    private $current_page;
-    private $num_per_page;
+    private $current_page = 1;
+    private $num_per_page = 100;
     private $num_results;
 
     public function __construct(ApiObject $endpoint, Decodable $decoder, Clientable $api_client)
@@ -24,8 +24,6 @@ class Pagination implements Paginatable
         $this->decoder = $decoder;
         $this->api_client = $api_client;
 
-        $this->current_page = 1;
-        $this->num_per_page = 100;
         $this->num_results = null;
 
     }
@@ -46,6 +44,7 @@ class Pagination implements Paginatable
         $result = $this->fetchData();
 
         $this->num_results = $result->meta()->totalCount();
+
         return $result;
 
     }
@@ -74,7 +73,7 @@ class Pagination implements Paginatable
     public function numPages()
     {
 
-        $count = ceil($this->numResults() / 100);
+        $count = ceil($this->numResults() / $this->num_per_page);
 
         if ($count == 0) {
             return 1;
@@ -102,18 +101,6 @@ class Pagination implements Paginatable
         return $this->num_results;
     }
 
-    private function pageOffset()
-    {
-
-        if($this->current_page == null) {
-            return null;
-        }
-
-        $page = $this->current_page;
-
-        return ($page - 1) * 100;
-    }
-
     private function options($custom_options = [])
     {
 
@@ -125,6 +112,18 @@ class Pagination implements Paginatable
         }
 
         return array_filter($options);
+    }
+
+    private function pageOffset()
+    {
+
+        if ($this->current_page == null) {
+            return null;
+        }
+
+        $page = $this->current_page;
+
+        return ($page - 1) * $this->num_per_page;
     }
 
     private function fetchData($custom_options = [])
