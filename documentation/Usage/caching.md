@@ -43,3 +43,71 @@ $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDeco
 
 var_dump($vertical->data());
 ```
+
+```php
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineMemcachedCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
+
+/*
+* Optionally specify a pool name for memcached,
+* if none is provided the default 't1_api' is used
+*/
+$pool_name = 'acme_t1_api_pool';
+
+$cached_client = new CachingApiClient($transport, new DoctrineMemcachedCache(TimePeriod::minutes(3), $pool_name));
+
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
+```
+
+```php
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineMemcacheCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
+
+/*
+* Optionally specify a host, port & timeout for memcache,
+* if none is provided the default 127.0.0.1:11211 is used
+*
+* see http://php.net/manual/en/memcache.connect.php for more information
+*/
+$host = '/some/unix/socket';
+$port = 0;
+$timeout = 3;
+
+$cached_client = new CachingApiClient($transport, new DoctrineMemcacheCache(TimePeriod::minutes(3), $host, $port, $timeout));
+
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
+```
+
+```php
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineXCacheCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
+
+$cached_client = new CachingApiClient($transport, new DoctrineXCacheCache(TimePeriod::minutes(3));
+
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
+```
+
+```php
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineAPCCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
+
+$cached_client = new CachingApiClient($transport, new DoctrineAPCCache(TimePeriod::minutes(3));
+
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
+```
