@@ -2,11 +2,11 @@
 
 Caching API responses can greatly speed up certain areas of your application. This SDK ships with a number of cache options which all use the Doctrine Cache drivers. Included are:
 
-- Filesystem cache
-- APC*
-- xCache*
-- Memcache*
-- Memcached*
+- [Filesystem cache](#filesystem)
+- [APC](#apc)*
+- [xCache](#xcache)*
+- [Memcache](#memcache)*
+- [Memcached](#memcached)*
 
 *Note: To use the APC, xCache, Memcache, or Memcached caches you will need the relevant PHP extension installed and enabled in your PHP environment.
 
@@ -24,7 +24,7 @@ Additionally, the `DoctrineFilesystemCache` class provided with this SDK require
 
 The `CachingApiClient` only caches read requests. It does not cache creation or updating of API objects.
 
-### Using `DoctrineFilesystemCache`
+#### Using `DoctrineFilesystemCache` <a name="filesystem"></a>
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
@@ -47,21 +47,17 @@ var_dump($vertical->data());
 ```
 
 
-### Using `DoctrineMemcachedCache`
+#### Using `DoctrineAPCCache` <a name="apc"></a>
+
+Note that on Debian / Ubuntu systems the `php5-apc` extension may have been renamed to `php5-apcu`. The `DoctrineAPCCache` will work regardless of which is installed. 
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use MediaMath\TerminalOneAPI\Cache\DoctrineMemcachedCache;
+use MediaMath\TerminalOneAPI\Cache\DoctrineAPCCache;
 use MediaMath\TerminalOneAPI\Cache\TimePeriod;
 
-/*
-* Optionally specify a pool name for memcached,
-* if none is provided the default 't1_api' is used
-*/
-$pool_name = 'acme_t1_api_pool';
-
-$cached_client = new CachingApiClient($transport, new DoctrineMemcachedCache(TimePeriod::minutes(3), $pool_name));
+$cached_client = new CachingApiClient($transport, new DoctrineAPCCache(TimePeriod::minutes(3));
 
 $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
 
@@ -69,7 +65,23 @@ var_dump($vertical->data());
 ```
 
 
-### Using `DoctrineMemcacheCache`
+#### Using `DoctrineXCacheCache` <a name="xcache"></a>
+
+```php
+use MediaMath\TerminalOneAPI\CachingApiClient;
+use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
+use MediaMath\TerminalOneAPI\Cache\DoctrineXCacheCache;
+use MediaMath\TerminalOneAPI\Cache\TimePeriod;
+
+$cached_client = new CachingApiClient($transport, new DoctrineXCacheCache(TimePeriod::minutes(3));
+
+$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
+
+var_dump($vertical->data());
+```
+
+
+#### Using `DoctrineMemcacheCache` <a name="memcache"></a>
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
@@ -95,33 +107,21 @@ var_dump($vertical->data());
 ```
 
 
-### Using `DoctrineXCacheCache`
+#### Using `DoctrineMemcachedCache` <a name="memcached"></a>
 
 ```php
 use MediaMath\TerminalOneAPI\CachingApiClient;
 use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use MediaMath\TerminalOneAPI\Cache\DoctrineXCacheCache;
+use MediaMath\TerminalOneAPI\Cache\DoctrineMemcachedCache;
 use MediaMath\TerminalOneAPI\Cache\TimePeriod;
 
-$cached_client = new CachingApiClient($transport, new DoctrineXCacheCache(TimePeriod::minutes(3));
+/*
+* Optionally specify a pool name for memcached,
+* if none is provided the default 't1_api' is used
+*/
+$pool_name = 'acme_t1_api_pool';
 
-$vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
-
-var_dump($vertical->data());
-```
-
-
-### Using `DoctrineAPCCache`
-
-Note that on Debian / Ubuntu systems the `php5-apc` extension may have been renamed to `php5-apcu`. The `DoctrineAPCCache` will work regardless of which is installed. 
-
-```php
-use MediaMath\TerminalOneAPI\CachingApiClient;
-use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
-use MediaMath\TerminalOneAPI\Cache\DoctrineAPCCache;
-use MediaMath\TerminalOneAPI\Cache\TimePeriod;
-
-$cached_client = new CachingApiClient($transport, new DoctrineAPCCache(TimePeriod::minutes(3));
+$cached_client = new CachingApiClient($transport, new DoctrineMemcachedCache(TimePeriod::minutes(3), $pool_name));
 
 $vertical = $cached_client->read(new Management\Vertical(), new JSONResponseDecoder());
 
