@@ -147,7 +147,20 @@ class AcmeTransporter implements Transportable
         
         curl_setopt($this->curl, CURLOPT_URL, $url);
         
-        return curl_exec($this->curl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        
+        $response = curl_exec($this->curl);
+        
+        
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header_string = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
+        
+        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+        return new HttpResponse($this->getHeadersArrayFromString($header_string), $body, $status_code);
 
     }
 
@@ -164,6 +177,23 @@ class AcmeTransporter implements Transportable
     public function authUniqueId()
     {
         return $this->authenticator->authUniqueId();
+    }
+    
+    private function $this->getHeadersArrayFromString($header_string) {
+    
+        foreach (explode("\r\n", $header_string) as $line_number => $header) {
+        
+            if ($line_number === 0) {
+                $headers['http_code'] = $header;
+                continue;
+            }
+
+            list ($key, $value) = explode(': ', $header);
+
+            $headers[$key] = $value;
+        }
+
+        return $headers;
     }
 
 }

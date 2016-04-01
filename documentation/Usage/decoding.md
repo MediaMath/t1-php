@@ -1,6 +1,6 @@
 ### Decoding the response <a name="decoding"></a>
 
-The SDK ships with a number of decoders for the API response. Some reporting API endpoints return CSV, some reporting API endpoints return JSON, and the management API can return XML or JSON. If you use the provided `GuzzleTransporter` the management API should always return JSON, but if you use your own custom HTTP transport class you are more likely to receive XML. 
+The SDK ships with a number of decoders for the API response which allow you to retrieve a structured representation of the response string. Some reporting API endpoints return CSV, some reporting API endpoints return JSON, and the management API can return XML or JSON. If you use the provided `GuzzleTransporter` the management API should always return JSON, but if you use your own custom HTTP transport class you are more likely to receive XML. 
 
 By default the `ApiResponse::data()` method returns the API response 'as-is' without decoding into PHP objects or arrays. If you want an object or associative PHP array representation of the response, add an instance of the decoder you want to use. For API endpoints which return CSV, for example, you should inject a decoder into the `ApiClient` or `CachingApiClient` which expects a CSV string, or a decoder which expects a JSON string when the expected API response is JSON.
 
