@@ -3,6 +3,9 @@
 namespace MediaMath\TerminalOneAPI\Transport;
 
 use GuzzleHttp\Exception\RequestException;
+use MediaMath\TerminalOneAPI\Infrastructure\HttpErrorResponse;
+use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
+use MediaMath\TerminalOneAPI\Infrastructure\HttpResponseHeaders;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
 use MediaMath\TerminalOneAPI\Infrastructure\Authenticable;
 
@@ -26,11 +29,12 @@ class GuzzleTransporter implements Transportable
         try {
             $res = $this->guzzle->request('GET', $url, $this->parameter_handler->read($options, $url));
 
-            return $res->getBody()->getContents();
+            return new HttpResponse($this->headers($res->getHeaders()), $res->getBody()->getContents(), $res->getStatusCode());
 
         } catch (RequestException $e) {
 
-            return $e->getResponse()->getBody()->getContents();
+            return new HttpErrorResponse($this->headers($e->getResponse()->getHeaders()), $e->getResponse()->getBody()->getContents(), $e->getCode());
+
         }
 
     }
@@ -41,9 +45,12 @@ class GuzzleTransporter implements Transportable
         try {
             $res = $this->guzzle->request('POST', $url, $this->parameter_handler->post($data));
 
-            return $res->getBody()->getContents();
+            return new HttpResponse($this->headers($res->getHeaders()), $res->getBody()->getContents(), $res->getStatusCode());
+
         } catch (RequestException $e) {
-            return $e->getResponse()->getBody()->getContents();
+
+            return new HttpErrorResponse($this->headers($e->getResponse()->getHeaders()), $e->getResponse()->getBody()->getContents(), $e->getCode());
+
         }
 
     }
@@ -54,9 +61,12 @@ class GuzzleTransporter implements Transportable
         try {
             $res = $this->guzzle->request('POST', $url, $this->parameter_handler->post($data));
 
-            return $res->getBody()->getContents();
+            return new HttpResponse($this->headers($res->getHeaders()), $res->getBody()->getContents(), $res->getStatusCode());
+
         } catch (RequestException $e) {
-            return $e->getResponse()->getBody()->getContents();
+
+            return new HttpErrorResponse($this->headers($e->getResponse()->getHeaders()), $e->getResponse()->getBody()->getContents(), $e->getCode());
+
         }
 
     }
@@ -66,5 +76,15 @@ class GuzzleTransporter implements Transportable
         return $this->authenticator->authUniqueId();
     }
 
+    private function headers($headers)
+    {
+        $tmp = [];
+
+        foreach ($headers AS $key => $value) {
+            $tmp[strtolower(str_replace('-', '_', $key))] = $value[0];
+        }
+
+        return new HttpResponseHeaders($tmp);
+    }
 
 }

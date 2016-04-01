@@ -4,6 +4,6 @@ namespace MediaMath\TerminalOneAPI\Infrastructure;
 
 interface Decodable
 {
-    public function decode($api_response);
+    public function decode(HttpResponse $api_response);
 
 }

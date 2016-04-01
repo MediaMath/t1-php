@@ -14,6 +14,7 @@ class ApiResponseMeta
     private $status;
     private $offset;
     private $total_count;
+    private $http_code;
 
     public function __construct($meta = [])
     {
@@ -63,6 +64,10 @@ class ApiResponseMeta
     public function totalCount()
     {
         return $this->total_count;
+    }
+
+    private function httpCode() {
+        return $this->http_code;
     }
 
 

@@ -5,6 +5,7 @@ namespace MediaMath\TerminalOneAPI\Decoder;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
+use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
 
 class CSVResponseDecoder implements Decodable
 {
@@ -17,10 +18,10 @@ class CSVResponseDecoder implements Decodable
 
     }
 
-    public function decode($api_response)
+    public function decode(HttpResponse $api_response)
     {
 
-        $array = $this->loadCSVData($api_response);
+        $array = $this->loadCSVData($api_response->body());
 
         $tmp = [];
         if ($this->flag == CSVDecoder::EXTRACT_HEADINGS) {
@@ -65,9 +66,7 @@ class CSVResponseDecoder implements Decodable
 
     private function getData($data)
     {
-
         return array_values($data);
-
     }
 
 

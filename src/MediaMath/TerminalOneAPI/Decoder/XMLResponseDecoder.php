@@ -5,20 +5,21 @@ namespace MediaMath\TerminalOneAPI\Decoder;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
+use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
 
 class XMLResponseDecoder implements Decodable
 {
 
-    public function decode($api_response)
+    public function decode(HttpResponse $api_response)
     {
 
         $dom = new \DOMDocument();
-        $dom->loadXML($api_response);
+        $dom->loadXML($api_response->body());
         $this->fetchObjectFromXml($dom);
         $sxml = simplexml_load_string($dom->saveXML());
 
-        $attrs = (array) $sxml->attributes();
-        $entities = (array) $sxml->entities;
+        $attrs = (array)$sxml->attributes();
+        $entities = (array)$sxml->entities;
 
         $meta = new ApiResponseMeta([
             'called_on' => $attrs['@attributes']['called_on'],
