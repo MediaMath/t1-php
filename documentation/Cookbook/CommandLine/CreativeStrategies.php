@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../vendor/autoload.php');
+require_once(__DIR__ . '/../../../../../vendor/autoload.php');
 
 use MediaMath\TerminalOneAPI\Auth\UserPasswordAuth;
 use MediaMath\TerminalOneAPI\Transport\GuzzleTransporter;
@@ -12,8 +12,8 @@ use MediaMath\TerminalOneAPI\Decoder\JSONResponseDecoder;
  * Example of finding out about a particular creative and which strategies it is running on
  */
 
-$strategies = new CreativeStrategies('nbrooks', 'Unrip3n3d!', 'f7zfnd4sb8frvwtnv4hzpa8v');
-$strategies->fetchInfoForAtomicCreativeOnExchange(2448555, 36);
+$strategies = new CreativeStrategies($username, $password, $api_key);
+$strategies->fetchInfoForAtomicCreativeOnExchange($creative_id, $exchange_id);
 
 class CreativeStrategies
 {
