@@ -42,7 +42,7 @@ class Pagination implements Paginatable
             $this->current_page = $this->numPages();
         }
 
-        if(isset($this->result_cache[$this->current_page - 1])) {
+        if (isset($this->result_cache[$this->current_page - 1])) {
             return $this->result_cache[$this->current_page - 1];
         }
 
