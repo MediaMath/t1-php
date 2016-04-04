@@ -51,7 +51,7 @@ class DefaultResponseDecoder implements Decodable
 
         $meta = (isset($meta_info[2]) ? json_decode($meta_info[2], true) : null);
 
-        return new ApiResponse(ApiResponseMeta($this->mergeMetaInfo($api_response->httpCode(), $meta)), $api_response->body());
+        return new ApiResponse(new ApiResponseMeta($this->mergeMetaInfo($api_response->httpCode(), $meta)), $api_response->body());
 
     }
 
