@@ -16,6 +16,7 @@ class Pagination implements Paginatable
     private $current_page = 1;
     private $num_per_page = 100;
     private $num_results;
+    private $result_cache = [];
 
     public function __construct(ApiObject $endpoint, Decodable $decoder, Clientable $api_client)
     {
@@ -41,7 +42,13 @@ class Pagination implements Paginatable
             $this->current_page = $this->numPages();
         }
 
+        if(isset($this->result_cache[$this->current_page - 1])) {
+            return $this->result_cache[$this->current_page - 1];
+        }
+
         $result = $this->fetchData();
+
+        $this->result_cache[$this->current_page - 1] = $result;
 
         $this->num_results = $result->meta()->totalCount();
 
