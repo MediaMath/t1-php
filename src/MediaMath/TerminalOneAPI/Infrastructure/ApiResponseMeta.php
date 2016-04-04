@@ -66,7 +66,7 @@ class ApiResponseMeta
         return $this->total_count;
     }
 
-    private function httpCode() {
+    public function httpCode() {
         return $this->http_code;
     }
 
