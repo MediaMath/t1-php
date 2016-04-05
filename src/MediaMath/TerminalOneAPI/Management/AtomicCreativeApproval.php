@@ -7,16 +7,26 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
+/**
+ * Class AtomicCreativeApproval
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class AtomicCreativeApproval extends ManagementApiObject implements Endpoint
 {
 
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'atomic_creatives/{{creative_id}}/creative_approvals';
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 

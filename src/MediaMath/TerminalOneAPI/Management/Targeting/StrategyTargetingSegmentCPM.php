@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class StrategyTargetingSegmentCPM
+ * @package MediaMath\TerminalOneAPI\Management\Targeting
+ */
 class StrategyTargetingSegmentCPM extends ManagementApiObject implements Endpoint
 {
 
@@ -16,11 +20,17 @@ class StrategyTargetingSegmentCPM extends ManagementApiObject implements Endpoin
     use NonCreateable;
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategies/{{strategy_id}}/targeting_segments/cpm';
     }
 
+    /**
+     * @return mixed
+     */
     public function read()
     {
         $uri = str_replace('{{strategy_id}}', $this->options['id'], $this->uri());

@@ -7,16 +7,26 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class StrategyDayPart
+ * @package MediaMath\TerminalOneAPI\Management\Targeting
+ */
 class StrategyDayPart extends ManagementApiObject implements Endpoint
 {
 
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategy_day_parts';
     }
 
+    /**
+     * @return mixed
+     */
     public function read()
     {
 
@@ -30,6 +40,9 @@ class StrategyDayPart extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return string
+     */
     public function delete() {
 
         $uri = $this->uri() . '/' . $this->options['id'] . '/delete';

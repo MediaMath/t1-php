@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class PostalCode
+ * @package MediaMath\TerminalOneAPI\Reporting
+ */
 class PostalCode extends ReportingApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class PostalCode extends ReportingApiObject implements Endpoint
     use NonUpdateable;
     use NonCreateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'postal_code';

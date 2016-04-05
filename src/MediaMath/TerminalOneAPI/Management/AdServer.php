@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class AdServer
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class AdServer extends ManagementApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class AdServer extends ManagementApiObject implements Endpoint
     use NonUpdateable;
     use NonCreateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'ad_servers';

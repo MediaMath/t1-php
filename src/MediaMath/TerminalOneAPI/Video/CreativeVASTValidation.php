@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\VideoApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
+/**
+ * Class CreativeVASTValidation
+ * @package MediaMath\TerminalOneAPI\Video
+ */
 class CreativeVASTValidation extends VideoApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class CreativeVASTValidation extends VideoApiObject implements Endpoint
     use NonCreateable;
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'creatives/validateVAST';

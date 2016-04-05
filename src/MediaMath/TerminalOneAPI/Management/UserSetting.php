@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class UserSetting
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class UserSetting extends ManagementApiObject implements Endpoint
 {
 
@@ -16,11 +20,17 @@ class UserSetting extends ManagementApiObject implements Endpoint
     use NonDeletable;
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'users/{{user_id}}/settings';
     }
 
+    /**
+     * @return mixed
+     */
     public function read()
     {
 

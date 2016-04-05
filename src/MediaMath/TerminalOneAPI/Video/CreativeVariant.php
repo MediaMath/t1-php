@@ -9,17 +9,27 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class CreativeVariant
+ * @package MediaMath\TerminalOneAPI\Video
+ */
 class CreativeVariant extends ManagementApiObject implements Endpoint
 {
     use NonCreateable;
     use NonUpdateable;
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'creatives/{{creative_id}}/variants';
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 

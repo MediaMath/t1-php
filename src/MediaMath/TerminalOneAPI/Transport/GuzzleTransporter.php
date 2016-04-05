@@ -11,11 +11,32 @@ use MediaMath\TerminalOneAPI\Infrastructure\Authenticable;
 
 use GuzzleHttp\Client;
 
+/**
+ * Class GuzzleTransporter
+ * @package MediaMath\TerminalOneAPI\Transport
+ */
 class GuzzleTransporter implements Transportable
 {
 
-    private $guzzle, $authenticator, $parameter_handler;
+    /**
+     * @var Client
+     */
+    private $guzzle;
 
+    /**
+     * @var Authenticable
+     */
+    private $authenticator;
+
+    /**
+     * @var GuzzleParameterHandler
+     */
+    private $parameter_handler;
+
+    /**
+     * GuzzleTransporter constructor.
+     * @param Authenticable $authenticator
+     */
     public function __construct(Authenticable $authenticator)
     {
         $this->guzzle = new Client();
@@ -23,6 +44,11 @@ class GuzzleTransporter implements Transportable
         $this->parameter_handler = new GuzzleParameterHandler($authenticator);
     }
 
+    /**
+     * @param $url
+     * @param $options
+     * @return HttpErrorResponse|HttpResponse
+     */
     public function read($url, $options)
     {
 
@@ -39,6 +65,11 @@ class GuzzleTransporter implements Transportable
 
     }
 
+    /**
+     * @param $url
+     * @param $data
+     * @return HttpErrorResponse|HttpResponse
+     */
     public function create($url, $data)
     {
 
@@ -55,6 +86,11 @@ class GuzzleTransporter implements Transportable
 
     }
 
+    /**
+     * @param $url
+     * @param $data
+     * @return HttpErrorResponse|HttpResponse
+     */
     public function update($url, $data)
     {
 
@@ -71,11 +107,18 @@ class GuzzleTransporter implements Transportable
 
     }
 
+    /**
+     * @return mixed
+     */
     public function authUniqueId()
     {
         return $this->authenticator->authUniqueId();
     }
 
+    /**
+     * @param $headers
+     * @return HttpResponseHeaders
+     */
     private function headers($headers)
     {
         $tmp = [];

@@ -2,25 +2,45 @@
 
 namespace MediaMath\TerminalOneAPI\Infrastructure;
 
+/**
+ * Class ApiObject
+ * @package MediaMath\TerminalOneAPI\Infrastructure
+ */
 abstract class ApiObject
 {
 
+    /**
+     * @return mixed
+     */
     abstract public function uri();
 
+    /**
+     * ApiObject constructor.
+     * @param array $options
+     */
     public function __construct($options = [])
     {
         $this->options = $options;
     }
 
+    /**
+     * @return array
+     */
     public function options() {
         return $this->options;
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
         return $this->uri();
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 
@@ -41,6 +61,9 @@ abstract class ApiObject
         return $uri;
     }
 
+    /**
+     * @return string
+     */
     public function update()
     {
 

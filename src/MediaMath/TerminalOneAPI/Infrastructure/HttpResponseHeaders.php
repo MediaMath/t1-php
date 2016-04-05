@@ -4,22 +4,72 @@
 namespace MediaMath\TerminalOneAPI\Infrastructure;
 
 
+/**
+ * Class HttpResponseHeaders
+ * @package MediaMath\TerminalOneAPI\Infrastructure
+ */
 class HttpResponseHeaders
 {
 
+    /**
+     * @var
+     */
     private $cache_control;
+
+    /**
+     * @var
+     */
     private $content_type;
+
+    /**
+     * @var
+     */
     private $date;
+
+    /**
+     * @var
+     */
     private $expires;
+
+    /**
+     * @var
+     */
     private $last_modified;
+
+    /**
+     * @var
+     */
     private $server;
+
+    /**
+     * @var
+     */
     private $vary;
+
+    /**
+     * @var
+     */
     private $x_catalyst;
+
+    /**
+     * @var
+     */
     private $x_mashery_responder;
+
+    /**
+     * @var
+     */
     private $transfer_encoding;
+
+    /**
+     * @var
+     */
     private $connection;
 
-
+    /**
+     * HttpResponseHeaders constructor.
+     * @param array $meta
+     */
     public function __construct($meta = [])
     {
 

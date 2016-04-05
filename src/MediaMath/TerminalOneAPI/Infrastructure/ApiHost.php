@@ -2,6 +2,10 @@
 
 namespace MediaMath\TerminalOneAPI\Infrastructure;
 
+/**
+ * Class ApiHost
+ * @package MediaMath\TerminalOneAPI\Infrastructure
+ */
 final class ApiHost
 {
     const T1_AUTHENTICATION = 'https://api.mediamath.com/api/';

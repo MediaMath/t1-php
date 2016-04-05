@@ -8,17 +8,27 @@ use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
+/**
+ * Class Creative
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class Creative extends ManagementApiObject implements Endpoint
 {
 
     use NonDeletable;
     use NonCreateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'creatives';
     }
 
+    /**
+     * @return string
+     */
     public function upload()
     {
         $uri = $this->uri() . '/upload';

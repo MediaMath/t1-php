@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class ReachFrequency
+ * @package MediaMath\TerminalOneAPI\Reporting
+ */
 class ReachFrequency extends ReportingApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class ReachFrequency extends ReportingApiObject implements Endpoint
     use NonUpdateable;
     use NonCreateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'reach_frequency';

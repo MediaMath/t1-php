@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class TargetValue
+ * @package MediaMath\TerminalOneAPI\Management\Targeting
+ */
 class TargetValue extends ManagementApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class TargetValue extends ManagementApiObject implements Endpoint
     use NonCreateable;
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'target_values';

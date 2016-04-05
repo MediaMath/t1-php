@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class TargetingSegment
+ * @package MediaMath\TerminalOneAPI\Management\Targeting
+ */
 class TargetingSegment extends ManagementApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class TargetingSegment extends ManagementApiObject implements Endpoint
     use NonCreateable;
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'targeting_segments';

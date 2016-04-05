@@ -10,6 +10,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 use MediaMath\TerminalOneAPI\Infrastructure\ReportingApiObject;
 
+/**
+ * Class DataPixelLoad
+ * @package MediaMath\TerminalOneAPI\Reporting
+ */
 class DataPixelLoad extends ReportingApiObject implements Endpoint
 {
 
@@ -17,6 +21,9 @@ class DataPixelLoad extends ReportingApiObject implements Endpoint
     use NonDeletable;
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'data_pixel_loads';

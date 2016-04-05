@@ -9,17 +9,27 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class SiteListAssignment
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class SiteListAssignment extends ManagementApiObject implements Endpoint
 {
     use NonCreateable;
     use NonUpdateable;
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'site_lists/{{id}}/assignments';
     }
 
+    /**
+     * @return mixed
+     */
     public function read()
     {
 

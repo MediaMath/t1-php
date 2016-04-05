@@ -8,17 +8,27 @@ use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class StrategyDomainRestriction
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class StrategyDomainRestriction extends ManagementApiObject implements Endpoint
 {
 
     use NonUpdateable;
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategies/{{strategy_id}}/domain_restrictions';
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
         $uri = str_replace('{{strategy_id}}', $this->options['strategy_id'], $this->uri());
@@ -27,6 +37,9 @@ class StrategyDomainRestriction extends ManagementApiObject implements Endpoint
         return $uri;
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 

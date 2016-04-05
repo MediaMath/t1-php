@@ -7,16 +7,26 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class CampaignBudgetFlight
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class CampaignBudgetFlight extends ManagementApiObject implements Endpoint
 {
 
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'campaigns/{{campaign_id}}/budget_flights';
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 
@@ -37,6 +47,9 @@ class CampaignBudgetFlight extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return string
+     */
     public function delete()
     {
         $uri = str_replace('{{campaign_id}}', $this->options['campaign_id'], $this->uri());

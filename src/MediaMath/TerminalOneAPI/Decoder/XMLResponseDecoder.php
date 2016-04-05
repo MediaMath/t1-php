@@ -7,9 +7,17 @@ use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
 
+/**
+ * Class XMLResponseDecoder
+ * @package MediaMath\TerminalOneAPI\Decoder
+ */
 class XMLResponseDecoder implements Decodable
 {
 
+    /**
+     * @param HttpResponse $api_response
+     * @return ApiResponse
+     */
     public function decode(HttpResponse $api_response)
     {
 
@@ -30,7 +38,10 @@ class XMLResponseDecoder implements Decodable
 
     }
 
-    function fetchObjectFromXml($domNode)
+    /**
+     * @param $domNode
+     */
+    private function fetchObjectFromXml($domNode)
     {
         foreach ($domNode->childNodes as $node) {
             if ($node->hasChildNodes()) {

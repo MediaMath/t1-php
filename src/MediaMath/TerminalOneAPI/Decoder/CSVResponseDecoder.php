@@ -7,17 +7,32 @@ use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
 
+/**
+ * Class CSVResponseDecoder
+ * @package MediaMath\TerminalOneAPI\Decoder
+ */
 class CSVResponseDecoder implements Decodable
 {
 
+    /**
+     * @var int
+     */
     private $flag;
 
+    /**
+     * CSVResponseDecoder constructor.
+     * @param int $flag
+     */
     public function __construct($flag = CSVDecoder::NO_EXTRACT_HEADINGS)
     {
         $this->flag = $flag;
 
     }
 
+    /**
+     * @param HttpResponse $api_response
+     * @return ApiResponse
+     */
     public function decode(HttpResponse $api_response)
     {
 
@@ -35,6 +50,10 @@ class CSVResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param $csv
+     * @return array
+     */
     private function loadCSVData($csv)
     {
 
@@ -52,6 +71,10 @@ class CSVResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param $data
+     * @return array
+     */
     private function getHeadings($data)
     {
         $headings = [];
@@ -64,6 +87,10 @@ class CSVResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     private function getData($data)
     {
         return array_values($data);

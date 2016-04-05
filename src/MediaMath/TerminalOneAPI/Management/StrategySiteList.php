@@ -7,16 +7,26 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
+/**
+ * Class StrategySiteList
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class StrategySiteList extends ManagementApiObject implements Endpoint
 {
 
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategies/{{strategy_id}}/site_lists';
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 

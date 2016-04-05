@@ -2,12 +2,20 @@
 
 namespace MediaMath\TerminalOneAPI\Exception;
 
+/**
+ * Class CannotCreateException
+ * @package MediaMath\TerminalOneAPI\Exception
+ */
 class CannotCreateException extends \Exception
 {
-    // Redefine the exception so message isn't optional
+    /**
+     * CannotCreateException constructor.
+     * @param string $message
+     * @param int $code
+     * @param Exception|null $previous
+     */
     public function __construct($message, $code = 0, Exception $previous = null)
     {
-        // make sure everything is assigned properly
         parent::__construct($message, $code, $previous);
     }
 

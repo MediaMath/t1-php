@@ -7,9 +7,17 @@ use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
 use MediaMath\TerminalOneAPI\Infrastructure\HttpResponse;
 
+/**
+ * Class DefaultResponseDecoder
+ * @package MediaMath\TerminalOneAPI\Decoder
+ */
 class DefaultResponseDecoder implements Decodable
 {
 
+    /**
+     * @param HttpResponse $api_response
+     * @return ApiResponse
+     */
     public function decode(HttpResponse $api_response)
     {
 
@@ -27,6 +35,10 @@ class DefaultResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param HttpResponse $api_response
+     * @return ApiResponse
+     */
     private function getMetaFromXmlResponse(HttpResponse $api_response)
     {
 
@@ -44,6 +56,10 @@ class DefaultResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param HttpResponse $api_response
+     * @return ApiResponse
+     */
     private function getMetaFromJSONResponse(HttpResponse $api_response)
     {
 
@@ -55,6 +71,11 @@ class DefaultResponseDecoder implements Decodable
 
     }
 
+    /**
+     * @param $http_code
+     * @param array $meta
+     * @return mixed
+     */
     private function mergeMetaInfo($http_code, $meta = [])
     {
 

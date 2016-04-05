@@ -7,11 +7,20 @@ use MediaMath\TerminalOneAPI\Infrastructure\DoctrineAPICache;
 
 use Doctrine\Common\Cache;
 
+/**
+ * Class DoctrineMemcachedCache
+ * @package MediaMath\TerminalOneAPI\Cache
+ */
 class DoctrineMemcachedCache implements Cacheable
 {
 
     use DoctrineAPICache;
 
+    /**
+     * DoctrineMemcachedCache constructor.
+     * @param TimePeriod $ttl
+     * @param string $pool
+     */
     public function __construct(TimePeriod $ttl, $pool = 't1_api')
     {
 

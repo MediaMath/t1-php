@@ -10,6 +10,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonReadable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class CreativeAsset
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class CreativeAsset extends ManagementApiObject implements Endpoint
 {
     use NonCreateable;
@@ -17,17 +21,26 @@ class CreativeAsset extends ManagementApiObject implements Endpoint
     use NonUpdateable;
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'creative_assets';
     }
 
+    /**
+     * @return string
+     */
     public function upload()
     {
         return $this->uri() . '/upload';
 
     }
 
+    /**
+     * @return string
+     */
     public function approve()
     {
         return $this->uri() . '/approve';

@@ -9,6 +9,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class AudienceIndex
+ * @package MediaMath\TerminalOneAPI\Reporting
+ */
 class AudienceIndex extends ReportingApiObject implements Endpoint
 {
 
@@ -16,6 +20,9 @@ class AudienceIndex extends ReportingApiObject implements Endpoint
     use NonUpdateable;
     use NonCreateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'audience_index';

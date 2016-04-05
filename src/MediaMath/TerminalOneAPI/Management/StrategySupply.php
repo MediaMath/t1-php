@@ -7,16 +7,26 @@ use MediaMath\TerminalOneAPI\Infrastructure\Endpoint;
 use MediaMath\TerminalOneAPI\Infrastructure\ManagementApiObject;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 
+/**
+ * Class StrategySupply
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class StrategySupply extends ManagementApiObject implements Endpoint
 {
 
     use NonDeletable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategies/{{strategy_id}}/supplies';
     }
 
+    /**
+     * @return mixed
+     */
     public function read()
     {
 
@@ -27,6 +37,9 @@ class StrategySupply extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
 
@@ -37,6 +50,9 @@ class StrategySupply extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return mixed
+     */
     public function update()
     {
 

@@ -8,6 +8,10 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonReadable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class StrategySupplySource
+ * @package MediaMath\TerminalOneAPI\Management
+ */
 class StrategySupplySource extends ManagementApiObject implements Endpoint
 {
 
@@ -15,6 +19,9 @@ class StrategySupplySource extends ManagementApiObject implements Endpoint
     use NonUpdateable;
     use NonReadable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'strategy_supply_sources';

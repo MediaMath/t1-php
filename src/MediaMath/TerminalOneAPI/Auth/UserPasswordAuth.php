@@ -6,12 +6,39 @@ use MediaMath\TerminalOneAPI\Exception\LoginFailedException;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiHost;
 use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
 
+/**
+ * Class UserPasswordAuth
+ * @package MediaMath\TerminalOneAPI\Auth
+ */
 class UserPasswordAuth implements CookieAuthenticable
 {
 
-    private $username, $password, $api_key;
+    /**
+     * @var
+     */
+    private $username;
+    
+    /**
+     * @var
+     */
+    private $password;
+
+    /**
+     * @var
+     */
+    private $api_key;
+
+    /**
+     * @var null
+     */
     private $session_id = null;
 
+    /**
+     * UserPasswordAuth constructor.
+     * @param $username
+     * @param $password
+     * @param $api_key
+     */
     public function __construct($username, $password, $api_key)
     {
         $this->username = $username;
@@ -19,16 +46,26 @@ class UserPasswordAuth implements CookieAuthenticable
         $this->api_key = $api_key;
     }
 
+    /**
+     * @return array
+     */
     public function cookieValues()
     {
         return ['adama_session' => $this->keepAliveSession()];
     }
 
+    /**
+     * @return null|string
+     */
     public function authUniqueId()
     {
         return $this->keepAliveSession();
     }
 
+    /**
+     * @return null|string
+     * @throws LoginFailedException
+     */
     private function keepAliveSession()
     {
 

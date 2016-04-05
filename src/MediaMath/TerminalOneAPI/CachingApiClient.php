@@ -10,13 +10,37 @@ use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
 use MediaMath\TerminalOneAPI\Pagination\Paginator;
 
+/**
+ * Class CachingApiClient
+ * @package MediaMath\TerminalOneAPI
+ */
 class CachingApiClient implements Clientable
 {
-
-    private $api_client, $cache, $decoder, $unique_id;
-
     use Paginator;
 
+    /**
+     * @var ApiClient
+     */
+    private $api_client;
+    /**
+     * @var Cacheable
+     */
+    private $cache;
+    /**
+     * @var DefaultResponseDecoder
+     */
+    private $decoder;
+    /**
+     * @var mixed
+     */
+    private $unique_id;
+
+    /**
+     * CachingApiClient constructor.
+     * @param Transportable $transport
+     * @param Cacheable $cache
+     * @param Decodable|null $decoder
+     */
     public function __construct(Transportable $transport, Cacheable $cache, Decodable $decoder = null)
     {
 
@@ -27,6 +51,11 @@ class CachingApiClient implements Clientable
 
     }
 
+    /**
+     * @param ApiObject $endpoint
+     * @param Decodable|null $decoder
+     * @return Infrastructure\ApiResponse|mixed
+     */
     public function read(ApiObject $endpoint, Decodable $decoder = null)
     {
 
@@ -46,11 +75,21 @@ class CachingApiClient implements Clientable
 
     }
 
+    /**
+     * @param ApiObject $endpoint
+     * @param Decodable|null $decoder
+     * @return Infrastructure\ApiResponse
+     */
     public function create(ApiObject $endpoint, Decodable $decoder = null)
     {
         return $this->api_client->create($endpoint, $decoder);
     }
 
+    /**
+     * @param ApiObject $endpoint
+     * @param Decodable|null $decoder
+     * @return Infrastructure\ApiResponse
+     */
     public function update(ApiObject $endpoint, Decodable $decoder = null)
     {
         return $this->api_client->update($endpoint, $decoder);

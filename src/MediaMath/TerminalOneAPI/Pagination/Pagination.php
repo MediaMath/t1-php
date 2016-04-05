@@ -7,17 +7,54 @@ use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\Paginatable;
 
+/**
+ * Class Pagination
+ * @package MediaMath\TerminalOneAPI\Pagination
+ */
 class Pagination implements Paginatable
 {
 
+    /**
+     * @var ApiObject
+     */
     private $endpoint;
+
+    /**
+     * @var Decodable
+     */
     private $decoder;
+
+    /**
+     * @var Clientable
+     */
     private $api_client;
+
+    /**
+     * @var int
+     */
     private $current_page = 1;
+
+    /**
+     * @var int
+     */
     private $num_per_page = 100;
+
+    /**
+     * @var null
+     */
     private $num_results;
+    
+    /**
+     * @var array
+     */
     private $result_cache = [];
 
+    /**
+     * Pagination constructor.
+     * @param ApiObject $endpoint
+     * @param Decodable $decoder
+     * @param Clientable $api_client
+     */
     public function __construct(ApiObject $endpoint, Decodable $decoder, Clientable $api_client)
     {
 
@@ -29,6 +66,10 @@ class Pagination implements Paginatable
 
     }
 
+    /**
+     * @param $page_number
+     * @return mixed
+     */
     public function page($page_number)
     {
 
@@ -56,27 +97,42 @@ class Pagination implements Paginatable
 
     }
 
+    /**
+     * @return mixed
+     */
     public function previous()
     {
         return $this->page($this->current_page - 1);
     }
 
+    /**
+     * @return mixed
+     */
     public function next()
     {
         return $this->page($this->current_page + 1);
     }
 
+    /**
+     * @return mixed
+     */
     public function first()
     {
         return $this->page(1);
     }
 
+    /**
+     * @return mixed
+     */
     public function last()
     {
         $this->current_page = null;
         return $this->page($this->numPages());
     }
 
+    /**
+     * @return int
+     */
     public function numPages()
     {
 
@@ -89,6 +145,9 @@ class Pagination implements Paginatable
         return $count;
     }
 
+    /**
+     * @return null
+     */
     public function numResults()
     {
 
@@ -108,6 +167,10 @@ class Pagination implements Paginatable
         return $this->num_results;
     }
 
+    /**
+     * @param array $custom_options
+     * @return mixed
+     */
     private function options($custom_options = [])
     {
 
@@ -121,6 +184,9 @@ class Pagination implements Paginatable
         return array_filter($options);
     }
 
+    /**
+     * @return int|null
+     */
     private function pageOffset()
     {
 
@@ -133,6 +199,10 @@ class Pagination implements Paginatable
         return ($page - 1) * $this->num_per_page;
     }
 
+    /**
+     * @param array $custom_options
+     * @return mixed
+     */
     private function fetchData($custom_options = [])
     {
 

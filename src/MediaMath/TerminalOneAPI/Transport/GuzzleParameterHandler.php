@@ -7,16 +7,32 @@ use MediaMath\TerminalOneAPI\Infrastructure\CookieAuthenticable;
 use MediaMath\TerminalOneAPI\Infrastructure\OAuthAuthenticable;
 use GuzzleHttp\Cookie\CookieJar;
 
+/**
+ * Class GuzzleParameterHandler
+ * @package MediaMath\TerminalOneAPI\Transport
+ */
 class GuzzleParameterHandler
 {
 
+    /**
+     * @var Authenticable
+     */
     private $authenticator;
 
+    /**
+     * GuzzleParameterHandler constructor.
+     * @param Authenticable $authenticator
+     */
     public function __construct(Authenticable $authenticator)
     {
         $this->authenticator = $authenticator;
     }
 
+    /**
+     * @param $options
+     * @param $uri
+     * @return mixed
+     */
     public function read($options, $uri)
     {
 
@@ -30,6 +46,10 @@ class GuzzleParameterHandler
 
     }
 
+    /**
+     * @param $options
+     * @return mixed
+     */
     public function post($options)
     {
         $arr = [
@@ -43,6 +63,9 @@ class GuzzleParameterHandler
 
     }
 
+    /**
+     * @return null|static
+     */
     private function cookies()
     {
 
@@ -58,6 +81,9 @@ class GuzzleParameterHandler
         return null;
     }
 
+    /**
+     * @return array
+     */
     private function headers()
     {
 
@@ -68,6 +94,10 @@ class GuzzleParameterHandler
         return ['Accept' => 'application/vnd.mediamath.v1+json'];
     }
 
+    /**
+     * @param $options
+     * @return mixed
+     */
     private function queryString($options)
     {
 
@@ -78,11 +108,19 @@ class GuzzleParameterHandler
         return $options;
     }
 
+    /**
+     * @param $options
+     * @return mixed
+     */
     private function formParams($options)
     {
         return $options;
     }
 
+    /**
+     * @param $uri
+     * @return array
+     */
     private function getParamsFromUri($uri)
     {
 

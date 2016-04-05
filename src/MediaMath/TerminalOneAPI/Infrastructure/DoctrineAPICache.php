@@ -2,17 +2,37 @@
 
 namespace MediaMath\TerminalOneAPI\Infrastructure;
 
+/**
+ * Class DoctrineAPICache
+ * @package MediaMath\TerminalOneAPI\Infrastructure
+ */
 trait DoctrineAPICache
 {
 
-    private $cache, $ttl;
+    /**
+     * @var
+     */
+    private $cache;
 
+    /**
+     * @var
+     */
+    private $ttl;
+
+    /**
+     * @param $key
+     * @param $data
+     */
     public function store($key, $data)
     {
         $this->cache->save($key, $data, $this->ttl);
 
     }
 
+    /**
+     * @param $key
+     * @return null
+     */
     public function retrieve($key)
     {
 

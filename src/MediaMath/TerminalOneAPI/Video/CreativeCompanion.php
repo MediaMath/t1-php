@@ -9,15 +9,25 @@ use MediaMath\TerminalOneAPI\Infrastructure\NonCreateable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonDeletable;
 use MediaMath\TerminalOneAPI\Infrastructure\NonUpdateable;
 
+/**
+ * Class CreativeCompanion
+ * @package MediaMath\TerminalOneAPI\Video
+ */
 class CreativeCompanion extends ManagementApiObject implements Endpoint
 {
     use NonUpdateable;
 
+    /**
+     * @return string
+     */
     public function endpoint()
     {
         return 'creatives/{{creative_id}}/companions';
     }
 
+    /**
+     * @return string
+     */
     public function read()
     {
 
@@ -33,6 +43,9 @@ class CreativeCompanion extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
 
@@ -43,6 +56,9 @@ class CreativeCompanion extends ManagementApiObject implements Endpoint
 
     }
 
+    /**
+     * @return string
+     */
     public function delete()
     {
         $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
@@ -56,6 +72,9 @@ class CreativeCompanion extends ManagementApiObject implements Endpoint
         return $uri;
     }
 
+    /**
+     * @return string
+     */
     public function update()
     {
         $uri = str_replace('{{creative_id}}', $this->options['creative_id'], $this->uri());
