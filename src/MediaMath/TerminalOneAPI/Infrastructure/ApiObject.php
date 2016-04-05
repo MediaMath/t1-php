@@ -26,13 +26,15 @@ abstract class ApiObject
 
         $uri = $this->uri();
 
-        if (array_key_exists('limit', $this->options)) {
-            $uri .= '/limit/' . $this->options['limit'];
+        $options = array_filter($this->options());
+
+        if (array_key_exists('limit', $options)) {
+            $uri .= '/limit/' . $options['limit'];
             unset($this->options['limit']);
         }
 
-        if (array_key_exists('id', $this->options)) {
-            $uri .= '/' . $this->options['id'];
+        if (array_key_exists('id', $options)) {
+            $uri .= '/' . $options['id'];
             unset($this->options['id']);
         }
 

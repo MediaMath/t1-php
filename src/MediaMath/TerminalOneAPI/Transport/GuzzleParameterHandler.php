@@ -20,7 +20,7 @@ class GuzzleParameterHandler
     public function read($options, $uri)
     {
 
-        $options = array_merge($options, $this->getParamsFromUri($uri));
+        $options = array_merge(array_filter($options), $this->getParamsFromUri($uri));
 
         return array_filter([
             'cookies' => $this->cookies(),
