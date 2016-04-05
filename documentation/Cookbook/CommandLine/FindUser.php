@@ -41,7 +41,8 @@ foreach ($names as $name) {
     $name_array = explode(" ", $name);
 
     $users = $api_client->read(new Management\User([
-            'q' => "first_name=:" . $name_array[0] . "&last_name=:" . $name_array[1] . "&type==INTERNAL"
+            'q' => "first_name=:" . $name_array[0] . "&last_name=:" . $name_array[1] . "&type==INTERNAL",
+            'full' => '*'
         ]
     ), new JSONResponseDecoder());
 
@@ -52,8 +53,9 @@ foreach ($names as $name) {
 
     foreach ($users->data() AS $user) {
         echo $user->id . " - ";
-        echo $name . " - ";
-        echo $user->name;
+        echo $user->first_name . " - ";
+        echo $user->last_name . " - ";
+        echo $user->email;
         echo "\n";
     }
 
