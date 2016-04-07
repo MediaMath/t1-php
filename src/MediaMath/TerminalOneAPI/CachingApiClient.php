@@ -9,6 +9,7 @@ use MediaMath\TerminalOneAPI\Infrastructure\Clientable;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\Transportable;
 use MediaMath\TerminalOneAPI\Pagination\Paginator;
+use MediaMath\TerminalOneAPI\Infrastructure\ObjectIdentifier;
 
 /**
  * Class CachingApiClient
@@ -61,7 +62,7 @@ class CachingApiClient implements Clientable
 
         $decoder = $decoder ?: $this->decoder;
 
-        $key = $endpoint->uri() . json_encode($endpoint->options()) . $this->unique_id . get_class($decoder);
+        $key = $endpoint->uri() . json_encode($endpoint->options()) . $this->unique_id . ObjectIdentifier::identify($decoder);
 
         if ($this->cache->retrieve($key)) {
             return $this->cache->retrieve($key);
