@@ -249,8 +249,6 @@ class PixelCSVResponseDecoder extends CSVResponseDecoder
 Now, to fetch the cumulative results we need to make API calls for both endpoints and concatenate the resulting arrays
 
 ```php
-<?php 
-
     // controller.php
     
     $org_id = xxxxxx;
