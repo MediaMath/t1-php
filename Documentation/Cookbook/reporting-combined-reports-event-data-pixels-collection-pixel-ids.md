@@ -15,9 +15,9 @@ First we need to create a custom response decoder which will allow us to collate
                 (
                     [start_date] => 2016-04-03
                     [end_date] => 2016-04-03
-                    [pixel_name] => SLINGD_College_Basketball
-                    [pixel_id] => 981267
-                    [referrer] => secure.flashtalking.com/56288/1331529/index.html
+                    [pixel_name] => My_Tracked_Pixel
+                    [pixel_id] => 981...
+                    [referrer] => secure.example-ad-server.com/some-page.html
                     [loads] => 1
                     [uniques] => 1
                 )
@@ -26,9 +26,9 @@ First we need to create a custom response decoder which will allow us to collate
                 (
                     [start_date] => 2016-04-02
                     [end_date] => 2016-04-02
-                    [pixel_name] => SLINGD_College_Basketball
-                    [pixel_id] => 981267
-                    [referrer] => www.sling.com/signup/account
+                    [pixel_name] => My_Tracked_Pixel
+                    [pixel_id] => 981...
+                    [referrer] => www.example.com/signup/account
                     [loads] => 4
                     [uniques] => 4
 ```
@@ -42,8 +42,8 @@ First we need to create a custom response decoder which will allow us to collate
                 (
                     [start_date] => 2016-04-03
                     [end_date] => 2016-04-03
-                    [pixel_name] => SLINGD_College_Basketball
-                    [pixel_id] => 981267
+                    [pixel_name] => My_Tracked_Pixel
+                    [pixel_id] => 981...
                     [referrer] => Total
                     [loads] => 19109
                     [uniques] => 17428
@@ -53,8 +53,8 @@ First we need to create a custom response decoder which will allow us to collate
                 (
                     [start_date] => 2016-04-04
                     [end_date] => 2016-04-04
-                    [pixel_name] => MM_SUB_D1 DTC  529 Contrib and With Submit BTN
-                    [pixel_id] => 978350
+                    [pixel_name] => Another_Tracked_Pixel
+                    [pixel_id] => 978...
                     [referrer] => Total
                     [loads] => 288
                     [uniques] => 193
@@ -66,7 +66,7 @@ First we need to create a custom response decoder which will allow us to collate
 ```
     [data] => Array
         (
-            [981267] => Array
+            [981...] => Array
                 (
                     [2016-04-03] => Array
                         (
@@ -74,9 +74,9 @@ First we need to create a custom response decoder which will allow us to collate
                                 (
                                     [start_date] => 2016-04-03
                                     [end_date] => 2016-04-03
-                                    [pixel_name] => SLINGD_College_Basketball
-                                    [pixel_id] => 981267
-                                    [referrer] => secure.flashtalking.com/56288/1331529/index.html
+                                    [pixel_name] => My_Tracked_Pixel
+                                    [pixel_id] => 981...
+                                    [referrer] => secure.example-ad-server.com/some-page.html
                                     [loads] => 1
                                     [uniques] => 1
                                 )
@@ -85,8 +85,8 @@ First we need to create a custom response decoder which will allow us to collate
                                 (
                                     [start_date] => 2016-04-03
                                     [end_date] => 2016-04-03
-                                    [pixel_name] => SLINGD_College_Basketball
-                                    [pixel_id] => 981267
+                                    [pixel_name] => My_Tracked_Pixel
+                                    [pixel_id] => 981...
                                     [referrer] => Total
                                     [loads] => 19109
                                     [uniques] => 17428
@@ -98,14 +98,14 @@ First we need to create a custom response decoder which will allow us to collate
 ```
     [data] => Array
         (
-            [981267] => Array
+            [981...] => Array
                 (
                     [2016-04-03] => Array
                         (
                             [start_date] => 2016-04-03
                             [end_date] => 2016-04-03
-                            [pixel_name] => SLINGD_College_Basketball
-                            [pixel_id] => 981267
+                            [pixel_name] => My_Tracked_Pixel
+                            [pixel_id] => 981...
                             [referrer] => Total
                             [loads] => 19109
                             [uniques] => 17428
@@ -114,8 +114,8 @@ First we need to create a custom response decoder which will allow us to collate
                         (
                             [start_date] => 2016-04-02
                             [end_date] => 2016-04-02
-                            [pixel_name] => SLINGD_College_Basketball
-                            [pixel_id] => 981267
+                            [pixel_name] => My_Tracked_Pixel
+                            [pixel_id] => 981...
                             [referrer] => Total
                             [loads] => 14229
                             [uniques] => 13356
