@@ -9,117 +9,117 @@ First we need to create a custom response decoder which will allow us to collate
 ##### Normal response format
 
 ```
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [start_date] => 2016-04-03
-                    [end_date] => 2016-04-03
-                    [pixel_name] => My_Tracked_Pixel
-                    [pixel_id] => 981...
-                    [referrer] => secure.example-ad-server.com/some-page.html
-                    [loads] => 1
-                    [uniques] => 1
-                )
+[data] => Array
+    (
+        [0] => Array
+            (
+                [start_date] => 2016-04-03
+                [end_date] => 2016-04-03
+                [pixel_name] => My_Tracked_Pixel
+                [pixel_id] => 981...
+                [referrer] => secure.example-ad-server.com/some-page.html
+                [loads] => 1
+                [uniques] => 1
+            )
 
-            [1] => Array
-                (
-                    [start_date] => 2016-04-02
-                    [end_date] => 2016-04-02
-                    [pixel_name] => My_Tracked_Pixel
-                    [pixel_id] => 981...
-                    [referrer] => www.example.com/signup/account
-                    [loads] => 4
-                    [uniques] => 4
+        [1] => Array
+            (
+                [start_date] => 2016-04-02
+                [end_date] => 2016-04-02
+                [pixel_name] => My_Tracked_Pixel
+                [pixel_id] => 981...
+                [referrer] => www.example.com/signup/account
+                [loads] => 4
+                [uniques] => 4
 ```
 
 ##### Showing totals only
 
 ```
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [start_date] => 2016-04-03
-                    [end_date] => 2016-04-03
-                    [pixel_name] => My_Tracked_Pixel
-                    [pixel_id] => 981...
-                    [referrer] => Total
-                    [loads] => 19109
-                    [uniques] => 17428
-                )
+[data] => Array
+    (
+        [0] => Array
+            (
+                [start_date] => 2016-04-03
+                [end_date] => 2016-04-03
+                [pixel_name] => My_Tracked_Pixel
+                [pixel_id] => 981...
+                [referrer] => Total
+                [loads] => 19109
+                [uniques] => 17428
+            )
 
-            [1] => Array
-                (
-                    [start_date] => 2016-04-04
-                    [end_date] => 2016-04-04
-                    [pixel_name] => Another_Tracked_Pixel
-                    [pixel_id] => 978...
-                    [referrer] => Total
-                    [loads] => 288
-                    [uniques] => 193
-                )
+        [1] => Array
+            (
+                [start_date] => 2016-04-04
+                [end_date] => 2016-04-04
+                [pixel_name] => Another_Tracked_Pixel
+                [pixel_id] => 978...
+                [referrer] => Total
+                [loads] => 288
+                [uniques] => 193
+            )
 ```
 
 ##### Collated by pixel id showing all data
 
 ```
-    [data] => Array
-        (
-            [981...] => Array
-                (
-                    [2016-04-03] => Array
-                        (
-                            [0] => Array
-                                (
-                                    [start_date] => 2016-04-03
-                                    [end_date] => 2016-04-03
-                                    [pixel_name] => My_Tracked_Pixel
-                                    [pixel_id] => 981...
-                                    [referrer] => secure.example-ad-server.com/some-page.html
-                                    [loads] => 1
-                                    [uniques] => 1
-                                )
+[data] => Array
+    (
+        [981...] => Array
+            (
+                [2016-04-03] => Array
+                    (
+                        [0] => Array
+                            (
+                                [start_date] => 2016-04-03
+                                [end_date] => 2016-04-03
+                                [pixel_name] => My_Tracked_Pixel
+                                [pixel_id] => 981...
+                                [referrer] => secure.example-ad-server.com/some-page.html
+                                [loads] => 1
+                                [uniques] => 1
+                            )
 
-                            [1] => Array
-                                (
-                                    [start_date] => 2016-04-03
-                                    [end_date] => 2016-04-03
-                                    [pixel_name] => My_Tracked_Pixel
-                                    [pixel_id] => 981...
-                                    [referrer] => Total
-                                    [loads] => 19109
-                                    [uniques] => 17428
-                                )
+                        [1] => Array
+                            (
+                                [start_date] => 2016-04-03
+                                [end_date] => 2016-04-03
+                                [pixel_name] => My_Tracked_Pixel
+                                [pixel_id] => 981...
+                                [referrer] => Total
+                                [loads] => 19109
+                                [uniques] => 17428
+                            )
 ```
 
 ##### Collated by pixel id, showing only totals
 
 ```
-    [data] => Array
-        (
-            [981...] => Array
-                (
-                    [2016-04-03] => Array
-                        (
-                            [start_date] => 2016-04-03
-                            [end_date] => 2016-04-03
-                            [pixel_name] => My_Tracked_Pixel
-                            [pixel_id] => 981...
-                            [referrer] => Total
-                            [loads] => 19109
-                            [uniques] => 17428
-                        )
-                    [2016-04-02] => Array
-                        (
-                            [start_date] => 2016-04-02
-                            [end_date] => 2016-04-02
-                            [pixel_name] => My_Tracked_Pixel
-                            [pixel_id] => 981...
-                            [referrer] => Total
-                            [loads] => 14229
-                            [uniques] => 13356
-                        )
+[data] => Array
+    (
+        [981...] => Array
+            (
+                [2016-04-03] => Array
+                    (
+                        [start_date] => 2016-04-03
+                        [end_date] => 2016-04-03
+                        [pixel_name] => My_Tracked_Pixel
+                        [pixel_id] => 981...
+                        [referrer] => Total
+                        [loads] => 19109
+                        [uniques] => 17428
+                    )
+                [2016-04-02] => Array
+                    (
+                        [start_date] => 2016-04-02
+                        [end_date] => 2016-04-02
+                        [pixel_name] => My_Tracked_Pixel
+                        [pixel_id] => 981...
+                        [referrer] => Total
+                        [loads] => 14229
+                        [uniques] => 13356
+                    )
 ```
 
 ### The custom decoder
@@ -249,27 +249,27 @@ class PixelCSVResponseDecoder extends CSVResponseDecoder
 Now, to fetch the cumulative results we need to make API calls for both endpoints and concatenate the resulting arrays
 
 ```php
-    // controller.php
-    
-    $org_id = xxxxxx;
-    $pixel_ids = [11111, 22222, 33333, 44444, 55555];
+// controller.php
 
-    $events_pixels = $client->read(new EventPixelLoad([
-        'time_window' => 'last_7_days',
-        'time_rollup' => 'by_day',
-        'filter' => 'organization_id=' . $org_id . '&pixel_id=' . implode(',', $pixel_ids),
-        'dimensions' => 'pixel_name,pixel_id,referrer',
-    ]), new PixelCSVResponseDecoder("by_pixel_no_total"));
+$org_id = xxxxxx;
+$pixel_ids = [11111, 22222, 33333, 44444, 55555];
 
-    $data_pixels = $client->read(new DataPixelLoad([
-        'time_window' => 'last_7_days',
-        'time_rollup' => 'by_day',
-        'filter' => 'organization_id=' . $org_id . '&pixel_id=' . implode(',', $pixel_ids),
-        'dimensions' => 'pixel_name,pixel_id,referrer',
-    ]), new PixelCSVResponseDecoder("by_pixel_no_total"));
+$events_pixels = $client->read(new EventPixelLoad([
+    'time_window' => 'last_7_days',
+    'time_rollup' => 'by_day',
+    'filter' => 'organization_id=' . $org_id . '&pixel_id=' . implode(',', $pixel_ids),
+    'dimensions' => 'pixel_name,pixel_id,referrer',
+]), new PixelCSVResponseDecoder("by_pixel_no_total"));
+
+$data_pixels = $client->read(new DataPixelLoad([
+    'time_window' => 'last_7_days',
+    'time_rollup' => 'by_day',
+    'filter' => 'organization_id=' . $org_id . '&pixel_id=' . implode(',', $pixel_ids),
+    'dimensions' => 'pixel_name,pixel_id,referrer',
+]), new PixelCSVResponseDecoder("by_pixel_no_total"));
 
 
-    $data = $events_pixels->data() + $data_pixels->data();
-    
-    var_dump($data);
+$data = $events_pixels->data() + $data_pixels->data();
+
+var_dump($data);
 ```
