@@ -13,4 +13,4 @@
 - API response cache is fully customisable (Doctrine cache included)
 
 ### Ready to go?
-[Read the documentation](documentation/index.md)
+[Read the documentation](Documentation/index.md)
