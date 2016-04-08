@@ -252,6 +252,9 @@ Now, to fetch the cumulative results we need to make API calls for both endpoint
 <?php 
 
     // controller.php
+    
+    $org_id = xxxxxx;
+    $pixel_ids = [11111, 22222, 33333, 44444, 55555];
 
     $events_pixels = $client->read(new EventPixelLoad([
         'time_window' => 'last_7_days',
