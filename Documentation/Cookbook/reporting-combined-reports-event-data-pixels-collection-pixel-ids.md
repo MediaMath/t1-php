@@ -102,7 +102,7 @@ First we need to create a custom response decoder which will allow us to collate
             (
                 [2016-04-03] => Array
                     (
-                        [start_date] => 2016-04-03
+                        [start_date] => 2016-04-03 h
                         [end_date] => 2016-04-03
                         [pixel_name] => My_Tracked_Pixel
                         [pixel_id] => 981...
