@@ -1,8 +1,8 @@
 # Documentation
 
 - [Installing the SDK](installation.md)
-- [Using the SDK](Usage/usage.md)
-- [Customising the SDK](Customising/customising.md)
+- [Using the SDK](Usage/README.md)
+- [Customising the SDK](Customising/README.md)
 - [SDK Class Reference](ClassReference/README.md)
 - [Cookbook Recipes](Cookbook/README.md)
 
