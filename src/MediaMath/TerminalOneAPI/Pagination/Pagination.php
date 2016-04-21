@@ -43,7 +43,7 @@ class Pagination implements Paginatable
      * @var null
      */
     private $num_results;
-    
+
     /**
      * @var array
      */
@@ -87,9 +87,16 @@ class Pagination implements Paginatable
             return $this->result_cache[$this->current_page - 1];
         }
 
-        $result = $this->fetchData();
+        return $this->resultForPage($this->current_page - 1);
 
-        $this->result_cache[$this->current_page - 1] = $result;
+    }
+
+    private function resultForPage($page_num, $options = [])
+    {
+
+        $result = $this->fetchData($options);
+
+        $this->result_cache[$page_num] = $result;
 
         $this->num_results = $result->meta()->totalCount();
 
@@ -151,14 +158,14 @@ class Pagination implements Paginatable
     public function numResults()
     {
 
-        if ($this->num_results === null && $this->current_page != 1) {
+        if ($this->num_results === null) {
 
             $options = $this->options([
                 'page_limit' => 1,
                 'full' => null
             ]);
 
-            $result = $this->fetchData($options);
+            $result = $this->resultForPage(1, $options);
 
             $this->num_results = $result->meta()->totalCount();
 
