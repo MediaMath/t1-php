@@ -24,6 +24,10 @@ class JSONResponseDecoder implements Decodable
 
         $meta = new ApiResponseMeta((array) $response->meta);
 
+        if (get_class($api_response) === HttpErrorResponse::class) {
+            return new ApiResponse($meta, $response->meta->status);
+        }
+
         return new ApiResponse($meta, $response->data);
     }
 
