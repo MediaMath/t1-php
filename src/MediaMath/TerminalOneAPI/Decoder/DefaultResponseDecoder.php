@@ -29,6 +29,10 @@ class DefaultResponseDecoder implements Decodable
             return $this->getMetaFromJSONResponse($api_response);
         }
 
+        if ($api_response->headers()->contentType() == 'application/json') {
+            return $this->getMetaFromJSONResponse($api_response);
+        }
+
         if ($api_response->headers()->contentType() == 'text/xml; charset=UTF-8') {
             return $this->getMetaFromXmlResponse($api_response);
         }
