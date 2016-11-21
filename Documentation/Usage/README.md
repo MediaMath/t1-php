@@ -9,6 +9,7 @@
 - [Decoding The Response](decoding.md)
 - [Caching The Response](caching.md)
 - [Pagination](pagination.md)
+- [Overriding api host and version](overriding-api-host-and-version.md)
 
 ### Overview <a name="overview"></a>
 
