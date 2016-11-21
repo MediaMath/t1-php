@@ -19,7 +19,7 @@ abstract class VideoApiObject extends ApiObject
      */
     public function uri()
     {
-        return ApiHost::T1_VIDEO . $this->endpoint();
+        return ApiHost::getHost('T1_VIDEO', $this->api_subdomain, $this->api_version) . $this->endpoint();
     }
 
 }

@@ -19,7 +19,7 @@ abstract class AdaptiveSegmentsApiObject extends ApiObject
      */
     public function uri()
     {
-        return ApiHost::T1_ADAPTIVE_SEGMENTS . $this->endpoint();
+        return ApiHost::getHost('T1_ADAPTIVE_SEGMENTS', $this->api_subdomain, $this->api_version) . $this->endpoint();
     }
 
 }

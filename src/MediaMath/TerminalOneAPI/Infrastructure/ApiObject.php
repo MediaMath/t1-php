@@ -8,6 +8,15 @@ namespace MediaMath\TerminalOneAPI\Infrastructure;
  */
 abstract class ApiObject
 {
+    /**
+     * @var null
+     */
+    protected $api_subdomain;
+
+    /**
+     * @var null
+     */
+    protected $api_version;
 
     /**
      * @return mixed
@@ -17,10 +26,14 @@ abstract class ApiObject
     /**
      * ApiObject constructor.
      * @param array $options
+     * @param null $api_subdomain
+     * @param null $api_version
      */
-    public function __construct($options = [])
+    public function __construct($options = [], $api_subdomain = null, $api_version = null)
     {
         $this->options = $options;
+        $this->api_subdomain = $api_subdomain;
+        $this->api_version = $api_version;
     }
 
     /**

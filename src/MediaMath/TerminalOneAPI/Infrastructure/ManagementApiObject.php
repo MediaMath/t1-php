@@ -19,7 +19,7 @@ abstract class ManagementApiObject extends ApiObject
      */
     public function uri()
     {
-        return ApiHost::T1_MANAGEMENT . $this->endpoint();
+        return ApiHost::getHost('T1_MANAGEMENT', $this->api_subdomain, $this->api_version) . $this->endpoint();
     }
 
 }

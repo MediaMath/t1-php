@@ -34,16 +34,30 @@ class UserPasswordAuth implements CookieAuthenticable
     private $session_id = null;
 
     /**
+     * @var
+     */
+    private $api_subdomain;
+
+    /**
+     * @var
+     */
+    private $api_version;
+
+    /**
      * UserPasswordAuth constructor.
      * @param $username
      * @param $password
      * @param $api_key
+     * @param null $api_subdomain
+     * @param null $api_version
      */
-    public function __construct($username, $password, $api_key)
+    public function __construct($username, $password, $api_key, $api_subdomain = null, $api_version = null)
     {
         $this->username = $username;
         $this->password = $password;
         $this->api_key = $api_key;
+        $this->api_subdomain = $api_subdomain;
+        $this->api_version = $api_version;
     }
 
     /**
@@ -89,7 +103,7 @@ class UserPasswordAuth implements CookieAuthenticable
     {
         $ch = curl_init();
         $data_array = array('user' => $this->username, 'password' => $this->password, 'api_key' => $this->api_key);
-        curl_setopt($ch, CURLOPT_URL, ApiHost::T1_AUTHENTICATION . 'login');
+        curl_setopt($ch, CURLOPT_URL, ApiHost::getHost('T1_AUTHENTICATION', $this->api_subdomain, $this->api_version) . 'login');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_array);
