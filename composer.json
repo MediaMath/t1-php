@@ -1,5 +1,5 @@
 {
-    "name": "MediaMath/t1-php",
+    "name": "mediamath/t1-php",
     "autoload": {
         "psr-4" : {
             "MediaMath\\TerminalOneAPI\\": "src/MediaMath/TerminalOneAPI"
