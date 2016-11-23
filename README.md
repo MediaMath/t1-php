@@ -1,4 +1,4 @@
-# open_t1_php_sdk
+# MediaMath T1-PHP
 
 ## Extensible and customisable PHP SDK for interacting with the T1 API
 
