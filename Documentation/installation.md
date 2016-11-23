@@ -2,7 +2,7 @@
 
 Add MediaMath/t1-php to your requirements
 
-	$ php composer.phar require "MediaMath/t1-php"
+	$ php composer.phar require "mediamath/t1-php"
 
 This SDK uses PSR-4 so classes and namespaces should be autoloaded in your application.
 
