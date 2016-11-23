@@ -1,5 +1,14 @@
 {
     "name": "mediamath/t1-php",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Neal Brooks",
+            "email": "nbrooks@mediamath.com",
+            "homepage": "http://www.mediamath.com",
+            "role": "Software Engineer"
+        }
+    ],
     "autoload": {
         "psr-4" : {
             "MediaMath\\TerminalOneAPI\\": "src/MediaMath/TerminalOneAPI"
