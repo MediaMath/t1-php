@@ -2,6 +2,7 @@
 
 namespace MediaMath\TerminalOneAPI\Decoder;
 
+use MediaMath\TerminalOneAPI\Exception\UnknownContentTypeException;
 use MediaMath\TerminalOneAPI\Infrastructure\Decodable;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponse;
 use MediaMath\TerminalOneAPI\Infrastructure\ApiResponseMeta;
@@ -17,6 +18,7 @@ class DefaultResponseDecoder implements Decodable
     /**
      * @param HttpResponse $api_response
      * @return ApiResponse
+     * @throws UnknownContentTypeException
      */
     public function decode(HttpResponse $api_response)
     {
@@ -25,18 +27,14 @@ class DefaultResponseDecoder implements Decodable
             return new ApiResponse(new ApiResponseMeta($this->mergeMetaInfo($api_response->httpCode())), $api_response->body());
         }
 
-        if ($api_response->headers()->contentType() == 'application/vnd.mediamath.v1+json') {
-            return $this->getMetaFromJSONResponse($api_response);
-        }
-
-        if ($api_response->headers()->contentType() == 'application/json') {
+        if (preg_match('/^application\/.*json/i', $api_response->headers()->contentType())) {
             return $this->getMetaFromJSONResponse($api_response);
         }
 
         if ($api_response->headers()->contentType() == 'text/xml; charset=UTF-8') {
             return $this->getMetaFromXmlResponse($api_response);
         }
-
+        throw new UnknownContentTypeException('Unknown content-type received: ' . $api_response->headers()->contentType(), 400);
     }
 
     /**
