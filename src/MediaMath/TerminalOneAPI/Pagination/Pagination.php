@@ -161,8 +161,9 @@ class Pagination implements Paginatable
         if ($this->num_results === null) {
 
             $options = $this->options([
-                'page_limit' => 1,
-                'full' => null
+                'page_limit' => $this->num_per_page, 
+                'page_offset' => $this->num_per_page, 
+                'full' => null 
             ]);
 
             $result = $this->resultForPage(1, $options);
