@@ -9,6 +9,7 @@
             "role": "Software Engineer"
         }
     ],
+    "description": "T1 PHP SDK for the MediaMath API Platform",
     "autoload": {
         "psr-4" : {
             "MediaMath\\TerminalOneAPI\\": "src/MediaMath/TerminalOneAPI"
