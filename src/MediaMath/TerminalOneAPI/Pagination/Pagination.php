@@ -91,12 +91,13 @@ class Pagination implements Paginatable
 
     }
 
-    private function resultForPage($page_num, $options = [])
+    private function resultForPage($page_num, $options = [], $disable_cache = false)
     {
 
         $result = $this->fetchData($options);
-
-        $this->result_cache[$page_num] = $result;
+        if (! $disable_cache) {
+            $this->result_cache[$page_num] = $result;
+        }
 
         $this->num_results = $result->meta()->totalCount();
 
@@ -161,12 +162,11 @@ class Pagination implements Paginatable
         if ($this->num_results === null) {
 
             $options = $this->options([
-                'page_limit' => $this->num_per_page, 
-                'page_offset' => $this->num_per_page, 
-                'full' => null 
+                'page_limit' => 1,
+                'full' => null
             ]);
 
-            $result = $this->resultForPage(1, $options);
+            $result = $this->resultForPage(1, $options, true);
 
             $this->num_results = $result->meta()->totalCount();
 
