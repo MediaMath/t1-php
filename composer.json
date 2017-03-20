@@ -16,7 +16,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "5.*"
     },
     "suggest": {
         "guzzlehttp/guzzle": "Allows you to use the Guzzle HTTP transport class provided with this SDK",
