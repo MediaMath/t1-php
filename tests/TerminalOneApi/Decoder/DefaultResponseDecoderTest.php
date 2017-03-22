@@ -7,7 +7,7 @@ use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
  * Date: 02/12/2016
  * Time: 15:42
  */
-class DefaultResponseDecoderTest  extends PHPUnit_Framework_TestCase
+class DefaultResponseDecoderTest  extends PHPUnit\Framework\TestCase
 {
 
     /**

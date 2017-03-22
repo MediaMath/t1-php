@@ -1,6 +1,8 @@
 <?php
 
-class AppTransparencyTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AppTransparencyTest extends TestCase
 {
 
     /**
@@ -9,7 +11,7 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->create();
+        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->create();
 
     }
 
@@ -19,7 +21,7 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->delete();
+        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->delete();
 
     }
 
@@ -29,15 +31,18 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->update();
+        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->update();
 
     }
 
+    /**
+     *
+     */
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->read();
-
+        $uri = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->read();
+        $this->assertEquals('https://api.mediamath.com/reporting/v1/std/app_transparency', $uri);
     }
 
 }

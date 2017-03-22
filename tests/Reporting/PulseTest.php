@@ -1,6 +1,6 @@
 <?php
 
-class PulseTest extends PHPUnit_Framework_TestCase
+class PulseTest extends PHPUnit\Framework\TestCase
 {
 
     /**

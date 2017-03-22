@@ -1,6 +1,6 @@
 <?php
 
-class DayPartTest extends PHPUnit_Framework_TestCase
+class DayPartTest extends PHPUnit\Framework\TestCase
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-class WatermarkTest extends PHPUnit_Framework_TestCase
+class WatermarkTest extends PHPUnit\Framework\TestCase
 {
 
     /**

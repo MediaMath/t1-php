@@ -1,6 +1,6 @@
 <?php
 
-class PostalCodeTest extends PHPUnit_Framework_TestCase
+class PostalCodeTest extends PHPUnit\Framework\TestCase
 {
 
     /**

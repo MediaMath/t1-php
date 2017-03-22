@@ -1,6 +1,6 @@
 <?php
 
-class AudienceIndexTest extends PHPUnit_Framework_TestCase
+class AudienceIndexTest extends PHPUnit\Framework\TestCase
 {
 
     /**

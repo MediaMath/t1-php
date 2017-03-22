@@ -1,6 +1,6 @@
 <?php
 
-class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
+class DeviceTechnologyTest extends PHPUnit\Framework\TestCase
 {
 
     /**

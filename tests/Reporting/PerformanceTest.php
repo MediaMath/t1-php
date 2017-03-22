@@ -1,6 +1,6 @@
 <?php
 
-class PerformanceTest extends PHPUnit_Framework_TestCase
+class PerformanceTest extends PHPUnit\Framework\TestCase
 {
 
     /**

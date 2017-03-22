@@ -1,6 +1,6 @@
 <?php
 
-class VideoSiteTransparencyTest extends PHPUnit_Framework_TestCase
+class VideoSiteTransparencyTest extends PHPUnit\Framework\TestCase
 {
 
     /**

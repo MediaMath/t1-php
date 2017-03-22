@@ -1,6 +1,6 @@
 <?php
 
-class SiteTransparencyTest extends PHPUnit_Framework_TestCase
+class SiteTransparencyTest extends PHPUnit\Framework\TestCase
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-class GeoTest extends PHPUnit_Framework_TestCase
+class GeoTest extends PHPUnit\Framework\TestCase
 {
 
     /**

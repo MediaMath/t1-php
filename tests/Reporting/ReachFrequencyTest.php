@@ -1,6 +1,6 @@
 <?php
 
-class ReachFrequencyTest extends PHPUnit_Framework_TestCase
+class ReachFrequencyTest extends PHPUnit\Framework\TestCase
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-class AudienceIndexPixelTest extends PHPUnit_Framework_TestCase
+class AudienceIndexPixelTest extends PHPUnit\Framework\TestCase
 {
 
     /**
