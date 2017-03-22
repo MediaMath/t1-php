@@ -1,6 +1,10 @@
 <?php
 
-class VideoTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Meta;
+use PHPUnit\Framework\TestCase;
+
+class MetaTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class VideoTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Video())->create();
+        (new Meta())->create();
 
     }
 
@@ -19,7 +23,7 @@ class VideoTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Video())->delete();
+        (new Meta())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class VideoTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Video())->update();
+        (new Meta())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Video())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/meta';
+        $this->assertEquals($expected, (new Meta())->read());
 
     }
 

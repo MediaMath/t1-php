@@ -1,6 +1,10 @@
 <?php
 
-class ReachFrequencyTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use PHPUnit\Framework\TestCase;
+use MediaMath\TerminalOneAPI\Reporting\AudienceIndexPixel;
+
+class AudienceIndexPixelTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class ReachFrequencyTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\ReachFrequency())->create();
+        (new AudienceIndexPixel())->create();
 
     }
 
@@ -19,7 +23,7 @@ class ReachFrequencyTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\ReachFrequency())->delete();
+        (new AudienceIndexPixel())->delete();
 
     }
 
@@ -29,15 +33,15 @@ class ReachFrequencyTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\ReachFrequency())->update();
+        (new AudienceIndexPixel())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\ReachFrequency())->read();
-
+        $expected = 'https://api.mediamath.com/reporting/v1/std/audience_index_pixel';
+        $this->assertEquals($expected, (new AudienceIndexPixel())->read());
     }
 
 }
+

@@ -1,6 +1,10 @@
 <?php
 
-class GeoTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\DeviceTechnology;
+use PHPUnit\Framework\TestCase;
+
+class DeviceTechnologyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class GeoTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->create();
+        (new DeviceTechnology())->create();
 
     }
 
@@ -19,7 +23,7 @@ class GeoTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->delete();
+        (new DeviceTechnology())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class GeoTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->update();
+        (new DeviceTechnology())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/device_technology';
+        $this->assertEquals($expected, (new DeviceTechnology())->read());
 
     }
 

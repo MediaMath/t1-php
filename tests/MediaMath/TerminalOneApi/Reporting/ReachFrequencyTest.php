@@ -1,6 +1,10 @@
 <?php
 
-class SiteTransparencyTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\ReachFrequency;
+use PHPUnit\Framework\TestCase;
+
+class ReachFrequencyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class SiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\SiteTransparency())->create();
+        (new ReachFrequency())->create();
 
     }
 
@@ -19,7 +23,7 @@ class SiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\SiteTransparency())->delete();
+        (new ReachFrequency())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class SiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\SiteTransparency())->update();
+        (new ReachFrequency())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\SiteTransparency())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/reach_frequency';
+        $this->assertEquals($expected, (new ReachFrequency())->read());
 
     }
 

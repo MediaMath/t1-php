@@ -15,6 +15,11 @@
             "MediaMath\\TerminalOneAPI\\": "src/MediaMath/TerminalOneAPI"
         }
     },
+    "autoload-dev": {
+        "psr-4" : {
+            "Tests\\": "tests"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "*"
     },

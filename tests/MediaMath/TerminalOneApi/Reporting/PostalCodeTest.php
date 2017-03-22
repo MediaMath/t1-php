@@ -1,6 +1,10 @@
 <?php
 
-class WatermarkTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\PostalCode;
+use PHPUnit\Framework\TestCase;
+
+class PostalCodeTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class WatermarkTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->create();
+        (new PostalCode())->create();
 
     }
 
@@ -19,7 +23,7 @@ class WatermarkTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->delete();
+        (new PostalCode())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class WatermarkTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->update();
+        (new PostalCode())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/postal_code';
+        $this->assertEquals($expected, (new PostalCode())->read());
 
     }
 

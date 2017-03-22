@@ -1,6 +1,10 @@
 <?php
 
-class AudienceIndexTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Watermark;
+use PHPUnit\Framework\TestCase;
+
+class WatermarkTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class AudienceIndexTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->create();
+        (new Watermark())->create();
 
     }
 
@@ -19,7 +23,7 @@ class AudienceIndexTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->delete();
+        (new Watermark())->delete();
 
     }
 
@@ -29,16 +33,15 @@ class AudienceIndexTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->update();
+        (new Watermark())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/watermark';
+        $this->assertEquals($expected, (new Watermark())->read());
 
     }
 
 }
-

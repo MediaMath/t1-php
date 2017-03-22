@@ -1,6 +1,10 @@
 <?php
 
-class PerformanceTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Pulse;
+use PHPUnit\Framework\TestCase;
+
+class PulseTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class PerformanceTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->create();
+        (new Pulse())->create();
 
     }
 
@@ -19,7 +23,7 @@ class PerformanceTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->delete();
+        (new Pulse())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class PerformanceTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->update();
+        (new Pulse())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/pulse';
+        $this->assertEquals($expected, (new Pulse())->read());
 
     }
 

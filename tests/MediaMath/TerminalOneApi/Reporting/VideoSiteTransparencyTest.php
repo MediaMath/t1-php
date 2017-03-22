@@ -1,6 +1,10 @@
 <?php
 
-class VideoSiteTransparencyTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\VideoSiteTransparency;
+use PHPUnit\Framework\TestCase;
+
+class VideoSiteTransparencyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class VideoSiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\VideoSiteTransparency())->create();
+        (new VideoSiteTransparency())->create();
 
     }
 
@@ -19,7 +23,7 @@ class VideoSiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\VideoSiteTransparency())->delete();
+        (new VideoSiteTransparency())->delete();
 
     }
 
@@ -29,14 +33,15 @@ class VideoSiteTransparencyTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\VideoSiteTransparency())->update();
+        (new VideoSiteTransparency())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\VideoSiteTransparency())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/video_site_transparency';
+        $this->assertEquals($expected, (new VideoSiteTransparency())->read());
 
     }
 

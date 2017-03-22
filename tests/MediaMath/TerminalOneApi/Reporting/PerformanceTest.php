@@ -1,6 +1,10 @@
 <?php
 
-class DeviceTechnologyTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Performance;
+use PHPUnit\Framework\TestCase;
+
+class PerformanceTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class DeviceTechnologyTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->create();
+        (new Performance())->create();
 
     }
 
@@ -19,7 +23,7 @@ class DeviceTechnologyTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->delete();
+        (new Performance())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class DeviceTechnologyTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->update();
+        (new Performance())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/performance';
+        $this->assertEquals($expected, (new Performance())->read());
 
     }
 

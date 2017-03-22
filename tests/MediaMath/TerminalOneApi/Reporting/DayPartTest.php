@@ -1,8 +1,10 @@
 <?php
 
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\DayPart;
 use PHPUnit\Framework\TestCase;
 
-class AppTransparencyTest extends TestCase
+class DayPartTest extends TestCase
 {
 
     /**
@@ -11,7 +13,7 @@ class AppTransparencyTest extends TestCase
     public function testCannotCreate()
     {
 
-        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->create();
+        (new DayPart())->create();
 
     }
 
@@ -21,7 +23,7 @@ class AppTransparencyTest extends TestCase
     public function testCannotDelete()
     {
 
-        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->delete();
+        (new DayPart())->delete();
 
     }
 
@@ -31,19 +33,15 @@ class AppTransparencyTest extends TestCase
     public function testCannotUpdate()
     {
 
-        (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->update();
+        (new DayPart())->update();
 
     }
 
-    /**
-     *
-     */
     public function testCanRead()
     {
+        $expected = 'https://api.mediamath.com/reporting/v1/std/day_part';
+        $this->assertEquals($expected, (new DayPart())->read());
 
-        $uri = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->read();
-        $this->assertEquals('https://api.mediamath.com/reporting/v1/std/app_transparency', $uri);
     }
 
 }
-

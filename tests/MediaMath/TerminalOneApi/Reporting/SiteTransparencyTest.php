@@ -1,6 +1,10 @@
 <?php
 
-class PulseTest extends PHPUnit\Framework\TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\SiteTransparency;
+use PHPUnit\Framework\TestCase;
+
+class SiteTransparencyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class PulseTest extends PHPUnit\Framework\TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->create();
+        (new SiteTransparency())->create();
 
     }
 
@@ -19,7 +23,7 @@ class PulseTest extends PHPUnit\Framework\TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->delete();
+        (new SiteTransparency())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class PulseTest extends PHPUnit\Framework\TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->update();
+        (new SiteTransparency())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/site_transparency';
+        $this->assertEquals($expected, (new SiteTransparency())->read());
 
     }
 
