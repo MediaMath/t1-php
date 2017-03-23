@@ -1,6 +1,11 @@
 <?php
 
-class PerformanceTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+
+use MediaMath\TerminalOneAPI\Reporting\AppTransparency;
+use PHPUnit\Framework\TestCase;
+
+class AppTransparencyTest extends TestCase
 {
 
     /**
@@ -9,7 +14,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->create();
+        (new AppTransparency())->create();
 
     }
 
@@ -19,7 +24,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->delete();
+        (new AppTransparency())->delete();
 
     }
 
@@ -29,15 +34,19 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->update();
+        (new AppTransparency())->update();
 
     }
 
+    /**
+     *
+     */
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Performance())->read();
-
+        $uri = (new AppTransparency())->read();
+        $this->assertEquals('https://api.mediamath.com/reporting/v1/std/app_transparency', $uri);
     }
 
 }
+

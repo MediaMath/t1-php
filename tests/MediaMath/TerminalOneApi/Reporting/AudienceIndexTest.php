@@ -1,6 +1,10 @@
 <?php
 
-class AppTransparencyTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\AudienceIndex;
+use PHPUnit\Framework\TestCase;
+
+class AudienceIndexTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->create();
+        (new AudienceIndex())->create();
 
     }
 
@@ -19,7 +23,7 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->delete();
+        (new AudienceIndex())->delete();
 
     }
 
@@ -29,14 +33,15 @@ class AppTransparencyTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->update();
+        (new AudienceIndex())->update();
 
     }
 
     public function testCanRead()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AppTransparency())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/audience_index';
+        $this->assertEquals($expected, (new AudienceIndex())->read());
 
     }
 

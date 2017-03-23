@@ -1,6 +1,10 @@
 <?php
 
-class GeoTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\ReachFrequency;
+use PHPUnit\Framework\TestCase;
+
+class ReachFrequencyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->create();
+        (new ReachFrequency())->create();
 
     }
 
@@ -19,7 +23,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->delete();
+        (new ReachFrequency())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class GeoTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->update();
+        (new ReachFrequency())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Geo())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/reach_frequency';
+        $this->assertEquals($expected, (new ReachFrequency())->read());
 
     }
 

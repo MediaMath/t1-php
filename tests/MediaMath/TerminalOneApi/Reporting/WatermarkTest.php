@@ -1,6 +1,10 @@
 <?php
 
-class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Watermark;
+use PHPUnit\Framework\TestCase;
+
+class WatermarkTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->create();
+        (new Watermark())->create();
 
     }
 
@@ -19,7 +23,7 @@ class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->delete();
+        (new Watermark())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class DeviceTechnologyTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->update();
+        (new Watermark())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DeviceTechnology())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/watermark';
+        $this->assertEquals($expected, (new Watermark())->read());
 
     }
 

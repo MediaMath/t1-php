@@ -1,6 +1,10 @@
 <?php
 
-class AudienceIndexPixelTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Performance;
+use PHPUnit\Framework\TestCase;
+
+class PerformanceTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class AudienceIndexPixelTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndexPixel())->create();
+        (new Performance())->create();
 
     }
 
@@ -19,7 +23,7 @@ class AudienceIndexPixelTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndexPixel())->delete();
+        (new Performance())->delete();
 
     }
 
@@ -29,16 +33,15 @@ class AudienceIndexPixelTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndexPixel())->update();
+        (new Performance())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndexPixel())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/performance';
+        $this->assertEquals($expected, (new Performance())->read());
 
     }
 
 }
-

@@ -1,6 +1,10 @@
 <?php
 
-class DayPartTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\DayPart;
+use PHPUnit\Framework\TestCase;
+
+class DayPartTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class DayPartTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->create();
+        (new DayPart())->create();
 
     }
 
@@ -19,7 +23,7 @@ class DayPartTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->delete();
+        (new DayPart())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class DayPartTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->update();
+        (new DayPart())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\DayPart())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/day_part';
+        $this->assertEquals($expected, (new DayPart())->read());
 
     }
 

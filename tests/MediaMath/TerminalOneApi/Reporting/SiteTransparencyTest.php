@@ -1,6 +1,10 @@
 <?php
 
-class MetaTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\SiteTransparency;
+use PHPUnit\Framework\TestCase;
+
+class SiteTransparencyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class MetaTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->create();
+        (new SiteTransparency())->create();
 
     }
 
@@ -19,7 +23,7 @@ class MetaTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->delete();
+        (new SiteTransparency())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class MetaTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->update();
+        (new SiteTransparency())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Meta())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/site_transparency';
+        $this->assertEquals($expected, (new SiteTransparency())->read());
 
     }
 

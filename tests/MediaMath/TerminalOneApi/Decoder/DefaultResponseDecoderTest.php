@@ -1,5 +1,8 @@
 <?php
+namespace Tests\MediaMath\TerminalOneApi\Decoder;
+
 use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -7,7 +10,7 @@ use MediaMath\TerminalOneAPI\Decoder\DefaultResponseDecoder;
  * Date: 02/12/2016
  * Time: 15:42
  */
-class DefaultResponseDecoderTest  extends PHPUnit_Framework_TestCase
+class DefaultResponseDecoderTest  extends TestCase
 {
 
     /**

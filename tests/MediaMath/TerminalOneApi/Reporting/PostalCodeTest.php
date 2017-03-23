@@ -1,6 +1,10 @@
 <?php
 
-class AudienceIndexTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\PostalCode;
+use PHPUnit\Framework\TestCase;
+
+class PostalCodeTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class AudienceIndexTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->create();
+        (new PostalCode())->create();
 
     }
 
@@ -19,7 +23,7 @@ class AudienceIndexTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->delete();
+        (new PostalCode())->delete();
 
     }
 
@@ -29,16 +33,15 @@ class AudienceIndexTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->update();
+        (new PostalCode())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\AudienceIndex())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/postal_code';
+        $this->assertEquals($expected, (new PostalCode())->read());
 
     }
 
 }
-

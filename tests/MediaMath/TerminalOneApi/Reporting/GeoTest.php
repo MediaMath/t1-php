@@ -1,6 +1,10 @@
 <?php
 
-class WatermarkTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Geo;
+use PHPUnit\Framework\TestCase;
+
+class GeoTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class WatermarkTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->create();
+        (new Geo())->create();
 
     }
 
@@ -19,7 +23,7 @@ class WatermarkTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->delete();
+        (new Geo())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class WatermarkTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->update();
+        (new Geo())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Watermark())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/geo';
+        $this->assertEquals($expected, (new Geo())->read());
 
     }
 

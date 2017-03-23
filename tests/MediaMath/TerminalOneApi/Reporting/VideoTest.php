@@ -1,6 +1,10 @@
 <?php
 
-class PostalCodeTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\Video;
+use PHPUnit\Framework\TestCase;
+
+class VideoTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class PostalCodeTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->create();
+        (new Video())->create();
 
     }
 
@@ -19,7 +23,7 @@ class PostalCodeTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->delete();
+        (new Video())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class PostalCodeTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->update();
+        (new Video())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\PostalCode())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/video';
+        $this->assertEquals($expected, (new Video())->read());
 
     }
 

@@ -1,6 +1,10 @@
 <?php
 
-class PulseTest extends PHPUnit_Framework_TestCase
+namespace Tests\MediaMath\TerminalOneApi\Reporting;
+use MediaMath\TerminalOneAPI\Reporting\DeviceTechnology;
+use PHPUnit\Framework\TestCase;
+
+class DeviceTechnologyTest extends TestCase
 {
 
     /**
@@ -9,7 +13,7 @@ class PulseTest extends PHPUnit_Framework_TestCase
     public function testCannotCreate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->create();
+        (new DeviceTechnology())->create();
 
     }
 
@@ -19,7 +23,7 @@ class PulseTest extends PHPUnit_Framework_TestCase
     public function testCannotDelete()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->delete();
+        (new DeviceTechnology())->delete();
 
     }
 
@@ -29,14 +33,14 @@ class PulseTest extends PHPUnit_Framework_TestCase
     public function testCannotUpdate()
     {
 
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->update();
+        (new DeviceTechnology())->update();
 
     }
 
     public function testCanRead()
     {
-
-        $report = (new \MediaMath\TerminalOneAPI\Reporting\Pulse())->read();
+        $expected = 'https://api.mediamath.com/reporting/v1/std/device_technology';
+        $this->assertEquals($expected, (new DeviceTechnology())->read());
 
     }
 
