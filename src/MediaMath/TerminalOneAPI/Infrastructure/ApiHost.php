@@ -45,6 +45,9 @@ final class ApiHost
             case 'T1_ADAPTIVE_SEGMENTS':
                 $host = 'https://'.self::overrideDefaultValue('t1', $subdomain).'.mediamath.com/dmp/v'.self::overrideDefaultValue('2.0', $version).'/';
                 break;
+            case 'T1_MEDIA':
+                $host = 'https://'.self::overrideDefaultValue('t1', $subdomain).'.mediamath.com/media/v'.self::overrideDefaultValue('1.0', $version).'/';
+                break;
         }
 
         return $host;
